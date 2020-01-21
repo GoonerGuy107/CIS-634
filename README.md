@@ -1,4 +1,4 @@
 # CIS-634
 Assurance Foundations
 
-Each project is provided in the approiate folder.
+Each project is provided in the appropriate folder.

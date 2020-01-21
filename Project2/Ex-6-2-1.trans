@@ -1,0 +1,100 @@
+
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+> > > > # # # # # # # # # ** types trace now on
+> # # # # # # # # # ** Unicode trace now off
+> ``x``;
+``y``;
+``P x``;
+``Q y``;
+``P x ==> Q y``;
+<<HOL message: inventing new type variable names: 'a>>
+val it = ``(x :'a)``: term
+> <<HOL message: inventing new type variable names: 'a>>
+val it = ``(y :'a)``: term
+> <<HOL message: inventing new type variable names: 'a, 'b>>
+val it =
+   ``(P :'a -> 'b) (x :'a)``:
+   term
+> <<HOL message: inventing new type variable names: 'a, 'b>>
+val it =
+   ``(Q :'a -> 'b) (y :'a)``:
+   term
+> <<HOL message: inventing new type variable names: 'a, 'b>>
+val it =
+   ``(P :'a -> bool) (x :'a) ==> (Q :'b -> bool) (y :'b)``:
+   term
+> ``x:num``;
+``y:bool``;
+``P x:num``;
+``Q y:bool``;
+``P (x:num) ==> Q (y:bool)``;
+
+val it = ``(x :num)``: term
+> val it = ``(y :bool)``: term
+> <<HOL message: inventing new type variable names: 'a>>
+val it =
+   ``(P :'a -> num) (x :'a)``:
+   term
+> <<HOL message: inventing new type variable names: 'a>>
+val it =
+   ``(Q :'a -> bool) (y :'a)``:
+   term
+> val it =
+   ``(P :num -> bool) (x :num) ==> (Q :bool -> bool) (y :bool)``:
+   term
+> > 
+> ``x``;
+``y``;
+``P x``;
+``Q y``;
+``!x. !y. P(x) ==> Q(y)``;
+<<HOL message: inventing new type variable names: 'a>>
+val it = ``(x :'a)``: term
+> <<HOL message: inventing new type variable names: 'a>>
+val it = ``(y :'a)``: term
+> <<HOL message: inventing new type variable names: 'a, 'b>>
+val it =
+   ``(P :'a -> 'b) (x :'a)``:
+   term
+> <<HOL message: inventing new type variable names: 'a, 'b>>
+val it =
+   ``(Q :'a -> 'b) (y :'a)``:
+   term
+> <<HOL message: inventing new type variable names: 'a, 'b>>
+val it =
+   ``!(x :'a) (y :'b). (P :'a -> bool) x ==> (Q :'b -> bool) y``:
+   term
+> ``x:num``;
+``R(x:num)``;
+``?x. R(x:num)``;
+val it = ``(x :num)``: term
+> <<HOL message: inventing new type variable names: 'a>>
+val it =
+   ``(R :num -> 'a) (x :num)``:
+   term
+> val it =
+   ``?(x :num). (R :num -> bool) x``:
+   term
+> ``~!x.(P(x) \/ Q(x)) = ?x.(~P(x) /\ ~Q(x))``;
+<<HOL message: inventing new type variable names: 'a>>
+val it =
+   ``~!(x :'a).
+     (P :'a -> bool) x \/ (Q :'a -> bool) x <=> ?(x :'a). ~P x /\ ~Q x``:
+   term
+> ``!x.P(x) ==> M(x)``;
+<<HOL message: inventing new type variable names: 'a>>
+val it =
+   ``!(x :'a). (P :'a -> bool) x ==> (M :'a -> bool) x``:
+   term
+> ``!x.P(x) ==> ?x.Funny(x)``;
+<<HOL message: inventing new type variable names: 'a, 'b>>
+val it =
+   ``!(x :'a). (P :'a -> bool) x ==> ?(x :'b). (Funny :'b -> bool) x``:
+   term
+> 
+Process HOL killed

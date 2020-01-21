@@ -1,0 +1,13 @@
+
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+> > > > filter (fn x => x < 5);
+val it = fn: int list -> int list
+> val testResults = filter (fn x => x < 5) [1,2,3,4,5,6,7,8,9];
+val testResults = [1, 2, 3, 4]: int list
+> 
+Process HOL killed

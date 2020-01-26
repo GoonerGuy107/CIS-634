@@ -1,0 +1,267 @@
+%% ---------------------------------------------------
+%% Kyle Peppe
+%% CIS 634 Project 3 Report
+%% Exercises 7.31, 7.3.2, and 7.3.3 only
+%% ---------------------------------------------------
+\documentclass{report}
+
+\title{Project 3 Report}
+\author{Kyle Peppe}
+\date{\today}
+
+%% ---------------------------------------------------
+%% 634format specifies the format of our reports
+%% ---------------------------------------------------
+\usepackage{634format}
+
+%% ---------------------------------------------------
+%% enumerate 
+%% ---------------------------------------------------
+\usepackage{enumerate}
+
+%% ---------------------------------------------------
+%% listings is used for including our source code in reports
+%% textcomp provides additional symbols
+%% ---------------------------------------------------
+\usepackage{listings}
+\usepackage{textcomp}
+
+%% ---------------------------------------------------
+%% Packages for math environments
+%% ---------------------------------------------------
+\usepackage{amsmath}
+
+%% ---------------------------------------------------
+%% Packages for URLs and hotlinks in the table of contents
+%% and symbolic cross references using \ref
+%% ---------------------------------------------------
+\usepackage{hyperref}
+
+%% ---------------------------------------------------
+%% Packages for using HOL-generated macros and displays
+%% ---------------------------------------------------
+\usepackage{holtex}
+\usepackage{holtexbasic}
+\input{commands}
+
+\begin{document}
+
+%% --------------------------------------------------- 
+%% The listings  parameter "language" is set to "ML"
+%% ---------------------------------------------------
+\lstset{language=ML}
+
+
+\maketitle{}
+
+\begin{abstract}
+  This project began my work in the HOL environment and using HOL
+  terms. For these exercises I was creating a function that would
+  start with a certain form and then returns a different form.
+  \begin{itemize}
+  \item Problem statement
+  \item Relevant code
+  \item Test results
+  \item Execution Transcripts
+  \end{itemize}
+  
+  For each problem or exercise-oriented chapter in the main body of
+  the report is a corresponding chapter in the Appendix containing the
+  source code in ML.  This source code is not pasted into the
+  Appendix.  Rather, it is input directly from the source code file
+  itself.
+
+\end{abstract}
+
+\begin{acknowledgments}
+  I would like to acknowledge the 2 professors, Professor Chin and 
+  Professor Hamner, that have helped me begin to understand this new
+  ML programming language. Also to Syracuse University for accepting
+  me to this Masters program in Cybersecurity.
+\end{acknowledgments}
+
+\tableofcontents{}
+
+
+\chapter{Executive Summary}
+\label{cha:executive-summary}
+
+\textbf{All requirements for this project are satisfied}.
+Specifically,
+\begin{description}
+\item[Report Contents] \ \\
+  The report has the following content:
+  \begin{enumerate}[{}]
+  \item Chapter~\ref{cha:executive-summary}: Executive Summary
+  \item Chapter~\ref{cha:exercise-7-3-1}: Exercise 7.3.1
+    \begin{enumerate}[{}]
+    \item Section~\ref{sec:problem-statement-ex-7-3-1}: Problem statement
+    \item Section~\ref{sec:relevant-code-ex-7-3-1}: Relevant code
+    \item Section~\ref{sec:tests-ex-7-3-1}: Test results
+    \item Section~\ref{sec:exe-ex-7-3-1}: Execution Transcripts
+    \end{enumerate}
+  \item Chapter~\ref{cha:exercise-7-3-2}: Exercise 7.3.2
+    \begin{enumerate}[{}]
+    \item Section~\ref{sec:problem-statement-ex-7-3-2}: Problem statement
+    \item Section~\ref{sec:relevant-code-ex-7-3-2}: Relevant code
+    \item Section~\ref{sec:tests-ex-7-3-2}: Test results
+    \item Section~\ref{sec:exe-ex-7-3-2}: Execution Transcripts
+    \end{enumerate}
+  \item Chapter~\ref{cha:exercise-7-3-3}: Exercise 7.3.3
+    \begin{enumerate}[{}]
+    \item Section~\ref{sec:problem-statement-ex-7-3-3}: Problem statement
+    \item Section~\ref{sec:relevant-code-ex-7-3-3}: Relevant code
+    \item Section~\ref{sec:tests-ex-7-3-3}: Test results
+    \item Section~\ref{sec:exe-ex-7-3-3}: Execution Transcripts
+    \end{enumerate}
+  \item Chapter~\ref{cha:source-code-ex-7-3}: Source Code for Exercise
+    7.3.1, 7.3.2, and 7.3.3
+  \end{enumerate}
+\item[Reproducibility in ML and \LaTeX{}] \ \\
+  Our ML and \LaTeX{} source files compile with no errors.
+\end{description}
+
+
+\chapter{Exercise 7.3.1}
+\label{cha:exercise-7-3-1}
+
+\section{Problem Statement for Exercise 7.3.1}
+\label{sec:problem-statement-ex-7-3-1}
+For this problem I solved the Exercise 7.3.1 from the PDF book. We
+were given a starting function and had to use the terms provided and
+get that term to return a desired term.
+
+\section{Relevant Code for Exercise 7.3.1}
+\label{sec:relevant-code-ex-7-3-1}
+  The relevant code wil be in the corresponding Appendix at the
+  end of the report.
+
+\section{Test cases for Exercise 7.3.1}
+\label{sec:tests-ex-7-3-1}
+There were no test cases here were giving a starting function and then
+had to use logic to get to a desired funtion. The starting function
+was:
+\begin{lstlisting}[frame=TBlr]
+andImp2Imp (p /\ q) ==> r
+\end{lstlisting}
+
+\section{Execution Transcripts for Exercise 7.3.1}
+\label{sec:exe-ex-7-3-1}
+Below are the results from running the test cases:
+
+The following is output from \emph{chapter7Answer.sml}
+\lstinputlisting{ML/Ex-7-3-1.trans}
+
+\chapter{Exercise 7.3.2}
+\label{cha:exercise-7-3-2}
+
+\section{Problem Statement for Exercise 7.3.2}
+\label{sec:problem-statement-ex-7-3-2}
+For this problem I solved the Exercise 7.3.2 from the PDF book. In
+this exercise we were given a term and instructed to get this to
+return a new term similiar to 7.3.1. But there was the added step of
+once getting our original term impImpAnd to return andImp2Imp then I
+needed reverse andImp2Imp back to impImpAnd.
+
+\section{Relevant Code for Exercise 7.3.2}
+\label{sec:relevant-code-ex-7-3-2}
+  The relevant code wil be in the corresponding Appendix at the
+  end of the report.
+
+\section{Test cases for Exercise 7.3.2}
+\label{sec:tests-ex-7-3-2}
+Once again we weren't necessarily given test cases but a started value
+and an ending value to get the term to (and then reverse back):
+\begin{lstlisting}[frame=TBlr]
+impImpAnd = p ==> q ==> r
+impImpAnd (andImp2Imp = p /\ q ==> r)
+andImp2Imp (impImpAnd p ==> q ==> r)
+\end{lstlisting}
+
+\section{Execution Transcripts for Exercise 7.3.2}
+\label{sec:exe-ex-7-3-2}
+Below are the results from running the test cases:
+
+The following is output from \emph{chapter7Answer.sml}
+\lstinputlisting{ML/Ex-7-3-2.trans}
+
+\chapter{Exercise 7.3.3}
+\label{cha:exercise-7-3-3}
+
+\section{Problem Statement for Exercise 7.3.3}
+\label{sec:problem-statement-ex-7-3-3}
+For this problem I solved the Exercise 7.3.3 from the PDF book. Here
+we were given a term and had to get the function to return a different
+form. This is similiar to the previous 2 exercises, just more
+difficult.
+
+\section{Relevant Code for Exercise 7.3.3}
+\label{sec:relevant-code-ex-7-3-3}
+  The relevant code wil be in the corresponding Appendix at the
+  end of the report.
+
+\section{Test cases for Exercise 7.3.3}
+\label{sec:tests-ex-7-3-3}
+Once again we weren't necessarily given test cases but a started value
+and an ending value to get the term to (and then reverse back):
+\begin{lstlisting}[frame=TBlr]
+notExists = ~?z.Q(z)
+\end{lstlisting}
+
+\section{Execution Transcripts for Exercise 7.3.3}
+\label{sec:exe-ex-7-3-3}
+Below are the results from running the test cases:
+
+The following is output from \emph{chapter7Answer.sml}
+\lstinputlisting{ML/Ex-7-3-3.trans}
+
+
+\chapter{Relevant Information}
+\label{cha:relevant-information}
+
+\section{Specific Test Cases}
+\label{sec:specific-test-cases}
+
+\subsection{Test Cases for Exercise 7.3.1}
+\label{sec:test-cases-ex-7-3-1}
+There were no test cases here were giving a starting function and then
+had to use logic to get to a desired funtion. The starting function
+was:
+\begin{lstlisting}[frame=TBlr]
+andImp2Imp (p /\ q) ==> r
+\end{lstlisting}
+
+\subsection{Test Cases for Exercise 7.3.2}
+\label{sec:test-cases-ex-7-3-2}
+Once again we weren't necessarily given test cases but a started value
+and an ending value to get the term to (and then reverse back):
+\begin{lstlisting}[frame=TBlr]
+impImpAnd = p ==> q ==> r
+impImpAnd (andImp2Imp = p /\ q ==> r)
+andImp2Imp (impImpAnd p ==> q ==> r)
+\end{lstlisting}
+
+\subsection{Test Cases for Exercise 7.3.3}
+\label{sec:test-cases-ex-7-3-3}
+Once again we weren't necessarily given test cases but a started value
+and an ending value to get the term to (and then reverse back):
+\begin{lstlisting}[frame=TBlr]
+notExists = ~?z.Q(z)
+\end{lstlisting}
+
+%% ------------------------------------------
+%% this restarts the section numbering and
+%% changes chapter numbering to letters starting
+%% with A
+%% ------------------------------------------
+\appendix{} 
+
+
+\chapter{Source Code for  Exercise 7.3.1, 7.3.2, and 7.3.3}
+\label{cha:source-code-ex-7-3}
+
+The following code is from \emph{chapter7Answer.sml}
+\lstinputlisting{ML/chapter7Answer.sml}
+
+
+\end{document}

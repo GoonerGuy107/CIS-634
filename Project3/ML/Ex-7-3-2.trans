@@ -1,0 +1,27 @@
+
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+> > > > # # # # # # # # # ** types trace now on
+> # # # # # # # # # ** Unicode trace now off
+> fun andImp2Imp term = ``p ==> q ==> r``;
+val andImp2Imp = fn: 'a -> term
+> fun impImpAnd term = ``p /\ q ==> r``;
+val impImpAnd = fn: 'a -> term
+> val v1 = andImp2Imp ``p /\ q ==> r``;
+val v1 =
+   ``(p :bool) ==> (q :bool) ==> (r :bool)``:
+   term
+> val v2 = impImpAnd v1;
+val v2 =
+   ``(p :bool) /\ (q :bool) ==> (r :bool)``:
+   term
+> val v3 = andImp2Imp v2;
+val v3 =
+   ``(p :bool) ==> (q :bool) ==> (r :bool)``:
+   term
+> 
+Process HOL killed

@@ -1,0 +1,343 @@
+%% ---------------------------------------------------
+%% Kyle Peppe
+%% CIS 634 Project 2 Report
+%% ---------------------------------------------------
+\documentclass{report}
+
+\title{Project 1 Report}
+\author{Kyle Peppe}
+\date{\today}
+
+%% ---------------------------------------------------
+%% 634format specifies the format of our reports
+%% ---------------------------------------------------
+\usepackage{634format}
+
+%% ---------------------------------------------------
+%% enumerate 
+%% ---------------------------------------------------
+\usepackage{enumerate}
+
+%% ---------------------------------------------------
+%% listings is used for including our source code in reports
+%% textcomp provides additional symbols
+%% ---------------------------------------------------
+\usepackage{listings}
+\usepackage{textcomp}
+
+%% ---------------------------------------------------
+%% Packages for math environments
+%% ---------------------------------------------------
+\usepackage{amsmath}
+
+%% ---------------------------------------------------
+%% Packages for URLs and hotlinks in the table of contents
+%% and symbolic cross references using \ref
+%% ---------------------------------------------------
+\usepackage{hyperref}
+
+%% ---------------------------------------------------
+%% Packages for using HOL-generated macros and displays
+%% ---------------------------------------------------
+\usepackage{holtex}
+\usepackage{holtexbasic}
+\input{commands}
+
+\begin{document}
+
+%% --------------------------------------------------- 
+%% The listings  parameter "language" is set to "ML"
+%% ---------------------------------------------------
+\lstset{language=ML}
+
+
+\maketitle{}
+
+\begin{abstract}
+  This project built on our initial learning of the ML programming
+  language and some more complicated problems that we had to
+  solve. This project finished up with us performing some basic HOL
+  instructions. Then I put the findings, code and output into Latex to
+  further enhance my knowledge on making these reports. I did the
+  exercises from the PDF book from the class 8.4.1, 8.4.2, and
+  8.4.3. Below are the sections that are in this report for each
+  problem:
+	\begin{itemize}
+		\item Problem Statement
+		\item Relevant Code
+		\item Test Results
+	\end{itemize}
+        This project includes the following packages:
+	\begin{description}
+		\item[\emph{634format.sty}] A format style for this course
+		\item[\emph{listings}] Package for displaying and inputting ML source code
+		\item[\emph{holtex}] HOL style files and commands to display in the report
+	\end{description}
+        This document also demonstrates my ability to :
+	\begin{itemize}
+		\item Easily generate a table of contents,
+		\item Refer to chapter and section labels
+	\end{itemize}.
+\end{abstract}
+
+\tableofcontents{}
+
+\begin{acknowledgments}
+  I would like to acknowledge the 2 professors, Professor Chin and 
+  Professor Hamner, that have helped me begin to understand this new
+  ML programming language. Also to Syracuse University for accepting
+  me to this Masters program in Cybersecurity.
+\end{acknowledgments}
+
+\chapter{Executive Summary}
+\label{cha:executive-summary}
+\textbf{All requirements for this project are satisfied.}
+Specifically,
+\begin{description}
+\item[Report Contents] \ \\
+  Our report has the following content:
+  \begin{enumerate}[{}]
+  \item Chapter~\ref{cha:executive-summary}: Executive Summary
+  \item Chapter~\ref{cha:8.4.1}: Exercise 8.4.1
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-8-4-1}: Problem Statement
+    \item Section~\ref{rel-code-8-4-1}: Relevant Code 
+    \item Section~\ref{trans-8-4-1}: Session Transcripts
+    \end{enumerate}
+  \item Chapter~\ref{cha:8.4.2}: Exercise 8.4.2
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-8-4-2}: Problem Statement
+    \item Section~\ref{rel-code-8-4-2}: Relevant Code
+    \item Section~\ref{trans-8-4-2}: Session Transcripts
+    \end{enumerate}
+  \item Chapter~\ref{cha:8.4.3}: Exercise 8.4.3
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-8-4-3}: Problem Statement
+    \item Section~\ref{rel-code-8-4-3}: Relevant Code
+    \item Section~\ref{trans-8-4-3}: Session Transcripts
+    \end{enumerate}
+ \item Appendix~\ref{cha:source-code}: Source Code
+  \end{enumerate}
+\item[Reproducibility in ML and \LaTeX{}] \ \\
+  The ML and \LaTeX{} source files compile with no errors.
+\end{description}
+
+
+\chapter{Excercise 8.4.1}
+\label{cha:8.4.1}
+
+\section{Problem statement}
+\label{problem-statement-8-4-1}
+Prove the following theorem
+\begin{lstlisting}[frame=tblr]
+> val problem1Thm =
+	[] |- p ==> (p ==> q) ==> (q ==> r) ==> r
+	: thm
+\end{lstlisting}
+
+\section{Relevant Code}
+\label{rel-code-8-4-1}
+\begin{lstlisting}[frame=TBlr]
+val problem1Thm =
+let
+	val th1 = ASSUME ``p:bool``
+	val th2 = ASSUME ``p ==> q``
+	val th3 = ASSUME ``q ==> r``
+	val th4 = MP th2 th1
+	val th5 = MP th3 th4
+	val t1 = hd(hyp th1)
+	val t2 = hd(hyp th2)
+	val t3 = hd(hyp th3)
+	val th6 = DISCH t3 th4
+	val th7 = DISCH t2 th6
+in
+	DISCH t3 th7
+end
+
+val _ = save_thm("problem1Thm", problem1Thm);
+
+\end{lstlisting}
+
+\section{Session Transcript}
+\label{trans-8-4-1}
+\begin{session}
+  \begin{scriptsize}
+\begin{verbatim}
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+> > > > # # # # # # # # # ** types trace now on
+> # # # # # # # # # ** Unicode trace now off
+> val problem1Thm =
+let
+	val th1 = ASSUME ``p:bool``
+	val th2 = ASSUME ``p ==> q``
+	val th3 = ASSUME ``q ==> r``
+	val th4 = MP th2 th1
+	val th5 = MP th3 th4
+	val t1 = hd(hyp th1)
+	val t2 = hd(hyp th2)
+	val t3 = hd(hyp th3)
+	val th6 = DISCH t3 th4
+	val th7 = DISCH t2 th6
+in
+	DISCH t3 th7
+end;
+# # # # # # # # # # # # # # val problem1Thm =
+    [.]
+|- ((q :bool) ==> (r :bool)) ==> ((p :bool) ==> q) ==> (q ==> r) ==> q:
+   thm
+> 
+\end{verbatim}
+  \end{scriptsize}
+\end{session}
+
+\chapter{Excercise 8.4.2}
+\label{cha:8.4.2}
+
+\section{Problem statement}
+\label{problem-statement-8-4-2}
+Prove the following theorem:
+\begin{lstlisting}[frame=tblr]
+> val conjSymThm =
+	[] |- p /\ q <=> q /\ p
+	: thm
+\end{lstlisting}
+
+\section{Relevant Code}
+\label{rel-code-8-4-2}
+\begin{lstlisting}[frame=TBlr]
+val conjSymThm =
+let
+	val th1 = ASSUME ``p /\ q``
+	val th2 = ASSUME ``q /\ p``
+	val ab = CONJUNCT1 th1
+	val cd = CONJUNCT2 th1
+	val ba = CONJUNCT2 th2
+	val bc = CONJUNCT1 th2
+	val th3 = CONJ cd ab
+	val th4 = CONJ ba bc
+	val t1 = hd(hyp th1)
+	val t2 = hd(hyp th2)
+	val th5 = DISCH t1 th3
+	val th6 = DISCH t2 th4
+in
+	IMP_ANTISYM_RULE th5 th6
+end
+
+val _ = save_thm("conjSymThm", conjSymThm);
+\end{lstlisting}
+
+\section{Session Transcript}
+\label{trans-8-4-2}
+\begin{session}
+  \begin{scriptsize}
+\begin{verbatim}
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+> > > > # # # # # # # # # ** types trace now on
+> # # # # # # # # # ** Unicode trace now off
+> val conjSymThm =
+let
+	val th1 = ASSUME ``p /\ q``
+	val th2 = ASSUME ``q /\ p``
+	val ab = CONJUNCT1 th1
+	val cd = CONJUNCT2 th1
+	val ba = CONJUNCT2 th2
+	val bc = CONJUNCT1 th2
+	val th3 = CONJ cd ab
+	val th4 = CONJ ba bc
+	val t1 = hd(hyp th1)
+	val t2 = hd(hyp th2)
+	val th5 = DISCH t1 th3
+	val th6 = DISCH t2 th4
+in
+	IMP_ANTISYM_RULE th5 th6
+end;
+# # # # # # # # # # # # # # # # val conjSymThm =
+   |- (p :bool) /\ (q :bool) <=> q /\ p:
+   thm
+> 
+\end{verbatim}
+  \end{scriptsize}
+\end{session}
+
+\chapter{Excercise 8.4.3}
+\label{cha:8.4.3}
+
+\section{Problem statement}
+\label{problem-statement-8-4-3}
+Extend your proof in Problem 2 by one step and prove:
+\begin{lstlisting}[frame=tblr]
+> val conjSymThmAll =
+	[] |- !p q. p /\ q <=> q /\ p
+	: thm
+\end{lstlisting}
+
+\section{Relevant Code}
+\label{rel-code-8-4-3}
+\begin{lstlisting}[frame=TBlr]
+val conjSymThmAll = GENL [``p:bool``, ``q:bool``] conjSymThm;
+
+val _ = save_thm("conjSymThmAll", conjSymThmAll);
+\end{lstlisting}
+
+\section{Test Case}
+\label{trans-8-4-3}
+\begin{session}
+  \begin{scriptsize}
+\begin{verbatim}
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+> > > > # # # # # # # # # ** types trace now on
+> # # # # # # # # # ** Unicode trace now off
+> val conjSymThm =
+let
+	val th1 = ASSUME ``p /\ q``
+	val th2 = ASSUME ``q /\ p``
+	val ab = CONJUNCT1 th1
+	val cd = CONJUNCT2 th1
+	val ba = CONJUNCT2 th2
+	val bc = CONJUNCT1 th2
+	val th3 = CONJ cd ab
+	val th4 = CONJ ba bc
+	val t1 = hd(hyp th1)
+	val t2 = hd(hyp th2)
+	val th5 = DISCH t1 th3
+	val th6 = DISCH t2 th4
+in
+	IMP_ANTISYM_RULE th5 th6
+end;
+# # # # # # # # # # # # # # # # val conjSymThm =
+   |- (p :bool) /\ (q :bool) <=> q /\ p:
+   thm
+> val conjSymThmAll = GENL [``p:bool``, ``q:bool``] conjSymThm;
+
+val _ = save_thm("conjSymThmAll", conjSymThmAll);
+val conjSymThmAll =
+   |- !(p :bool) (q :bool). p /\ q <=> q /\ p:
+   thm
+> > > 
+\end{verbatim}
+  \end{scriptsize}
+\end{session}
+
+
+\appendix{}
+
+\chapter{Source code}
+\label{cha:source-code}
+\lstinputlisting{../chapter8Script.sml}
+
+\end{document}

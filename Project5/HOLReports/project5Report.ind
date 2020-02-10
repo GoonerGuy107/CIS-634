@@ -1,0 +1,24 @@
+\begin{theindex}
+
+  \item \textbf  {exType Theory}, 3
+    \subitem Definitions, 3
+      \subsubitem APP_def, 3
+      \subsubitem Map_def, 3
+    \subitem Theorems, 3
+      \subsubitem APP_ASSOC, 3
+      \subsubitem LENGTH_APP, 3
+      \subsubitem Map_APP, 3
+
+  \indexspace
+
+  \item \textbf  {nexp Theory}, 3
+    \subitem Datatypes, 3
+    \subitem Definitions, 3
+      \subsubitem nexpVal_def, 3
+    \subitem Theorems, 4
+      \subsubitem Add_0, 4
+      \subsubitem Add_SYM, 4
+      \subsubitem Mult_ASSOC, 4
+      \subsubitem Sub_0, 4
+
+\end{theindex}

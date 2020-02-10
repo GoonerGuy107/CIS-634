@@ -1,0 +1,44 @@
+\newcommand{\HOLnexpDate}{06 February 2020}
+\newcommand{\HOLnexpTime}{21:03}
+\begin{SaveVerbatim}{HOLnexpDatatypesnexp}
+\HOLFreeVar{nexp} = \HOLConst{Num} \HOLTyOp{num} \HOLTokenBar{} \HOLConst{Add} \HOLTyOp{nexp} \HOLTyOp{nexp} \HOLTokenBar{} \HOLConst{Sub} \HOLTyOp{nexp} \HOLTyOp{nexp} \HOLTokenBar{} \HOLConst{Mult} \HOLTyOp{nexp} \HOLTyOp{nexp}
+\end{SaveVerbatim}
+\newcommand{\HOLnexpDatatypesnexp}{\UseVerbatim{HOLnexpDatatypesnexp}}
+\newcommand{\HOLnexpDatatypes}{
+\HOLnexpDatatypesnexp}
+\begin{SaveVerbatim}{HOLnexpDefinitionsnexpValXXdef}
+\HOLTokenTurnstile{} (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{num}. \HOLConst{nexpVal} (\HOLConst{Num} \HOLBoundVar{num}) \HOLSymConst{=} \HOLBoundVar{num}) \HOLSymConst{\HOLTokenConj{}}
+   (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}. \HOLConst{nexpVal} (\HOLConst{Add} \HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}) \HOLSymConst{=} \HOLConst{nexpVal} \HOLBoundVar{f\sb{\mathrm{1}}} \HOLSymConst{+} \HOLConst{nexpVal} \HOLBoundVar{f\sb{\mathrm{2}}}) \HOLSymConst{\HOLTokenConj{}}
+   (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}. \HOLConst{nexpVal} (\HOLConst{Sub} \HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}) \HOLSymConst{=} \HOLConst{nexpVal} \HOLBoundVar{f\sb{\mathrm{1}}} \HOLSymConst{-} \HOLConst{nexpVal} \HOLBoundVar{f\sb{\mathrm{2}}}) \HOLSymConst{\HOLTokenConj{}}
+   \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}. \HOLConst{nexpVal} (\HOLConst{Mult} \HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}) \HOLSymConst{=} \HOLConst{nexpVal} \HOLBoundVar{f\sb{\mathrm{1}}} \HOLSymConst{\HOLTokenProd{}} \HOLConst{nexpVal} \HOLBoundVar{f\sb{\mathrm{2}}}
+\end{SaveVerbatim}
+\newcommand{\HOLnexpDefinitionsnexpValXXdef}{\UseVerbatim{HOLnexpDefinitionsnexpValXXdef}}
+\newcommand{\HOLnexpDefinitions}{
+\HOLDfnTag{nexp}{nexpVal_def}\HOLnexpDefinitionsnexpValXXdef
+}
+\begin{SaveVerbatim}{HOLnexpTheoremsAddXXZero}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{f}. \HOLConst{nexpVal} (\HOLConst{Add} (\HOLConst{Num} \HOLNumLit{0}) \HOLBoundVar{f}) \HOLSymConst{=} \HOLConst{nexpVal} \HOLBoundVar{f}
+\end{SaveVerbatim}
+\newcommand{\HOLnexpTheoremsAddXXZero}{\UseVerbatim{HOLnexpTheoremsAddXXZero}}
+\begin{SaveVerbatim}{HOLnexpTheoremsAddXXSYM}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}. \HOLConst{nexpVal} (\HOLConst{Add} \HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}) \HOLSymConst{=} \HOLConst{nexpVal} (\HOLConst{Add} \HOLBoundVar{f\sb{\mathrm{2}}} \HOLBoundVar{f\sb{\mathrm{1}}})
+\end{SaveVerbatim}
+\newcommand{\HOLnexpTheoremsAddXXSYM}{\UseVerbatim{HOLnexpTheoremsAddXXSYM}}
+\begin{SaveVerbatim}{HOLnexpTheoremsMultXXASSOC}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}} \HOLBoundVar{f\sb{\mathrm{3}}}.
+     \HOLConst{nexpVal} (\HOLConst{Mult} \HOLBoundVar{f\sb{\mathrm{1}}} (\HOLConst{Mult} \HOLBoundVar{f\sb{\mathrm{2}}} \HOLBoundVar{f\sb{\mathrm{3}}})) \HOLSymConst{=}
+     \HOLConst{nexpVal} (\HOLConst{Mult} (\HOLConst{Mult} \HOLBoundVar{f\sb{\mathrm{1}}} \HOLBoundVar{f\sb{\mathrm{2}}}) \HOLBoundVar{f\sb{\mathrm{3}}})
+\end{SaveVerbatim}
+\newcommand{\HOLnexpTheoremsMultXXASSOC}{\UseVerbatim{HOLnexpTheoremsMultXXASSOC}}
+\begin{SaveVerbatim}{HOLnexpTheoremsSubXXZero}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{f}.
+     (\HOLConst{nexpVal} (\HOLConst{Sub} (\HOLConst{Num} \HOLNumLit{0}) \HOLBoundVar{f}) \HOLSymConst{=} \HOLNumLit{0}) \HOLSymConst{\HOLTokenConj{}}
+     (\HOLConst{nexpVal} (\HOLConst{Sub} \HOLBoundVar{f} (\HOLConst{Num} \HOLNumLit{0})) \HOLSymConst{=} \HOLConst{nexpVal} \HOLBoundVar{f})
+\end{SaveVerbatim}
+\newcommand{\HOLnexpTheoremsSubXXZero}{\UseVerbatim{HOLnexpTheoremsSubXXZero}}
+\newcommand{\HOLnexpTheorems}{
+\HOLThmTag{nexp}{Add_0}\HOLnexpTheoremsAddXXZero
+\HOLThmTag{nexp}{Add_SYM}\HOLnexpTheoremsAddXXSYM
+\HOLThmTag{nexp}{Mult_ASSOC}\HOLnexpTheoremsMultXXASSOC
+\HOLThmTag{nexp}{Sub_0}\HOLnexpTheoremsSubXXZero
+}

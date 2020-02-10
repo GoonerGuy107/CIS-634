@@ -1,0 +1,381 @@
+%% ---------------------------------------------------
+%% Kyle Peppe
+%% CIS 634 Project 5 Report
+%% ---------------------------------------------------
+\documentclass{report}
+
+\title{Project 5 Report}
+\author{Kyle Peppe}
+\date{\today}
+
+%% ---------------------------------------------------
+%% 634format specifies the format of our reports
+%% ---------------------------------------------------
+\usepackage{634format}
+
+%% ---------------------------------------------------
+%% enumerate 
+%% ---------------------------------------------------
+\usepackage{enumerate}
+
+%% ---------------------------------------------------
+%% listings is used for including our source code in reports
+%% textcomp provides additional symbols
+%% ---------------------------------------------------
+\usepackage{listings}
+\usepackage{textcomp}
+
+%% ---------------------------------------------------
+%% Packages for math environments
+%% ---------------------------------------------------
+\usepackage{amsmath}
+
+%% ---------------------------------------------------
+%% Packages for URLs and hotlinks in the table of contents
+%% and symbolic cross references using \ref
+%% ---------------------------------------------------
+\usepackage{hyperref}
+
+%% ---------------------------------------------------
+%% Packages for using HOL-generated macros and displays
+%% ---------------------------------------------------
+\usepackage{holtex}
+\usepackage{holtexbasic}
+\input{commands}
+
+\begin{document}
+
+%% --------------------------------------------------- 
+%% The listings  parameter "language" is set to "ML"
+%% ---------------------------------------------------
+\lstset{language=ML}
+
+
+\maketitle{}
+
+\begin{abstract}
+  This project was to demonstrate my command of using the new
+  tacticals we have learned in order to prove theorems. This was also
+  the first set of exercises where I had to load and open HOL saved
+  theory files. The exercises became more difficult with chapter 10
+  being a bit more difficult. I have completed the exercises 11.6.1,
+  11.6.2, and 11.6.3.
+	\begin{itemize}
+		\item Problem Statement
+		\item Relevant Code
+		\item Test Results
+	\end{itemize}
+        This project includes the following packages:
+	\begin{description}
+		\item[\emph{634format.sty}] A format style for this course
+		\item[\emph{listings}] Package for displaying and inputting ML source code
+		\item[\emph{holtex}] HOL style files and commands to display in the report
+	\end{description}
+        This document also demonstrates my ability to :
+	\begin{itemize}
+		\item Easily generate a table of contents,
+		\item Refer to chapter and section labels
+	\end{itemize}
+\end{abstract}
+
+\tableofcontents{}
+
+\begin{acknowledgments}
+  I would like to acknowledge the 2 professors, Professor Chin and 
+  Professor Hamner, that have helped me begin to understand this new
+  ML programming language. Also to Syracuse University for accepting
+  me to this Masters program in Cybersecurity.
+\end{acknowledgments}
+
+\chapter{Executive Summary}
+\label{cha:executive-summary}
+\textbf{All requirements for this project are satisfied.}
+Specifically,
+\begin{description}
+\item[Report Contents] \ \\
+  Our report has the following content:
+  \begin{enumerate}[{}]
+  \item Chapter~\ref{cha:executive-summary}: Executive Summary
+  \item Chapter~\ref{cha:11-6-1}: Exercise 11.6.1
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-11-6-1}: Problem Statement
+    \item Section~\ref{rel-code-11-6-1}: Relevant Code 
+    \item Section~\ref{trans-11-6-1}: Session Transcripts
+    \end{enumerate}
+  \item Chapter~\ref{cha:11-6-2}: Exercise 11.6.2
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-11-6-2}: Problem Statement
+    \item Section~\ref{rel-code-11-6-2}: Relevant Code
+    \item Section~\ref{trans-11-6-2}: Session Transcripts
+    \end{enumerate}
+  \item Chapter~\ref{cha:11-6-3}: Exercise 11.6.3
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-11-6-3}: Problem Statement
+    \item Section~\ref{rel-code-11-6-3}: Relevant Code
+    \item Section~\ref{trans-11-6-3}: Session Transcripts
+    \end{enumerate}
+ \item Appendix~\ref{cha:source-code}: Source Code
+  \end{enumerate}
+\item[Reproducibility in ML and \LaTeX{}] \ \\
+  The ML and \LaTeX{} source files compile with no errors.
+\end{description}
+
+
+\chapter{Excercise 11.6.1}
+\label{cha:11-6-1}
+
+\section{Problem statement}
+\label{problem-statement-11-6-1}
+Add to the theory exTypeTheory by proving the following theorem
+\begin{lstlisting}[frame=tblr]
+ ``!(l1:'a list)(l2:'a list).LENGTH (APP l1 l2) = LENGTH l1 + LENGTH l2``)
+\end{lstlisting}
+
+\section{Relevant Code}
+\label{rel-code-11-6-1}
+\begin{lstlisting}[frame=TBlr]
+(* Exercise 11.6.1			*)
+val LENGTH_APP =
+TAC_PROOF(
+	([], ``!(l1:'a list)(l2:'a list).LENGTH (APP l1 l2)
+	= LENGTH l1 + LENGTH l2``),
+	Induct_on `l1` THEN
+	ASM_REWRITE_TAC [APP_def, LENGTH, ADD_CLAUSES]
+);
+
+(* Save the Theorem			*)
+val _ = save_thm("LENGTH_APP", LENGTH_APP);
+
+\end{lstlisting}
+
+\section{Session Transcript}
+\label{trans-11-6-1}
+\begin{session}
+  \begin{scriptsize}
+\begin{verbatim}
+> val LENGTH_APP =
+TAC_PROOF(
+	([], ``!(l1:'a list)(l2:'a list).LENGTH (APP l1 l2)
+	= LENGTH l1 + LENGTH l2``),
+	Induct_on `l1` THEN
+	ASM_REWRITE_TAC [APP_def, LENGTH, ADD_CLAUSES]
+);
+# # # # # # val LENGTH_APP =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(l1 :'a list) (l2 :'a list).
+     LENGTH (APP l1 l2) = LENGTH l1 + LENGTH l2:
+   thm
+> 
+
+\end{verbatim}
+  \end{scriptsize}
+\end{session}
+
+\chapter{Excercise 11.6.2}
+\label{cha:11-6-2}
+
+\section{Problem statement}
+\label{problem-statement-11-6-2}
+Add to the theory exTypeTheory by defining the function Map (Map f
+[1;2;3;4] = [f1; f2; f3; f4] and then prove the following theorem
+\begin{lstlisting}[frame=tblr]
+``Map f(APP l1 l2) = APP (Map f l1) (Map f l2)``)
+\end{lstlisting}
+
+\section{Relevant Code}
+\label{rel-code-11-6-2}
+\begin{lstlisting}[frame=TBlr]
+(* Exercise 11.6.2			*)
+val Map_def =
+Define
+	`(Map (f:'a -> 'b) [] = []) /\ (Map f (h::(l1:'a list))
+	= (f h)::Map f (l1:'a list))`;
+
+
+val Map_APP =
+TAC_PROOF (
+	  ([], ``Map f(APP l1 l2) = APP (Map f l1) (Map f l2)``),
+	  Induct_on `l1` THEN
+	  ASM_REWRITE_TAC[Map_def, APP_def]
+);
+
+(* Save the Theorem			*)
+val _ = save_thm("Map_APP", Map_APP);
+\end{lstlisting}
+
+\section{Session Transcript}
+\label{trans-11-6-2}
+\begin{session}
+  \begin{scriptsize}
+\begin{verbatim}
+> val Map_def =
+Define
+	`(Map (f:'a -> 'b) [] = []) /\ (Map f (h::(l1:'a list))
+	= (f h)::Map f (l1:'a list))`;
+# # # Definition has been stored under "Map_def"
+val Map_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(f :'a -> 'b). Map f ([] :'a list) = ([] :'b list)) /\
+   !(f :'a -> 'b) (h :'a) (l1 :'a list). Map f (h::l1) = f h::Map f l1:
+   thm
+> val Map_APP =
+TAC_PROOF (
+	  ([], ``Map f(APP l1 l2) = APP (Map f l1) (Map f l2)``),
+	  Induct_on `l1` THEN
+	  ASM_REWRITE_TAC[Map_def, APP_def]
+);
+# # # # # <<HOL message: inventing new type variable names: 'a, 'b>>
+val Map_APP =
+   [oracles: DISK_THM] [axioms: ] []
+|- Map (f :'b -> 'a) (APP (l1 :'b list) (l2 :'b list)) =
+   APP (Map f l1) (Map f l2):
+   thm
+> 
+\end{verbatim}
+  \end{scriptsize}
+\end{session}
+
+\chapter{Excercise 11.6.3}
+\label{cha:11-6-3}
+
+\section{Problem statement}
+\label{problem-statement-11-6-3}
+Solve the below theorems after using/setting up the new datatypes,
+definitions, and theorems: datatype nexp, definition of semantics of
+nexp experssions.
+\begin{lstlisting}[frame=tblr]
+Add_0:
+ ``!(f:nexp).nexpVal (Add (Num 0) f) = nexpVal f``
+
+Add_SYM:
+``!(f1:nexp)(f2:nexp).nexpVal (Add f1 f2) = nexpVal (Add f2 f1)``
+
+Sub_0:
+``!(f:nexp).(nexpVal (Sub (Num 0) f) = 0) /\ 
+   (nexpVal (Sub f (Num 0)) = nexpVal f)``
+
+Mult_ASSOC:
+``!(f1:nexp)(f2:nexp)(f3:nexp).nexpVal (Mult f1 (Mult f2 f3)) =
+	nexpVal (Mult (Mult f1 f2) f3)``
+\end{lstlisting}
+
+\section{Relevant Code}
+\label{rel-code-11-6-3}
+\begin{lstlisting}[frame=TBlr]
+(* Add_0   	    	     	   	*)
+val Add_0 =
+TAC_PROOF(
+	([], ``!(f:nexp).nexpVal (Add (Num 0) f) = nexpVal f``),
+	Induct_on `f` THEN
+	ASM_REWRITE_TAC[ADD_CLAUSES, nexpValDef]
+);
+
+(* Save the Theorem			*)
+val _ = save_thm("Add_0", Add_0);
+
+(* Add_SYM				*)
+val Add_SYM =
+TAC_PROOF(
+	([], ``!(f1:nexp)(f2:nexp).nexpVal (Add f1 f2) = nexpVal (Add f2 f1)``),
+	Induct_on `f1` THEN
+	PROVE_TAC[nexpValDef, ADD_SYM]
+);
+
+(* Save the Theorem			*)
+val _ = save_thm("Add_SYM", Add_SYM);
+
+(* Sub_0				*)
+val Sub_0 =
+TAC_PROOF(
+	([],``!(f:nexp).(nexpVal (Sub (Num 0) f) = 0) /\
+	(nexpVal (Sub f (Num 0)) = nexpVal f)``),
+	Induct_on`f` THEN
+	PROVE_TAC[nexpValDef, SUB_0]
+);
+
+(* Save the Theorem			*)
+val _ = save_thm("Sub_0", Sub_0);
+
+(* Mult_ASSOC				*)
+val Mult_ASSOC =
+TAC_PROOF(
+	([],``!(f1:nexp)(f2:nexp)(f3:nexp).nexpVal (Mult f1 (Mult f2 f3)) =
+	nexpVal (Mult (Mult f1 f2) f3)``),
+	Induct_on`f1` THEN
+	ASM_REWRITE_TAC[MULT_ASSOC, nexpValDef]
+);
+
+(* Save the Theorem			*)
+val _ = save_thm("Mult_ASSOC", Mult_ASSOC);
+\end{lstlisting}
+
+\section{Session Transcripts}
+\label{trans-11-6-3}
+\begin{session}
+  \begin{scriptsize}
+\begin{verbatim}
+> val Add_0 =
+TAC_PROOF(
+	([], ``!(f:nexp).nexpVal (Add (Num 0) f) = nexpVal f``),
+	Induct_on `f` THEN
+	ASM_REWRITE_TAC[ADD_CLAUSES, nexpValDef]
+);
+# # # # # val Add_0 =
+    [] |- !(f :nexp). nexpVal (Add (Num (0 :num)) f) = nexpVal f:
+   thm
+> val Add_SYM =
+TAC_PROOF(
+	([], ``!(f1:nexp)(f2:nexp).nexpVal (Add f1 f2) = nexpVal (Add f2 f1)``),
+	Induct_on `f1` THEN
+	PROVE_TAC[nexpValDef, ADD_SYM]
+);
+# # # # # Meson search level: ..........
+Meson search level: ..........
+Meson search level: ..........
+Meson search level: ..........
+val Add_SYM =
+    [] |- !(f1 :nexp) (f2 :nexp). nexpVal (Add f1 f2) = nexpVal (Add f2 f1):
+   thm
+> val Sub_0 =
+TAC_PROOF(
+	([],``!(f:nexp).(nexpVal (Sub (Num 0) f) = 0) /\
+	(nexpVal (Sub f (Num 0)) = nexpVal f)``),
+	Induct_on`f` THEN
+	PROVE_TAC[nexpValDef, SUB_0]
+);
+# # # # # # Meson search level: ........................
+Meson search level: ........................
+Meson search level: ........................
+Meson search level: ........................
+val Sub_0 =
+    []
+|- !(f :nexp).
+     (nexpVal (Sub (Num (0 :num)) f) = (0 :num)) /\
+     (nexpVal (Sub f (Num (0 :num))) = nexpVal f):
+   thm
+> val Mult_ASSOC =
+TAC_PROOF(
+	([],``!(f1:nexp)(f2:nexp)(f3:nexp).nexpVal (Mult f1 (Mult f2 f3)) =
+	nexpVal (Mult (Mult f1 f2) f3)``),
+	Induct_on`f1` THEN
+	ASM_REWRITE_TAC[MULT_ASSOC, nexpValDef]
+);
+# # # # # # val Mult_ASSOC =
+    []
+|- !(f1 :nexp) (f2 :nexp) (f3 :nexp).
+     nexpVal (Mult f1 (Mult f2 f3)) = nexpVal (Mult (Mult f1 f2) f3):
+   thm
+> 
+\end{verbatim}
+  \end{scriptsize}
+\end{session}
+
+\appendix{}
+
+\chapter{Source code}
+\label{cha:source-code}
+\lstinputlisting{../exTypeScript.sml}
+
+\lstinputlisting{../nexpScript.sml}
+
+\end{document}

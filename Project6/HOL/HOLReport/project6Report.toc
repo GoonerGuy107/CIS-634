@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {1}example1 Theory}{3}
+\contentsline {subsection}{\numberline {1.1}Datatypes}{3}
+\contentsline {subsection}{\numberline {1.2}Theorems}{3}
+\contentsline {section}{\numberline {2}conops0Solution Theory}{4}
+\contentsline {subsection}{\numberline {2.1}Datatypes}{4}
+\contentsline {subsection}{\numberline {2.2}Theorems}{5}
+\contentsline {section}{\numberline {3}solutions1 Theory}{6}
+\contentsline {subsection}{\numberline {3.1}Theorems}{7}

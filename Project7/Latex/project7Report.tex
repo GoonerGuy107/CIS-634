@@ -1,0 +1,240 @@
+%% ---------------------------------------------------
+%% Kyle Peppe
+%% CIS 634 Project 7 Report
+%% ---------------------------------------------------
+\documentclass{report}
+
+\title{Project 7 Report}
+\author{Kyle Peppe}
+\date{\today}
+
+%% ---------------------------------------------------
+%% 634format specifies the format of our reports
+%% ---------------------------------------------------
+\usepackage{634format}
+
+%% ---------------------------------------------------
+%% enumerate 
+%% ---------------------------------------------------
+\usepackage{enumerate}
+
+%% ---------------------------------------------------
+%% listings is used for including our source code in reports
+%% textcomp provides additional symbols
+%% ---------------------------------------------------
+\usepackage{listings}
+\usepackage{textcomp}
+
+%% ---------------------------------------------------
+%% Packages for math environments
+%% ---------------------------------------------------
+\usepackage{amsmath}
+
+%% ---------------------------------------------------
+%% Packages for URLs and hotlinks in the table of contents
+%% and symbolic cross references using \ref
+%% ---------------------------------------------------
+\usepackage{hyperref}
+
+%% ---------------------------------------------------
+%% Packages for using HOL-generated macros and displays
+%% ---------------------------------------------------
+\usepackage{holtex}
+\usepackage{holtexbasic}
+\input{commands}
+
+\begin{document}
+
+%% --------------------------------------------------- 
+%% The listings  parameter "language" is set to "ML"
+%% ---------------------------------------------------
+\lstset{language=ML}
+
+
+\maketitle{}
+
+\begin{abstract}
+  This project demonstrated my ability to use the properties of
+  symmetric and asymmetric key encryption and decryption to prove
+  theroems using CipherTheory. I also proved a theory using the
+  properties of signature verification. I have completed the exercises
+  15.6.1, 15.6.2, and 15.6.3.  This project includes the following
+  packages:
+	\begin{description}
+		\item[\emph{634format.sty}] A format style for this course
+		\item[\emph{listings}] Package for displaying and inputting ML source code
+		\item[\emph{holtex}] HOL style files and commands to display in the report
+	\end{description}
+        This document also demonstrates my ability to :
+	\begin{itemize}
+		\item Easily generate a table of contents,
+		\item Refer to chapter and section labels
+	\end{itemize}
+\end{abstract}
+
+\tableofcontents{}
+
+\begin{acknowledgments}
+  I would like to acknowledge the 2 professors, Professor Chin and 
+  Professor Hamner, that have helped me begin to understand this new
+  ML programming language. Also to Syracuse University for accepting
+  me to this Masters program in Cybersecurity.
+\end{acknowledgments}
+
+\chapter{Executive Summary}
+\label{cha:executive-summary}
+\textbf{All requirements for this project are satisfied.}
+Specifically,
+\begin{description}
+\item[Report Contents] \ \\
+  Our report has the following content:
+  \begin{enumerate}[{}]
+  \item Chapter~\ref{cha:executive-summary}: Executive Summary
+  \item Chapter~\ref{cha:15-6-1}: Exercise 15.6.1
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-15-6-1}: Problem Statement
+    \item Section~\ref{proof-15-6-1-A}: Proof of exercise15_6_1a_thm
+    \item Section~\ref{proof-15-6-1-B}: Proof of exercise15_6_1b_thm
+    \end{enumerate}
+  \item Chapter~\ref{cha:15-6-2}: Exercise 15.6.2
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-15-6-2}: Problem Statement
+    \item Section~\ref{proof-15-6-2-A}: Proof of exercise15_6_2a_thm
+    \item Section~\ref{proof-15-6-2-B}: Proof of exercise15 6_2b_thm
+    \end{enumerate}
+  \item Chapter~\ref{cha:15-6-3}: Exercise 15.6.3
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-15-6-3}: Problem Statement
+    \item Section~\ref{rel-15-6-3}: Relevant Code
+    \item Section~\ref{trans-15-6-3}: Transcript of Proof
+    \end{enumerate}
+ \item Appendix~\ref{cha:source-code-ciph}: Source Code for cipherScript.sml
+ \item Appendix~\ref{cha:source-code-crypto}: Source Code for cryptoExercisesScript.sml
+  \end{enumerate}
+\item[Reproducibility in ML and \LaTeX{}] \ \\
+  The ML and \LaTeX{} source files compile with no errors.
+\end{description}
+
+
+\chapter{Excercise 15.6.1}
+\label{cha:15-6-1}
+
+\section{Problem statement}
+\label{problem-statement-15-6-1}
+Use the properties of symmetric key encryption and decryption in
+cipherTheory to prove the following 2 theroems:
+
+A) exercise15_6_1a_thm:
+!key enMsg message.(deciphS key enMsg = SOME message) <=>
+    (enMsg = Es key (SOME message))
+B) exercise15_6_1a_thm:
+!keyAlice k text.(deciphS keyAlice (Es k (SOME text)) 
+    = SOME "This is from Alice")<=> ((k = keyAlice) /\ 
+    (text = "This is from Alice"))
+
+\section{Proof of exercise15_6_1a_thm}
+\label{proof-15-6-1-A}
+\begin{lstlisting}[frame=TBlr]
+val exercise15_6_1a_thm = 
+TAC_PROOF(
+    ([],``!key enMsg message.(deciphS key enMsg = SOME message) <=>
+    (enMsg = Es key (SOME message))``),
+    PROVE_TAC[deciphS_one_one]
+);
+\end{lstlisting}
+
+\lstinputlisting[linerange={2090-2103}]{../HOL/cryptoExercisesScript.trans}
+
+\section{Proof of exercise15_6_1b_thm}
+\label{proof-15-6-1-B}
+\begin{lstlisting}[frame=TBlr]
+val exercise15_6_1b_thm =
+TAC_PROOF(
+    ([],``!keyAlice k text.(deciphS keyAlice (Es k (SOME text)) 
+    = SOME "This is from Alice")<=> ((k = keyAlice) /\ 
+    (text = "This is from Alice"))``),
+    PROVE_TAC[deciphS_one_one]
+);
+\end{lstlisting}
+
+\lstinputlisting[linerange={2104-2117}]{../HOL/cryptoExercisesScript.trans}
+
+\chapter{Excercise 15.6.2}
+\label{cha:15-6-2}
+
+\section{Problem statement}
+\label{problem-statement-15-6-2}
+Use the properties of asymmetric key encryption and decryption
+to prove the following 2 theroems:
+
+A) exercise15_6_2a_thm:
+!P message.(deciphP (pubK P) enMsg = SOME message) <=>
+    (enMsg = Ea (privK P) (SOME message))``
+B) exercise15_6_2a_thm:
+!key text.(deciphP (pubK Alice) (Ea key (SOME text)) 
+    = SOME "This is from Alice")<=> (key = privK Alice) 
+    /\ (text = "This is from Alice")
+
+\section{Proof of exercise15_6_2a_thm}
+\label{proof-15-6-2-A}
+\begin{lstlisting}[frame=TBlr]
+val exercise15_6_2a_thm =
+TAC_PROOF(
+    ([],``!P message.(deciphP (pubK P) enMsg = SOME message) <=>
+    (enMsg = Ea (privK P) (SOME message))``),
+    PROVE_TAC[deciphP_one_one]
+);
+\end{lstlisting}
+
+\lstinputlisting[linerange={2118-2131}]{../HOL/cryptoExercisesScript.trans}
+
+\section{Proof of exercise15_6_2b_thm}
+\label{proof-15-6-2-B}
+\begin{lstlisting}[frame=TBlr]
+val exercise15_6_2b_thm =
+TAC_PROOF(
+    ([],``!key text.(deciphP (pubK Alice) (Ea key (SOME text)) 
+    = SOME "This is from Alice")<=> (key = privK Alice) 
+    /\ (text = "This is from Alice")``),
+    PROVE_TAC[deciphP_one_one]
+);
+\end{lstlisting}
+
+\lstinputlisting[linerange={2132-2146}]{../HOL/cryptoExercisesScript.trans}
+
+\chapter{Excercise 15.6.3}
+\label{cha:15-6-3}
+
+\section{Problem statement}
+\label{problem-statement-15-6-3}
+Use the properties of signature verification to prove the following theorem:
+
+!signature.signVerify (pubK Alice) signature (SOME "This is from Alice")
+    <=> (signature = sign (privK Alice) (hash (SOME "This is from Alice")))
+
+\section{Relevant Code}
+\label{rel-15-6-3}
+\begin{lstlisting}[frame=TBlr]
+val exercise15_6_3_thm =
+TAC_PROOF(
+    ([],``!signature.signVerify (pubK Alice) signature 
+    (SOME "This is from Alice") <=> (signature = sign (privK Alice) 
+    (hash (SOME "This is from Alice")))``),
+    PROVE_TAC[signVerify_one_one]
+);
+\end{lstlisting}
+
+\section{Transcript of Proof}
+\label{trans-15-6-3}
+\lstinputlisting[linerange={2147-2161}]{../HOL/cryptoExercisesScript.trans}
+
+\appendix{}
+\chapter{Source Code for cipherScript.sml}
+\label{cha:source-code-ciph}
+\lstinputlisting{../HOL/cipherScript.sml}
+
+\chapter{Source Code for cryptoExercisesScript.sml}
+\label{cha:source-code-crypto}
+\lstinputlisting{../HOL/cryptoExercisesScript.sml}
+
+\end{document}

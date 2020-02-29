@@ -1,0 +1,2162 @@
+
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+[extending loadPath with Holmakefile INCLUDES variable]
+> > > > # # # # # # # # # ** types trace now on
+> *** Globals.show_tags now true ***
+> # # # # # # # # # ** Unicode trace now off
+> > val accessors_of = fn: hol_type -> thm list
+val axiom_of = fn: hol_type -> thm
+val axiom_of0 = fn: hol_type -> shared_thm
+val case_cong_of = fn: hol_type -> thm
+val case_const_of = fn: hol_type -> term
+val case_def_of = fn: hol_type -> thm
+val constructors_of = fn: hol_type -> term list
+val dest_case = fn: term -> term * term * (term * term) list
+val dest_record = fn: term -> hol_type * (string * term) list
+val dest_record_type = fn: hol_type -> (string * hol_type) list
+val destructors_of = fn: hol_type -> thm list
+val distinct_of = fn: hol_type -> thm
+val elts = fn: unit -> tyinfo list
+val encode_of = fn: hol_type -> term * thm
+val encode_of0 = fn: hol_type -> (term * shared_thm) option
+val fetch = fn: hol_type -> tyinfo option
+val fields_of = fn: hol_type -> (string * hol_type) list
+eqtype hol_type
+val induction_of = fn: hol_type -> thm
+val induction_of0 = fn: hol_type -> shared_thm
+val is_case = fn: term -> bool
+val is_constructor = fn: term -> bool
+val is_record = fn: term -> bool
+val is_record_type = fn: hol_type -> bool
+val mk_case = fn: term * (term * term) list -> term
+val mk_pattern_fn = fn: (term * term) list -> term
+val mk_record = fn: hol_type * (string * term) list -> term
+val nchotomy_of = fn: hol_type -> thm
+val one_one_of = fn: hol_type -> thm
+val read = fn: {Thy: string, Tyop: string} -> tyinfo option
+val recognizers_of = fn: hol_type -> thm list
+val register_update_fn = fn: (tyinfo list -> tyinfo list) -> unit
+type shared_thm
+val simpls_of = fn: hol_type -> simpfrag.simpfrag
+val size_of = fn: hol_type -> term * thm
+val size_of0 = fn: hol_type -> (term * shared_thm) option
+val strip_case = fn: term -> term * (term * term) list
+eqtype term
+val theTypeBase = fn: unit -> typeBase
+type thm
+type tyinfo
+type typeBase
+val updates_of = fn: hol_type -> thm list
+val write = fn: tyinfo list -> tyinfo list
+> Loading isainfRules
+> val TR_EQ_rules = fn: thm -> thm -> thm
+type conv = Abbrev.conv
+val distinct_clauses = fn: hol_type -> thm
+val flip_TR_rules = fn: thm -> term
+val flip_imp = fn: term -> term
+eqtype hol_type
+type tactic = Abbrev.tactic
+eqtype term
+type thm
+type thm_tactic = Abbrev.thm_tactic
+> > val EXISTS_OPTION =
+   [oracles: DISK_THM] [axioms: ] []
+|- (?(opt :'a option). (P :'a option -> bool) opt) <=>
+   P (NONE :'a option) \/ ?(x :'a). P (SOME x):
+   thm
+val FORALL_OPTION =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(opt :'a option). (P :'a option -> bool) opt) <=>
+   P (NONE :'a option) /\ !(x :'a). P (SOME x):
+   thm
+val IF_EQUALS_OPTION =
+   [oracles: DISK_THM] [axioms: ] []
+|- (((if (P :bool) then SOME (x :'a) else (NONE :'a option)) =
+     (NONE :'a option)) <=> ~P) /\
+   (((if P then (NONE :'a option) else SOME x) = (NONE :'a option)) <=>
+    P) /\
+   (((if P then SOME x else (NONE :'a option)) = SOME (y :'a)) <=>
+    P /\ (x = y)) /\
+   (((if P then (NONE :'a option) else SOME x) = SOME y) <=>
+    ~P /\ (x = y)):
+   thm
+val IF_NONE_EQUALS_OPTION =
+   [oracles: DISK_THM] [axioms: ] []
+|- (((if (P :bool) then (X :'a option) else (NONE :'a option)) =
+     (NONE :'a option)) <=> P ==> IS_NONE X) /\
+   (((if P then (NONE :'a option) else X) = (NONE :'a option)) <=>
+    IS_SOME X ==> P) /\
+   (((if P then X else (NONE :'a option)) = SOME (x :'a)) <=>
+    P /\ (X = SOME x)) /\
+   (((if P then (NONE :'a option) else X) = SOME x) <=>
+    ~P /\ (X = SOME x)):
+   thm
+val IS_NONE_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(x :'a). IS_NONE (SOME x) <=> F) /\
+   (IS_NONE (NONE :'a option) <=> T):
+   thm
+val IS_NONE_EQ_NONE =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a option). IS_NONE x <=> (x = (NONE :'a option)):
+   thm
+val IS_SOME_BIND =
+   [oracles: DISK_THM] [axioms: ] []
+|- IS_SOME (OPTION_BIND (x :'a option) (g :'a -> 'b option)) ==>
+   IS_SOME x:
+   thm
+val IS_SOME_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(x :'a). IS_SOME (SOME x) <=> T) /\
+   (IS_SOME (NONE :'a option) <=> F):
+   thm
+val IS_SOME_EXISTS =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(opt :'a option). IS_SOME opt <=> ?(x :'a). opt = SOME x:
+   thm
+val IS_SOME_MAP =
+   [oracles: DISK_THM] [axioms: ] []
+|- IS_SOME (OPTION_MAP (f :'a -> 'b) (x :'a option)) <=> IS_SOME x:
+   thm
+val NONE_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- (NONE :'a option) = option_ABS (INR () :'a + unit):
+   thm
+val NOT_IS_SOME_EQ_NONE =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a option). ~IS_SOME x <=> (x = (NONE :'a option)):
+   thm
+val NOT_NONE_SOME =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a). (NONE :'a option) <> SOME x:
+   thm
+val NOT_SOME_NONE =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a). SOME x <> (NONE :'a option):
+   thm
+val OPTION_ALL_CONG =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(opt :'a option) (opt' :'a option) (P :'a -> bool) (P' :'a -> bool).
+     (opt = opt') /\ (!(x :'a). (opt' = SOME x) ==> (P x <=> P' x)) ==>
+     (OPTION_ALL P opt <=> OPTION_ALL P' opt'):
+   thm
+val OPTION_ALL_MONO =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(x :'a). (P :'a -> bool) x ==> (P' :'a -> bool) x) ==>
+   OPTION_ALL P (opt :'a option) ==>
+   OPTION_ALL P' opt:
+   thm
+val OPTION_ALL_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(P :'a -> bool). OPTION_ALL P (NONE :'a option) <=> T) /\
+   !(P :'a -> bool) (x :'a). OPTION_ALL P (SOME x) <=> P x:
+   thm
+val OPTION_APPLY_MAP2 =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((OPTION_MAP (f :'a -> 'b -> 'c) (x :'a option) <*> (y :'b option))
+      :'c option) =
+   OPTION_MAP2 f x y:
+   thm
+val OPTION_APPLY_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(x :'b option).
+      (((NONE :('b -> 'a) option) <*> x) :'a option) =
+      (NONE :'a option)) /\
+   !(f :'b -> 'a) (x :'b option).
+     ((SOME f <*> x) :'a option) = OPTION_MAP f x:
+   thm
+val OPTION_APPLY_o =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((((((SOME ($o :('b -> 'c) -> ('a -> 'b) -> 'a -> 'c) <*>
+        (f :('b -> 'c) option))
+          :(('a -> 'b) -> 'a -> 'c) option) <*>
+      (g :('a -> 'b) option))
+        :('a -> 'c) option) <*> (x :'a option))
+      :'c option) =
+   ((f <*> ((g <*> x) :'b option)) :'c option):
+   thm
+val OPTION_BIND_EQUALS_OPTION =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((OPTION_BIND (p :'a option) (f :'a -> 'b option) =
+     (NONE :'b option)) <=>
+    (p = (NONE :'a option)) \/
+    ?(x :'a). (p = SOME x) /\ (f x = (NONE :'b option))) /\
+   ((OPTION_BIND p f = SOME (y :'b)) <=>
+    ?(x :'a). (p = SOME x) /\ (f x = SOME y)):
+   thm
+val OPTION_BIND_cong =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(o1 :'a option) (o2 :'a option) (f1 :'a -> 'b option)
+      (f2 :'a -> 'b option).
+     (o1 = o2) /\ (!(x :'a). (o2 = SOME x) ==> (f1 x = f2 x)) ==>
+     (OPTION_BIND o1 f1 = OPTION_BIND o2 f2):
+   thm
+val OPTION_BIND_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(f :'b -> 'a option).
+      OPTION_BIND (NONE :'b option) f = (NONE :'a option)) /\
+   !(x :'b) (f :'b -> 'a option). OPTION_BIND (SOME x) f = f x:
+   thm
+val OPTION_CHOICE_EQ_NONE =
+   [oracles: DISK_THM] [axioms: ] []
+|- (OPTION_CHOICE (m1 :'a option) (m2 :'a option) =
+    (NONE :'a option)) <=>
+   (m1 = (NONE :'a option)) /\ (m2 = (NONE :'a option)):
+   thm
+val OPTION_CHOICE_NONE =
+   [oracles: DISK_THM] [axioms: ] []
+|- OPTION_CHOICE (m1 :'a option) (NONE :'a option) = m1:
+   thm
+val OPTION_CHOICE_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(m2 :'a option). OPTION_CHOICE (NONE :'a option) m2 = m2) /\
+   !(x :'a) (m2 :'a option). OPTION_CHOICE (SOME x) m2 = SOME x:
+   thm
+val OPTION_GUARD_COND =
+   [oracles: DISK_THM] [axioms: ] []
+|- OPTION_GUARD (b :bool) = if b then SOME () else (NONE :unit option):
+   thm
+val OPTION_GUARD_EQ_THM =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((OPTION_GUARD (b :bool) = SOME ()) <=> b) /\
+   ((OPTION_GUARD b = (NONE :unit option)) <=> ~b):
+   thm
+val OPTION_GUARD_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (OPTION_GUARD T = SOME ()) /\ (OPTION_GUARD F = (NONE :unit option)):
+   thm
+val OPTION_IGNORE_BIND_EQUALS_OPTION =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((OPTION_IGNORE_BIND (m1 :'a option) (m2 :'b option) =
+     (NONE :'b option)) <=>
+    (m1 = (NONE :'a option)) \/ (m2 = (NONE :'b option))) /\
+   ((OPTION_IGNORE_BIND m1 m2 = SOME (y :'b)) <=>
+    ?(x :'a). (m1 = SOME x) /\ (m2 = SOME y)):
+   thm
+val OPTION_IGNORE_BIND_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(m1 :'b option) (m2 :'a option).
+     OPTION_IGNORE_BIND m1 m2 = OPTION_BIND m1 (K m2 :'b -> 'a option):
+   thm
+val OPTION_IGNORE_BIND_thm =
+   [oracles: DISK_THM] [axioms: ] []
+|- (OPTION_IGNORE_BIND (NONE :'b option) (m :'a option) =
+    (NONE :'a option)) /\ (OPTION_IGNORE_BIND (SOME (v :'c)) m = m):
+   thm
+val OPTION_JOIN_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- (OPTION_JOIN (NONE :'a option option) = (NONE :'a option)) /\
+   !(x :'a option). OPTION_JOIN (SOME x) = x:
+   thm
+val OPTION_JOIN_EQ_SOME =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a option option) (y :'a).
+     (OPTION_JOIN x = SOME y) <=> (x = SOME (SOME y)):
+   thm
+val OPTION_MAP2_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :'b -> 'c -> 'a) (x :'b option) (y :'c option).
+     OPTION_MAP2 f x y =
+     if IS_SOME x /\ IS_SOME y then SOME (f (THE x) (THE y))
+     else (NONE :'a option):
+   thm
+val OPTION_MAP2_NONE =
+   [oracles: DISK_THM] [axioms: ] []
+|- (OPTION_MAP2 (f :'a -> 'b -> 'c) (o1 :'a option) (o2 :'b option) =
+    (NONE :'c option)) <=>
+   (o1 = (NONE :'a option)) \/ (o2 = (NONE :'b option)):
+   thm
+val OPTION_MAP2_SOME =
+   [oracles: DISK_THM] [axioms: ] []
+|- (OPTION_MAP2 (f :'a -> 'b -> 'c) (o1 :'a option) (o2 :'b option) =
+    SOME (v :'c)) <=>
+   ?(x1 :'a) (x2 :'b). (o1 = SOME x1) /\ (o2 = SOME x2) /\ (v = f x1 x2):
+   thm
+val OPTION_MAP2_THM =
+   [oracles: DISK_THM] [axioms: ] []
+|- (OPTION_MAP2 (f :'b -> 'c -> 'a) (SOME (x :'b)) (SOME (y :'c)) =
+    SOME (f x y)) /\
+   (OPTION_MAP2 f (SOME x) (NONE :'c option) = (NONE :'a option)) /\
+   (OPTION_MAP2 f (NONE :'b option) (SOME y) = (NONE :'a option)) /\
+   (OPTION_MAP2 f (NONE :'b option) (NONE :'c option) =
+    (NONE :'a option)):
+   thm
+val OPTION_MAP2_cong =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x1 :'a option) (x2 :'a option) (y1 :'b option) (y2 :'b option)
+      (f1 :'a -> 'b -> 'c) (f2 :'a -> 'b -> 'c).
+     (x1 = x2) /\ (y1 = y2) /\
+     (!(x :'a) (y :'b).
+        (x2 = SOME x) /\ (y2 = SOME y) ==> (f1 x y = f2 x y)) ==>
+     (OPTION_MAP2 f1 x1 y1 = OPTION_MAP2 f2 x2 y2):
+   thm
+val OPTION_MAP_CASE =
+   [oracles: DISK_THM] [axioms: ] []
+|- OPTION_MAP (f :'a -> 'b) (x :'a option) =
+   (option_CASE x (NONE :'b option) ((SOME :'b -> 'b option) o f) :
+      'b option):
+   thm
+val OPTION_MAP_COMPOSE =
+   [oracles: DISK_THM] [axioms: ] []
+|- OPTION_MAP (f :'c -> 'b) (OPTION_MAP (g :'a -> 'c) (x :'a option)) =
+   OPTION_MAP (f o g) x:
+   thm
+val OPTION_MAP_CONG =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(opt1 :'a option) (opt2 :'a option) (f1 :'a -> 'b) (f2 :'a -> 'b).
+     (opt1 = opt2) /\ (!(x :'a). (opt2 = SOME x) ==> (f1 x = f2 x)) ==>
+     (OPTION_MAP f1 opt1 = OPTION_MAP f2 opt2):
+   thm
+val OPTION_MAP_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(f :'a -> 'b) (x :'a). OPTION_MAP f (SOME x) = SOME (f x)) /\
+   !(f :'a -> 'b). OPTION_MAP f (NONE :'a option) = (NONE :'b option):
+   thm
+val OPTION_MAP_EQ_NONE =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :'a -> 'b) (x :'a option).
+     (OPTION_MAP f x = (NONE :'b option)) <=> (x = (NONE :'a option)):
+   thm
+val OPTION_MAP_EQ_NONE_both_ways =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((OPTION_MAP (f :'b -> 'a) (x :'b option) = (NONE :'a option)) <=>
+    (x = (NONE :'b option))) /\
+   (((NONE :'a option) = OPTION_MAP f x) <=> (x = (NONE :'b option))):
+   thm
+val OPTION_MAP_EQ_SOME =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :'a -> 'b) (x :'a option) (y :'b).
+     (OPTION_MAP f x = SOME y) <=> ?(z :'a). (x = SOME z) /\ (y = f z):
+   thm
+val OPTION_MCOMP_ASSOC =
+   [oracles: DISK_THM] [axioms: ] []
+|- OPTION_MCOMP (f :'d -> 'c option)
+     (OPTION_MCOMP (g :'b -> 'd option) (h :'a -> 'b option)) =
+   OPTION_MCOMP (OPTION_MCOMP f g) h:
+   thm
+val OPTION_MCOMP_ID =
+   [oracles: DISK_THM] [axioms: ] []
+|- (OPTION_MCOMP (g :'c -> 'd option) (SOME :'c -> 'c option) = g) /\
+   (OPTION_MCOMP (SOME :'b -> 'b option) (f :'a -> 'b option) = f):
+   thm
+val OPTION_MCOMP_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(g :'b -> 'a option) (f :'c -> 'b option) (m :'c).
+     OPTION_MCOMP g f m = OPTION_BIND (f m) g:
+   thm
+val OPTREL_MONO =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(x :'a) (y :'b).
+      (P :'a -> 'b -> bool) x y ==> (Q :'a -> 'b -> bool) x y) ==>
+   OPTREL P (x :'a option) (y :'b option) ==>
+   OPTREL Q x y:
+   thm
+val OPTREL_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(R :'a -> 'b -> bool) (x :'a option) (y :'b option).
+     OPTREL R x y <=>
+     (x = (NONE :'a option)) /\ (y = (NONE :'b option)) \/
+     ?(x0 :'a) (y0 :'b). (x = SOME x0) /\ (y = SOME y0) /\ R x0 y0:
+   thm
+val OPTREL_refl =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(x :'a). (R :'a -> 'a -> bool) x x) ==>
+   !(x :'a option). OPTREL R x x:
+   thm
+val SOME_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a) (y :'a). (SOME x = SOME y) <=> (x = y):
+   thm
+val SOME_APPLY_PERMUTE =
+   [oracles: DISK_THM] [axioms: ] []
+|- (((f :('a -> 'b) option) <*> SOME (x :'a)) :'b option) =
+   ((SOME (\(f :'a -> 'b). f x) <*> f) :'b option):
+   thm
+val SOME_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a). SOME x = option_ABS (INL x :'a + unit):
+   thm
+val SOME_SOME_APPLY =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((SOME (f :'b -> 'a) <*> SOME (x :'b)) :'a option) = SOME (f x):
+   thm
+val THE_DEF =
+   [oracles: DISK_THM] [axioms: ] [] |- !(x :'a). THE (SOME x) = x:
+   thm
+val datatype_option =
+   [oracles: DISK_THM] [axioms: ] []
+|- DATATYPE
+     ((option :'a option -> ('a -> 'a option) -> 'b) (NONE :'a option)
+        (SOME :'a -> 'a option)):
+   thm
+val option_Axiom =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(e :'b) (f :'a -> 'b).
+     ?(fn :'a option -> 'b).
+       (fn (NONE :'a option) = e) /\ !(x :'a). fn (SOME x) = f x:
+   thm
+val option_CASES =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(opt :'a option).
+     (?(x :'a). opt = SOME x) \/ (opt = (NONE :'a option)):
+   thm
+val option_CLAUSES =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(x :'a) (y :'a). (SOME x = SOME y) <=> (x = y)) /\
+   (!(x :'a). THE (SOME x) = x) /\
+   (!(x :'a). (NONE :'a option) <> SOME x) /\
+   (!(x :'a). SOME x <> (NONE :'a option)) /\
+   (!(x :'a). IS_SOME (SOME x) <=> T) /\
+   (IS_SOME (NONE :'a option) <=> F) /\
+   (!(x :'a option). IS_NONE x <=> (x = (NONE :'a option))) /\
+   (!(x :'a option). ~IS_SOME x <=> (x = (NONE :'a option))) /\
+   (!(x :'a option). IS_SOME x ==> (SOME (THE x) = x)) /\
+   (!(x :'a option).
+      (option_CASE x (NONE :'a option) (SOME :'a -> 'a option) :
+         'a option) =
+      x) /\
+   (!(x :'a option).
+      (option_CASE x x (SOME :'a -> 'a option) :'a option) = x) /\
+   (!(x :'a option).
+      IS_NONE x ==> ((option_CASE x (e :'b) (f :'a -> 'b) :'b) = e)) /\
+   (!(x :'a option).
+      IS_SOME x ==> ((option_CASE x e f :'b) = f (THE x))) /\
+   (!(x :'a option).
+      IS_SOME x ==>
+      ((option_CASE x (e :'a option) (SOME :'a -> 'a option) :
+          'a option) =
+       x)) /\
+   (!(v :'b) (f :'a -> 'b).
+      (option_CASE (NONE :'a option) v f :'b) = v) /\
+   (!(x :'a) (v :'b) (f :'a -> 'b).
+      (option_CASE (SOME x) v f :'b) = f x) /\
+   (!(f :'a -> 'b) (x :'a). OPTION_MAP f (SOME x) = SOME (f x)) /\
+   (!(f :'a -> 'b).
+      OPTION_MAP f (NONE :'a option) = (NONE :'b option)) /\
+   (OPTION_JOIN (NONE :'a option option) = (NONE :'a option)) /\
+   !(x :'a option). OPTION_JOIN (SOME x) = x:
+   thm
+val option_Induct =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :'a option -> bool).
+     (!(a :'a). P (SOME a)) /\ P (NONE :'a option) ==>
+     !(x :'a option). P x:
+   thm
+val option_REP_ABS_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(a :'a option). option_ABS (option_REP a) = a) /\
+   !(r :'a + unit).
+     (\(x :'a + unit). T) r <=> (option_REP (option_ABS r) = r):
+   thm
+val option_TY_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- ?(rep :'a option -> 'a + unit).
+     TYPE_DEFINITION (\(x :'a + unit). T) rep:
+   thm
+val option_case_ID =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a option).
+     (option_CASE x (NONE :'a option) (SOME :'a -> 'a option) :
+        'a option) =
+     x:
+   thm
+val option_case_SOME_ID =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a option).
+     (option_CASE x x (SOME :'a -> 'a option) :'a option) = x:
+   thm
+val option_case_compute =
+   [oracles: DISK_THM] [axioms: ] []
+|- (option_CASE (x :'a option) (e :'b) (f :'a -> 'b) :'b) =
+   if IS_SOME x then f (THE x) else e:
+   thm
+val option_case_cong =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(M :'a option) (M' :'a option) (v :'b) (f :'a -> 'b).
+     (M = M') /\ ((M' = (NONE :'a option)) ==> (v = (v' :'b))) /\
+     (!(x :'a). (M' = SOME x) ==> (f x = (f' :'a -> 'b) x)) ==>
+     ((option_CASE M v f :'b) = (option_CASE M' v' f' :'b)):
+   thm
+val option_case_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(v :'b) (f :'a -> 'b).
+      (option_CASE (NONE :'a option) v f :'b) = v) /\
+   !(x :'a) (v :'b) (f :'a -> 'b). (option_CASE (SOME x) v f :'b) = f x:
+   thm
+val option_grammars =
+   (Rules:
+  (50)   TY  ::=  TY -> TY [fun] (R-associative)
+  (60)   TY  ::=  TY + TY [sum] (R-associative)
+         TY  ::=  bool | (TY, TY)fun | ind | TY itself | one |
+                  TY option | (TY, TY)sum | unit
+         TY  ::=  TY[TY] (array type)
+Type abbreviations:
+  bool = min$bool                                        
+  ('a, 'b) fun = ('a, 'b) min$fun                        
+  ind = min$ind                                          
+  'a itself = 'a bool$itself                             
+  one = one$one                                           (not printed)
+  'a option = 'a option$option                           
+  ('a, 'b) sum = ('a, 'b) sum$sum                        
+  unit = one$one                                         ,
+    (0)    TM  ::=  "some" <..binders..> "." TM |
+                "∃!" <..binders..> "." TM [?!] |
+                "?!" <..binders..> "." TM |
+                "∃" <..binders..> "." TM [?] |
+                "?" <..binders..> "." TM |
+                "∀" <..binders..> "." TM [!] |
+                "!" <..binders..> "." TM | "@" <..binders..> "." TM |
+                "λ" <..binders..> "." TM | "\" <..binders..> "." TM
+(1)    TM  ::=  "case" TM "of" TM "|" TM "|" TM  [case magic$default - %case%] |
+                "case" TM "of" "|" TM  [case magic$default - %case%] |
+                "case" TM "of" TM "|" TM  [case magic$default - %case%] |
+                "case" TM "of" TM  [case magic$default - %case%]
+(4)    TM  ::=  TM "::" TM (restricted quantification operator)
+(5)    TM  ::=  TM TM  (binder argument concatenation)
+(8)    TM  ::=  "let" LTM< _ letnil, _ letcons,;> "in" TM  [ _ let]
+(9)    TM  ::=  TM "and" TM  [ _ and]   (L-associative)
+(12)   TM  ::=  TM "=>" TM  [case magic$default - %arrow%]
+                (non-associative)
+(70)   TM  ::=  "if" TM "then" TM "else" TM  [COND]
+(80)   TM  ::=  TM ":-" TM   (non-associative)
+(100)  TM  ::=  TM "⇎" TM  [<=/=>] | TM "<=/=>" TM | TM "⇔" TM  [<=>] |
+                TM "<=>" TM | TM "=" TM
+                (non-associative)
+(200)  TM  ::=  TM "⇒" TM  [==>] | TM "==>" TM   (R-associative)
+(300)  TM  ::=  TM "∨" TM  [\/] | TM "\/" TM   (R-associative)
+(310)  TM  ::=  TM ":>" TM   (L-associative)
+(320)  TM  ::=  TM "=+" TM   (non-associative)
+(400)  TM  ::=  TM "∧" TM  [/\] | TM "/\" TM   (R-associative)
+(425)  TM  ::=  TM "∉" TM  [NOTIN] | TM "NOTIN" TM | TM "∈" TM  [IN] |
+                TM "IN" TM
+                (non-associative)
+(450)  TM  ::=  TM "≠" TM | TM "<>" TM   (non-associative)
+(460)  TM  ::=  TM "with" TM  [record update] |
+                TM ":=" TM  [record field update] |
+                TM "updated_by" TM  [functional record update]
+                (R-associative)
+(480)  TM  ::=  TM "++" TM   (L-associative)
+(500)  TM  ::=  TM "<*>" TM  [APPLICATIVE_FAPPLY]   (L-associative)
+(800)  TM  ::=  TM "∘" TM  [o] | TM "o" TM   (R-associative)
+(899)  TM  ::=  TM ":" TY  (type annotation)
+(900)  TM  ::=  "¬" TM  [~] | "~" TM
+(2000) TM  ::=  TM TM  (function application)   (L-associative)
+(2500) TM  ::=  TM "." TM  [record field selection]   (L-associative)
+       TM  ::=  "(" ")"  [one] |
+                "<|" LTM< _ record nil, _ record cons,;> "|>"  [] |
+                "(" TM ")"  [just parentheses, no term produced]
+Known constants:
+   _ fakeconst4.case,S10.case magic,7.default ! () ++ /\ :- :> <=/=> <=>
+  <> = =+ ==> ? ?! @ ABS_sum AC APPLICATIVE_FAPPLY ARB ASSOC Abbrev
+  BOUNDED COMM COND Cong DATATYPE EXT_POINT F FAIL FCOMM I IN INL INR
+  ISL ISR IS_NONE IS_SOME IS_SUM_REP IfCases K LEFT_ID LET MONOID NONE
+  NOTIN ONE_ONE ONTO OPTION_ALL OPTION_APPLY OPTION_BIND OPTION_CHOICE
+  OPTION_GUARD OPTION_IGNORE_BIND OPTION_JOIN OPTION_MAP OPTION_MAP2
+  OPTION_MCOMP OPTREL OUTL OUTR REP_sum RES_ABSTRACT RES_EXISTS
+  RES_EXISTS_UNIQUE RES_FORALL RES_SELECT RIGHT_ID S SOME SUM_ALL T THE
+  TYPE_DEFINITION UNIV_POINT UPDATE W \/ case itself_case lift2
+  literal_case o one one_CASE option_ABS option_CASE option_REP some
+  stmarker sum_CASE the_value unint ~ ≠
+Overloading:
+  ()                 ->  one
+  <=/=>              ->  (\(x :bool) (y :bool). bool$~ (min$= x y))
+  <=>                ->  =
+  <>                 ->  (\(x :'a) (y :'a). bool$~ (min$= x y))
+  =+                 ->  UPDATE
+  APPLICATIVE_FAPPLY ->  OPTION_APPLY
+  NOTIN              -> 
+    (\(x :'a) (y :'a -> bool). bool$~ (bool$IN x y))
+  OPTION_MAP2        ->  OPTION_MAP2 OPTION_MAP2
+  case               -> 
+    option_CASE sum_CASE itself_case literal_case COND
+  lift2              ->  OPTION_MAP2
+  ≠                  ->  (\(x :'a) (y :'a). bool$~ (min$= x y))
+User printing functions:
+  if (gd :bool) then (tr :'a) else (fl :'a)       ->  bool.COND
+  LET (f :'a -> 'b) (x :'a)       ->  bool.LET):
+   type_grammar.grammar * term_grammar.grammar
+val option_induction =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :'a option -> bool).
+     P (NONE :'a option) /\ (!(a :'a). P (SOME a)) ==>
+     !(x :'a option). P x:
+   thm
+val option_nchotomy =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(opt :'a option).
+     (opt = (NONE :'a option)) \/ ?(x :'a). opt = SOME x:
+   thm
+val some_EQ =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((some(x :'a). x = (y :'a)) = SOME y) /\
+   ((some(x :'a). y = x) = SOME y):
+   thm
+val some_F =
+   [oracles: DISK_THM] [axioms: ] []
+|- (some(x :'a). F) = (NONE :'a option):
+   thm
+val some_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :'a -> bool).
+     $some P =
+     if ?(x :'a). P x then SOME (@(x :'a). P x) else (NONE :'a option):
+   thm
+val some_elim =
+   [oracles: DISK_THM] [axioms: ] []
+|- (Q :'a option -> bool) ($some (P :'a -> bool)) ==>
+   (?(x :'a). P x /\ Q (SOME x)) \/
+   (!(x :'a). ~P x) /\ Q (NONE :'a option):
+   thm
+val some_intro =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(x :'a). (P :'a -> bool) x ==> (Q :'a option -> bool) (SOME x)) /\
+   ((!(x :'a). ~P x) ==> Q (NONE :'a option)) ==>
+   Q ($some P):
+   thm
+type thm
+> Loading cipherTheory
+> val asymMsg_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a0 :'princ pKey) (a1 :'message option) (a0' :'princ pKey)
+      (a1' :'message option).
+     (Ea a0 a1 = Ea a0' a1') <=> (a0 = a0') /\ (a1 = a1'):
+   thm
+val asymMsg_Axiom =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :'princ pKey -> 'message option -> 'a).
+     ?(fn :('message, 'princ) asymMsg -> 'a).
+       !(a0 :'princ pKey) (a1 :'message option). fn (Ea a0 a1) = f a0 a1:
+   thm
+val asymMsg_TY_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- ?(rep :
+      ('message, 'princ) asymMsg ->
+      ('princ pKey # 'message option) recspace).
+     TYPE_DEFINITION
+       (\(a0' :('princ pKey # 'message option) recspace).
+          !('asymMsg'  :
+             ('princ pKey # 'message option) recspace -> bool).
+            (!(a0' :('princ pKey # 'message option) recspace).
+               (?(a0 :'princ pKey) (a1 :'message option).
+                  a0' =
+                  (\(a0 :'princ pKey) (a1 :'message option).
+                     ind_type$CONSTR (0 :num) (a0,a1)
+                       (\(n :num).
+                          (ind_type$BOTTOM :('princ pKey #
+                                             'message option)
+                                            recspace))) a0 a1) ==>
+               'asymMsg' a0') ==>
+            'asymMsg' a0') rep:
+   thm
+val asymMsg_case_cong =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(M :('message, 'princ) asymMsg) (M' :('message, 'princ) asymMsg)
+      (f :'princ pKey -> 'message option -> 'a).
+     (M = M') /\
+     (!(a0 :'princ pKey) (a1 :'message option).
+        (M' = Ea a0 a1) ==>
+        (f a0 a1 =
+         (f' :'princ pKey -> 'message option -> 'a) a0 a1)) ==>
+     ((asymMsg_CASE M f :'a) = (asymMsg_CASE M' f' :'a)):
+   thm
+val asymMsg_case_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a0 :'princ pKey) (a1 :'message option)
+      (f :'princ pKey -> 'message option -> 'a).
+     (asymMsg_CASE (Ea a0 a1) f :'a) = f a0 a1:
+   thm
+val asymMsg_induction =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :('message, 'princ) asymMsg -> bool).
+     (!(p :'princ pKey) ($o :'message option). P (Ea p $o)) ==>
+     !(a :('message, 'princ) asymMsg). P a:
+   thm
+val asymMsg_nchotomy =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(aa :('message, 'princ) asymMsg).
+     ?(p :'princ pKey) ($o :'message option). aa = Ea p $o:
+   thm
+val asymMsg_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a0 :'princ pKey) (a1 :'message option) (a0' :'princ pKey)
+      (a1' :'message option).
+     (Ea a0 a1 = Ea a0' a1') <=> (a0 = a0') /\ (a1 = a1'):
+   thm
+val asymMsg_size_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :'message -> num) (f1 :'princ -> num) (a0 :'princ pKey)
+      (a1 :'message option).
+     asymMsg_size f f1 (Ea a0 a1) =
+     (1 :num) + (pKey_size f1 a0 + option_size f a1):
+   thm
+val cipher_grammars =
+   (Rules:
+  (50)   TY  ::=  TY -> TY [fun] (R-associative)
+  (60)   TY  ::=  TY + TY [sum] (R-associative)
+  (70)   TY  ::=  TY # TY [prod] (R-associative)
+         TY  ::=  (TY, TY)asymMsg | bool | TY digest | (TY, TY)fun |
+                  ind | TY itself | TY list | num | one | TY option |
+                  TY pKey | (TY, TY)prod | TY recspace | TY set |
+                  (TY, TY)sum | symKey | TY symMsg | unit
+         TY  ::=  TY[TY] (array type)
+Type abbreviations:
+  ('a, 'b) asymMsg = ('a, 'b) cipher$asymMsg             
+  bool = min$bool                                        
+  'a digest = 'a cipher$digest                           
+  ('a, 'b) fun = ('a, 'b) min$fun                        
+  ind = min$ind                                          
+  'a itself = 'a bool$itself                             
+  'a list = 'a list$list                                 
+  num = num$num                                          
+  one = one$one                                           (not printed)
+  'a option = 'a option$option                           
+  'a pKey = 'a cipher$pKey                               
+  ('a, 'b) prod = ('a, 'b) pair$prod                     
+  'a recspace = 'a ind_type$recspace                     
+  'a set = ('a, min$bool) min$fun                         (not printed)
+  ('a, 'b) sum = ('a, 'b) sum$sum                        
+  symKey = cipher$symKey                                 
+  'a symMsg = 'a cipher$symMsg                           
+  unit = one$one                                         ,
+    (0)    TM  ::=  "OLEAST" <..binders..> "." TM |
+                "LEAST" <..binders..> "." TM |
+                "some" <..binders..> "." TM |
+                "∃!" <..binders..> "." TM [?!] |
+                "?!" <..binders..> "." TM |
+                "∃" <..binders..> "." TM [?] |
+                "?" <..binders..> "." TM |
+                "∀" <..binders..> "." TM [!] |
+                "!" <..binders..> "." TM | "@" <..binders..> "." TM |
+                "λ" <..binders..> "." TM | "\" <..binders..> "." TM
+(1)    TM  ::=  "case" TM "of" TM "|" TM "|" TM  [case magic$default - %case%] |
+                "case" TM "of" "|" TM  [case magic$default - %case%] |
+                "case" TM "of" TM "|" TM  [case magic$default - %case%] |
+                "case" TM "of" TM  [case magic$default - %case%]
+(4)    TM  ::=  TM "::" TM (restricted quantification operator)
+(5)    TM  ::=  TM TM  (binder argument concatenation)
+(8)    TM  ::=  "let" LTM< _ letnil, _ letcons,;> "in" TM  [ _ let]
+(9)    TM  ::=  TM "and" TM  [ _ and]   (L-associative)
+(12)   TM  ::=  TM "=>" TM  [case magic$default - %arrow%]
+                (non-associative)
+(50)   TM  ::=  TM "," TM   (R-associative)
+(70)   TM  ::=  "if" TM "then" TM "else" TM  [COND]
+(80)   TM  ::=  TM ":-" TM   (non-associative)
+(100)  TM  ::=  TM "⇎" TM  [<=/=>] | TM "<=/=>" TM | TM "⇔" TM  [<=>] |
+                TM "<=>" TM | TM "=" TM
+                (non-associative)
+(200)  TM  ::=  TM "⇒" TM  [==>] | TM "==>" TM   (R-associative)
+(300)  TM  ::=  TM "∨" TM  [\/] | TM "\/" TM   (R-associative)
+(310)  TM  ::=  TM ":>" TM   (L-associative)
+(320)  TM  ::=  TM "=+" TM   (non-associative)
+(400)  TM  ::=  TM "∧" TM  [/\] | TM "/\" TM   (R-associative)
+(425)  TM  ::=  TM "equiv_on" TM | TM "∉" TM  [NOTIN] | TM "NOTIN" TM |
+                TM "∈" TM  [IN] | TM "IN" TM
+                (non-associative)
+(450)  TM  ::=  TM "≼" TM  [<<=] | TM "<<=" TM | TM "PERMUTES" TM |
+                TM "⊂" TM  [PSUBSET] | TM "PSUBSET" TM |
+                TM "⊆" TM  [SUBSET] | TM "SUBSET" TM | TM "≥" TM  [>=] |
+                TM ">=" TM | TM "≤" TM  [<=] | TM "<=" TM | TM ">" TM |
+                TM "<" TM | TM "⊆ᵣ" TM  [RSUBSET] | TM "RSUBSET" TM |
+                TM "≠" TM | TM "<>" TM
+                (non-associative)
+(460)  TM  ::=  TM "with" TM  [record update] |
+                TM ":=" TM  [record field update] |
+                TM "updated_by" TM  [functional record update]
+                (R-associative)
+(480)  TM  ::=  TM "++" TM   (L-associative)
+(490)  TM  ::=  TM "::" TM  [CONS] | TM "INSERT" TM | TM "LEX" TM |
+                TM "##" TM
+                (R-associative)
+(500)  TM  ::=  TM "DELETE" TM | TM "DIFF" TM | TM "∪" TM  [UNION] |
+                TM "UNION" TM | TM "<*>" TM  [APPLICATIVE_FAPPLY] |
+                TM "−" TM  [-] | TM "-" TM | TM "+" TM |
+                TM "∪ᵣ" TM  [RUNION] | TM "RUNION" TM
+                (L-associative)
+(600)  TM  ::=  TM "×" TM  [CROSS] | TM "CROSS" TM |
+                TM "∩" TM  [INTER] | TM "INTER" TM | TM "DIV" TM |
+                TM "*" TM | TM "\\" TM | TM "∩ᵣ" TM  [RINTER] |
+                TM "RINTER" TM
+                (L-associative)
+(601)  TM  ::=  TM "⊗" TM  [*,] | TM "*," TM   (R-associative)
+(650)  TM  ::=  TM "MOD" TM   (L-associative)
+(700)  TM  ::=  TM "**" TM | TM "EXP" TM   (R-associative)
+(800)  TM  ::=  TM "∘ᵣ" TM  [O] | TM "O" TM | TM "∘" TM  [o] | TM "o" TM
+                (R-associative)
+(899)  TM  ::=  TM ":" TY  (type annotation)
+(900)  TM  ::=  "&" TM | "-" TM  [numeric_negate] | "¬" TM  [~] | "~" TM
+(2000) TM  ::=  TM TM  (function application)   (L-associative)
+(2100) TM  ::=  TM "³" | TM "²" | TM "ᵀ"  [inv] | TM "^="  [EQC] |
+                TM "^*"  [RTC] | TM "⁺"  [TC] | TM "^+"  [TC]
+(2200) TM  ::=  "𝕌" TM | "univ" TM
+(2500) TM  ::=  TM "." TM  [record field selection]   (L-associative)
+       TM  ::=  "[" LTM<NIL,CONS,;> "]"  [] |
+                "{" LTM<EMPTY,INSERT,;> "}"  [] |
+                "{" TM "|" TM "|" TM "}"  [gspec2 special] |
+                "{" TM "|" TM "}"  [gspec special] | "(" ")"  [one] |
+                "<|" LTM< _ record nil, _ record cons,;> "|>"  [] |
+                "(" TM ")"  [just parentheses, no term produced]
+Known constants:
+    _ fakeconst4.case,S10.case magic,7.default ! ## & () * ** *, + ++ ,
+  - /\ 0 :- :> < <<= <= <=/=> <=> <> = =+ ==> > >= ? ?! @ ABS_DIFF
+  ABS_num ABS_prod ABS_sum AC ALL_DISTINCT ALL_EL AND_EL APPEND
+  APPLICATIVE_FAPPLY APPLY_REDUNDANT_ROWS_INFO ARB ASM_MARKER ASSOC
+  Abbrev BIGINTER BIGUNION BIJ BIT1 BIT2 BOUNDED BUTFIRSTN BUTLAST
+  BUTLASTN CARD CHOICE COMM COMPL COND CONS COUNT_LIST COUNT_LIST_AUX CR
+  CROSS CURRY Cong DATATYPE DELETE DFUNSET DIFF DISJOINT DIV DIV2 DIVMOD
+  DROP EL ELL EMPTY EMPTY_REL EQC EVEN EVERY EVERY2 EVERYi EXISTS EXP
+  EXT_POINT Ea Es F FACT FAIL FCOMM FILTER FIND FINITE FIRSTN FLAT FOLDL
+  FOLDL2 FOLDR FOLDRi FRONT FST FUNPOW FUNSET GENLIST GENLIST_AUX GSPEC
+  GUESS_EXISTS GUESS_EXISTS_GAP GUESS_EXISTS_POINT GUESS_FORALL
+  GUESS_FORALL_GAP GUESS_FORALL_POINT HD HOARE_SPEC I IDEM IMAGE IN
+  INDEX_FIND INDEX_OF INDUCTIVE_INVARIANT INDUCTIVE_INVARIANT_ON
+  INFINITE INJ INL INR INSERT INTER INVOL ISL ISR IS_EL IS_NONE
+  IS_NUM_REP IS_PREFIX IS_REDUNDANT_ROWS_INFO IS_REMOVABLE_QUANT_FUN
+  IS_SOME IS_SUBLIST IS_SUFFIX IS_SUM_REP ITSET Id IfCases K LAST LASTN
+  LEAST LEFT_ID LEN LENGTH LET LEX LINV LINV_OPT LIST_APPLY LIST_BIND
+  LIST_ELEM_COUNT LIST_IGNORE_BIND LIST_LIFT2 LIST_REL LIST_RELi
+  LIST_TO_SET LLEX LRC LUPDATE LinearOrder MAP MAP2 MAPi MAPi_ACC MAX
+  MAX_SET MEM MIN MIN_SET MOD MODEQ MONOID NIL NONE NOTIN NRC NULL
+  NUMERAL NUMFST NUMLEFT NUMRIGHT NUMSND O ODD OLEAST ONE_ONE ONTO
+  OPTION_ALL OPTION_APPLY OPTION_BIND OPTION_CHOICE OPTION_GUARD
+  OPTION_IGNORE_BIND OPTION_JOIN OPTION_MAP OPTION_MAP2 OPTION_MCOMP
+  OPTREL OPT_MMAP OR_EL OUTL OUTR OWHILE Order PAD_LEFT PAD_RIGHT
+  PERMUTES PI PMATCH PMATCH_EQUIV_ROWS PMATCH_EXPAND_PRED
+  PMATCH_FLATTEN_FUN PMATCH_INCOMPLETE PMATCH_IS_EXHAUSTIVE PMATCH_ROW
+  PMATCH_ROW_COND PMATCH_ROW_COND_EX PMATCH_ROW_COND_NOT_EX_OR_EQ
+  PMATCH_ROW_LIFT PMATCH_ROW_REDUNDANT PMATCH_ROW_magic_0
+  PMATCH_ROW_magic_1 PMATCH_ROW_magic_2 PMATCH_ROW_magic_3
+  PMATCH_ROW_magic_4 PMATCH_magic_1 POW PRE PREFIX PREIMAGE PRIM_REC
+  PRIM_REC_FUN PROD_ALL PROD_IMAGE PROD_SET PSUBSET PreOrder RC RCOMPL
+  RDOM RDOM_DELETE REDUNDANT_ROWS_INFOS_CONJ REDUNDANT_ROWS_INFOS_DISJ
+  RELPOW REL_RESTRICT REMPTY REPLICATE REP_num REP_prod REP_sum REST
+  RESTRICT RES_ABSTRACT RES_EXISTS RES_EXISTS_UNIQUE RES_FORALL
+  RES_SELECT REV REVERSE RIGHT_ID RINTER RINV RPROD RRANGE RRESTRICT
+  RSUBSET RTC RUNION RUNIV S SC SCANL SCANR SEG SET_TO_LIST SIGMA
+  SIMPLE_GUESS_EXISTS SIMPLE_GUESS_FORALL SIMP_REC SIMP_REC_REL SING
+  SINGL SN SND SNOC SOME SOME_EL SPLITL SPLITP SPLITP_AUX SPLITR
+  STRONGEST_REDUNDANT_ROWS_INFO STRONGEST_REDUNDANT_ROWS_INFO_AUX STRORD
+  SUBSET SUC SUC_REP SUFFIX SUM SUM_ACC SUM_ALL SUM_IMAGE SUM_SET SURJ
+  SWAP StrongLinearOrder StrongOrder T TAKE TC THE TL TL_T
+  TYPE_DEFINITION UNCURRY UNION UNIV UNIV_POINT UNZIP UNZIP_FST
+  UNZIP_SND UPDATE W WCR WF WFP WFREC WHILE WeakLinearOrder WeakOrder
+  ZERO ZERO_REP ZIP ZRECSPACE \/ \\ _ inject_number antisymmetric approx
+  asymMsg_CASE asymMsg_size bool_size case chooser count countable
+  deciphP deciphS delN dest_rec diag diamond digest_CASE digest_size
+  dropWhile enumerate equiv_on equivalence findi findq fupdLast hash
+  iBIT_cases internal_mult inv inv_image invtri invtri0 irreflexive
+  isPREFIX itself_case lift2 listRel list_CASE list_size literal_case
+  measure mk_rec napp nat_elim__magic ncons nf nfoldl nfst nlen nlistrec
+  nmap nnil npair nsnd nub num_CASE num_to_pair o one one_CASE one_size
+  option_ABS option_CASE option_REP option_size pKey_CASE pKey_size
+  pair_CASE pair_size pair_to_num pairwise partition privK pubK
+  rcdiamond reflexive schroeder_close set sign signVerify some
+  splitAtPki stmarker sum_CASE sum_size sym symKey_CASE symKey_size
+  symMsg_CASE symMsg_size symmetric the_fun the_value total transitive
+  tri trichotomous tri⁻¹ unint univ wellfounded ~ ² ³ Π ∅ ∅ᵣ ∑ ≠ 𝕌 𝕌ᵣ
+Overloading:
+                     -> 
+    (\(x :'a). list$CONS x (list$NIL :'a list))
+    (\(h :'a) (l :'a list). bool$~ (bool$IN h (list$LIST_TO_SET l)))
+    (\(x :'a itself). univ((:'a) :'a itself))
+  &                  ->  nat_elim__magic
+  ()                 ->  one
+  **                 ->  EXP
+  *,                 ->  npair
+  ++                 ->  APPEND ++
+  <<=                ->  (\(x :'a list) (y :'a list). list$isPREFIX x y)
+  <=/=>              ->  (\(x :bool) (y :bool). bool$~ (min$= x y))
+  <=>                ->  =
+  <>                 ->  (\(x :'a) (y :'a). bool$~ (min$= x y))
+  =+                 ->  UPDATE
+  ALL_EL             ->  EVERY
+  APPLICATIVE_FAPPLY ->  LIST_APPLY OPTION_APPLY
+  BUTFIRSTN          ->  DROP
+  BUTLAST            ->  FRONT
+  EVERY2             ->  LIST_REL
+  FIRSTN             ->  TAKE
+  INFINITE           ->  (\(s :'a -> bool). bool$~ (pred_set$FINITE s))
+  IS_EL              -> 
+    (\(x :'a) (l :'a list). bool$IN x (list$LIST_TO_SET l))
+  IS_PREFIX          ->  (\(x :'a list) (y :'a list). list$isPREFIX y x)
+  Id                 ->  =
+  MEM                -> 
+    (\(x :'a) (l :'a list). bool$IN x (list$LIST_TO_SET l))
+  NOTIN              -> 
+    (\(x :'a) (y :'a -> bool). bool$~ (bool$IN x y))
+  OPTION_MAP2        ->  OPTION_MAP2 OPTION_MAP2
+  PERMUTES           -> 
+    (\(f :'a -> 'a) (s :'a -> bool). pred_set$BIJ f s s)
+  PI                 ->  PROD_IMAGE
+  RELPOW             ->  NRC
+  REMPTY             ->  EMPTY_REL
+  SIGMA              ->  SUM_IMAGE
+  SINGL              ->  (\(x :'a). list$CONS x (list$NIL :'a list))
+  SOME_EL            ->  EXISTS
+  \\                 ->  RDOM_DELETE
+  _ inject_number    ->  nat_elim__magic
+  case               -> 
+    digest_CASE asymMsg_CASE pKey_CASE symMsg_CASE symKey_CASE list_CASE
+    option_CASE sum_CASE num_CASE pair_CASE itself_case literal_case
+    COND
+  lift2              ->  OPTION_MAP2
+  listRel            ->  LIST_REL
+  nnil               ->  0
+  set                ->  LIST_TO_SET
+  tri⁻¹              ->  invtri
+  univ               ->  (\(x :'a itself). univ((:'a) :'a itself))
+  ²                  ->  (\(x :num). arithmetic$EXP x (2n :num))
+  ³                  ->  (\(x :num). arithmetic$EXP x (3n :num))
+  Π                  ->  PROD_IMAGE
+  ∅                  ->  EMPTY
+  ∅ᵣ                 ->  EMPTY_REL
+  ∑                  ->  SUM_IMAGE
+  ≠                  ->  (\(x :'a) (y :'a). bool$~ (min$= x y))
+  𝕌                  ->  (\(x :'a itself). univ((:'a) :'a itself))
+  𝕌ᵣ                 ->  RUNIV
+User printing functions:
+  if (gd :bool) then (tr :'a) else (fl :'a)       ->  bool.COND
+  LET (f :'a -> 'b) (x :'a)       ->  bool.LET
+  univ((:'a) :'a itself)       ->  pred_set.UNIV):
+   type_grammar.grammar * term_grammar.grammar
+val datatype_asymMsg =
+   [oracles: DISK_THM] [axioms: ] []
+|- DATATYPE
+     ((asymMsg :
+        ('princ pKey -> 'message option -> ('message, 'princ) asymMsg)
+        -> bool)
+        (Ea :'princ pKey ->
+             'message option -> ('message, 'princ) asymMsg)):
+   thm
+val datatype_digest =
+   [oracles: DISK_THM] [axioms: ] []
+|- DATATYPE
+     ((digest :('message option -> 'message digest) -> bool)
+        (hash :'message option -> 'message digest)):
+   thm
+val datatype_pKey =
+   [oracles: DISK_THM] [axioms: ] []
+|- DATATYPE
+     ((pKey :('princ -> 'princ pKey) -> ('princ -> 'princ pKey) -> bool)
+        (pubK :'princ -> 'princ pKey) (privK :'princ -> 'princ pKey)):
+   thm
+val datatype_symKey =
+   [oracles: DISK_THM] [axioms: ] []
+|- DATATYPE ((symKey :(num -> symKey) -> bool) sym):
+   thm
+val datatype_symMsg =
+   [oracles: DISK_THM] [axioms: ] []
+|- DATATYPE
+     ((symMsg :(symKey -> 'message option -> 'message symMsg) -> bool)
+        (Es :symKey -> 'message option -> 'message symMsg)):
+   thm
+val deciphP_clauses =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(P :'a) (text :'b).
+      (deciphP (pubK P) (Ea (privK P) (SOME text)) = SOME text) /\
+      (deciphP (privK P) (Ea (pubK P) (SOME text)) = SOME text)) /\
+   (!(k :'a pKey) (P :'a) (text :'b).
+      (deciphP k (Ea (privK P) (SOME text)) = SOME text) <=>
+      (k = pubK P)) /\
+   (!(k :'a pKey) (P :'a) (text :'b).
+      (deciphP k (Ea (pubK P) (SOME text)) = SOME text) <=>
+      (k = privK P)) /\
+   (!(x :'message) (k2 :'b pKey) (k1 :'b pKey) (P2 :'b) (P1 :'b).
+      (deciphP (pubK P1) (Ea (pubK P2) (SOME x)) =
+       (NONE :'message option)) /\
+      (deciphP k1 (Ea k2 (NONE :'message option)) =
+       (NONE :'message option))) /\
+   !(x :'message) (P2 :'b) (P1 :'b).
+     deciphP (privK P1) (Ea (privK P2) (SOME x)) =
+     (NONE :'message option):
+   thm
+val deciphP_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (deciphP (key :'princ pKey)
+      (Ea (privK (P :'princ)) (SOME (x :'message))) =
+    if key = pubK P then SOME x else (NONE :'message option)) /\
+   (deciphP key (Ea (pubK P) (SOME x)) =
+    if key = privK P then SOME x else (NONE :'message option)) /\
+   (deciphP (k1 :'princ pKey)
+      (Ea (k2 :'princ pKey) (NONE :'message option)) =
+    (NONE :'message option)):
+   thm
+val deciphP_ind =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P' :'princ pKey -> ('message, 'princ) asymMsg -> bool).
+     (!(key :'princ pKey) (P :'princ) (x :'message).
+        P' key (Ea (privK P) (SOME x))) /\
+     (!(key :'princ pKey) (P :'princ) (x :'message).
+        P' key (Ea (pubK P) (SOME x))) /\
+     (!(k1 :'princ pKey) (k2 :'princ pKey).
+        P' k1 (Ea k2 (NONE :'message option))) ==>
+     !(v :'princ pKey) (v1 :('message, 'princ) asymMsg). P' v v1:
+   thm
+val deciphP_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(P1 :'a) (P2 :'a) (text1 :'b) (text2 :'b).
+      (deciphP (pubK P1) (Ea (privK P2) (SOME text2)) = SOME text1) <=>
+      (P1 = P2) /\ (text1 = text2)) /\
+   (!(P1 :'a) (P2 :'a) (text1 :'b) (text2 :'b).
+      (deciphP (privK P1) (Ea (pubK P2) (SOME text2)) = SOME text1) <=>
+      (P1 = P2) /\ (text1 = text2)) /\
+   (!(p :'b pKey) (c :'a option) (P :'b) (msg :'a).
+      (deciphP (pubK P) (Ea p c) = SOME msg) <=>
+      (p = privK P) /\ (c = SOME msg)) /\
+   (!(enMsg :('a, 'b) asymMsg) (P :'b) (msg :'a).
+      (deciphP (pubK P) enMsg = SOME msg) <=>
+      (enMsg = Ea (privK P) (SOME msg))) /\
+   (!(p :'b pKey) (c :'a option) (P :'b) (msg :'a).
+      (deciphP (privK P) (Ea p c) = SOME msg) <=>
+      (p = pubK P) /\ (c = SOME msg)) /\
+   !(enMsg :('a, 'b) asymMsg) (P :'b) (msg :'a).
+     (deciphP (privK P) enMsg = SOME msg) <=>
+     (enMsg = Ea (pubK P) (SOME msg)):
+   thm
+val deciphS_clauses =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(k :symKey) (text :'a).
+      deciphS k (Es k (SOME text)) = SOME text) /\
+   (!(k1 :symKey) (k2 :symKey) (text :'a).
+      (deciphS k1 (Es k2 (SOME text)) = SOME text) <=> (k1 = k2)) /\
+   (!(k1 :symKey) (k2 :symKey) (text :'a).
+      (deciphS k1 (Es k2 (SOME text)) = (NONE :'a option)) <=>
+      k1 <> k2) /\
+   !(k1 :symKey) (k2 :symKey).
+     deciphS k1 (Es k2 (NONE :'a option)) = (NONE :'a option):
+   thm
+val deciphS_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (deciphS (k1 :symKey) (Es (k2 :symKey) (SOME (x :'message))) =
+    if k1 = k2 then SOME x else (NONE :'message option)) /\
+   (deciphS k1 (Es k2 (NONE :'message option)) =
+    (NONE :'message option)):
+   thm
+val deciphS_ind =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :symKey -> 'message symMsg -> bool).
+     (!(k1 :symKey) (k2 :symKey) (x :'message).
+        P k1 (Es k2 (SOME x))) /\
+     (!(k1 :symKey) (k2 :symKey).
+        P k1 (Es k2 (NONE :'message option))) ==>
+     !(v :symKey) (v1 :'message symMsg). P v v1:
+   thm
+val deciphS_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(k1 :symKey) (k2 :symKey) (text1 :'a) (text2 :'a).
+      (deciphS k1 (Es k2 (SOME text2)) = SOME text1) <=>
+      (k1 = k2) /\ (text1 = text2)) /\
+   !(enMsg :'message symMsg) (text :'message) (key :symKey).
+     (deciphS key enMsg = SOME text) <=> (enMsg = Es key (SOME text)):
+   thm
+val digest_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :'message option) (a' :'message option).
+     (hash a = hash a') <=> (a = a'):
+   thm
+val digest_Axiom =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :'message option -> 'a).
+     ?(fn :'message digest -> 'a).
+       !(a :'message option). fn (hash a) = f a:
+   thm
+val digest_TY_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- ?(rep :'message digest -> 'message option recspace).
+     TYPE_DEFINITION
+       (\(a0 :'message option recspace).
+          !('digest'  :'message option recspace -> bool).
+            (!(a0 :'message option recspace).
+               (?(a :'message option).
+                  a0 =
+                  (\(a :'message option).
+                     ind_type$CONSTR (0 :num) a
+                       (\(n :num).
+                          (ind_type$BOTTOM :'message option recspace)))
+                    a) ==>
+               'digest' a0) ==>
+            'digest' a0) rep:
+   thm
+val digest_case_cong =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(M :'message digest) (M' :'message digest)
+      (f :'message option -> 'a).
+     (M = M') /\
+     (!(a :'message option).
+        (M' = hash a) ==> (f a = (f' :'message option -> 'a) a)) ==>
+     ((digest_CASE M f :'a) = (digest_CASE M' f' :'a)):
+   thm
+val digest_case_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :'message option) (f :'message option -> 'a).
+     (digest_CASE (hash a) f :'a) = f a:
+   thm
+val digest_induction =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :'message digest -> bool).
+     (!($o :'message option). P (hash $o)) ==>
+     !(d :'message digest). P d:
+   thm
+val digest_nchotomy =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(dd :'message digest). ?($o :'message option). dd = hash $o:
+   thm
+val digest_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :'message option) (a' :'message option).
+     (hash a = hash a') <=> (a = a'):
+   thm
+val digest_size_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :'message -> num) (a :'message option).
+     digest_size f (hash a) = (1 :num) + option_size f a:
+   thm
+val option_distinct =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a). (NONE :'a option) <> SOME x:
+   thm
+val option_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(x :'a) (y :'a). (SOME x = SOME y) <=> (x = y):
+   thm
+val pKey_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(a :'princ) (a' :'princ). (pubK a = pubK a') <=> (a = a')) /\
+   !(a :'princ) (a' :'princ). (privK a = privK a') <=> (a = a'):
+   thm
+val pKey_Axiom =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f0 :'princ -> 'a) (f1 :'princ -> 'a).
+     ?(fn :'princ pKey -> 'a).
+       (!(a :'princ). fn (pubK a) = f0 a) /\
+       !(a :'princ). fn (privK a) = f1 a:
+   thm
+val pKey_TY_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- ?(rep :'princ pKey -> 'princ recspace).
+     TYPE_DEFINITION
+       (\(a0 :'princ recspace).
+          !('pKey'  :'princ recspace -> bool).
+            (!(a0 :'princ recspace).
+               (?(a :'princ).
+                  a0 =
+                  (\(a :'princ).
+                     ind_type$CONSTR (0 :num) a
+                       (\(n :num). (ind_type$BOTTOM :'princ recspace)))
+                    a) \/
+               (?(a :'princ).
+                  a0 =
+                  (\(a :'princ).
+                     ind_type$CONSTR (SUC (0 :num)) a
+                       (\(n :num). (ind_type$BOTTOM :'princ recspace)))
+                    a) ==>
+               'pKey' a0) ==>
+            'pKey' a0) rep:
+   thm
+val pKey_case_cong =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(M :'princ pKey) (M' :'princ pKey) (f :'princ -> 'a)
+      (f1 :'princ -> 'a).
+     (M = M') /\
+     (!(a :'princ). (M' = pubK a) ==> (f a = (f' :'princ -> 'a) a)) /\
+     (!(a :'princ).
+        (M' = privK a) ==> (f1 a = (f1' :'princ -> 'a) a)) ==>
+     ((pKey_CASE M f f1 :'a) = (pKey_CASE M' f' f1' :'a)):
+   thm
+val pKey_case_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(a :'princ) (f :'princ -> 'a) (f1 :'princ -> 'a).
+      (pKey_CASE (pubK a) f f1 :'a) = f a) /\
+   !(a :'princ) (f :'princ -> 'a) (f1 :'princ -> 'a).
+     (pKey_CASE (privK a) f f1 :'a) = f1 a:
+   thm
+val pKey_distinct =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a' :'princ) (a :'princ). pubK a <> privK a':
+   thm
+val pKey_distinct_clauses =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(a' :'princ) (a :'princ). pubK a <> privK a') /\
+   !(a' :'princ) (a :'princ). privK a' <> pubK a:
+   thm
+val pKey_induction =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :'princ pKey -> bool).
+     (!(p :'princ). P (pubK p)) /\ (!(p :'princ). P (privK p)) ==>
+     !(p :'princ pKey). P p:
+   thm
+val pKey_nchotomy =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(pp :'princ pKey).
+     (?(p :'princ). pp = pubK p) \/ ?(p :'princ). pp = privK p:
+   thm
+val pKey_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(a :'princ) (a' :'princ). (pubK a = pubK a') <=> (a = a')) /\
+   !(a :'princ) (a' :'princ). (privK a = privK a') <=> (a = a'):
+   thm
+val pKey_size_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(f :'princ -> num) (a :'princ).
+      pKey_size f (pubK a) = (1 :num) + f a) /\
+   !(f :'princ -> num) (a :'princ).
+     pKey_size f (privK a) = (1 :num) + f a:
+   thm
+val signVerifyOK =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :'princ) (msg :'message).
+     signVerify (pubK P) (sign (privK P) (hash (SOME msg))) (SOME msg):
+   thm
+val signVerify_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(pubKey :'princ pKey) (signature :('message digest, 'princ) asymMsg)
+      (msgContents :'message option).
+     signVerify pubKey signature msgContents <=>
+     (SOME (hash msgContents) = deciphP pubKey signature):
+   thm
+val signVerify_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(P :'a) (m1 :'b) (m2 :'b).
+      signVerify (pubK P) (Ea (privK P) (SOME (hash (SOME m1))))
+        (SOME m2) <=> (m1 = m2)) /\
+   (!(signature :('message digest, 'princ) asymMsg) (P :'princ)
+       (text :'message).
+      signVerify (pubK P) signature (SOME text) <=>
+      (signature = sign (privK P) (hash (SOME text)))) /\
+   !(text2 :'b) (text1 :'b) (P2 :'a) (P1 :'a).
+     signVerify (pubK P1) (sign (privK P2) (hash (SOME text2)))
+       (SOME text1) <=> (P1 = P2) /\ (text1 = text2):
+   thm
+val sign_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(pubKey :'princ pKey) (dgst :'message digest).
+     sign pubKey dgst = Ea pubKey (SOME dgst):
+   thm
+val sign_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(pubKey1 :'a pKey) (pubKey2 :'a pKey) (m1 :'b option)
+      (m2 :'b option).
+     (sign pubKey1 (hash m1) = sign pubKey2 (hash m2)) <=>
+     (pubKey1 = pubKey2) /\ (m1 = m2):
+   thm
+val symKey_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :num) (a' :num). (sym a = sym a') <=> (a = a'):
+   thm
+val symKey_Axiom =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :num -> 'a). ?(fn :symKey -> 'a). !(a :num). fn (sym a) = f a:
+   thm
+val symKey_TY_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- ?(rep :symKey -> num recspace).
+     TYPE_DEFINITION
+       (\(a0 :num recspace).
+          !('symKey'  :num recspace -> bool).
+            (!(a0 :num recspace).
+               (?(a :num).
+                  a0 =
+                  (\(a :num).
+                     ind_type$CONSTR (0 :num) a
+                       (\(n :num). (ind_type$BOTTOM :num recspace)))
+                    a) ==>
+               'symKey' a0) ==>
+            'symKey' a0) rep:
+   thm
+val symKey_case_cong =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(M :symKey) (M' :symKey) (f :num -> 'a).
+     (M = M') /\
+     (!(a :num). (M' = sym a) ==> (f a = (f' :num -> 'a) a)) ==>
+     ((symKey_CASE M f :'a) = (symKey_CASE M' f' :'a)):
+   thm
+val symKey_case_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :num) (f :num -> 'a). (symKey_CASE (sym a) f :'a) = f a:
+   thm
+val symKey_induction =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :symKey -> bool). (!(n :num). P (sym n)) ==> !(s :symKey). P s:
+   thm
+val symKey_nchotomy =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(ss :symKey). ?(n :num). ss = sym n:
+   thm
+val symKey_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :num) (a' :num). (sym a = sym a') <=> (a = a'):
+   thm
+val symKey_size_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :num). symKey_size (sym a) = (1 :num) + a:
+   thm
+val symMsg_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a0 :symKey) (a1 :'message option) (a0' :symKey)
+      (a1' :'message option).
+     (Es a0 a1 = Es a0' a1') <=> (a0 = a0') /\ (a1 = a1'):
+   thm
+val symMsg_Axiom =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :symKey -> 'message option -> 'a).
+     ?(fn :'message symMsg -> 'a).
+       !(a0 :symKey) (a1 :'message option). fn (Es a0 a1) = f a0 a1:
+   thm
+val symMsg_TY_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- ?(rep :'message symMsg -> (symKey # 'message option) recspace).
+     TYPE_DEFINITION
+       (\(a0' :(symKey # 'message option) recspace).
+          !('symMsg'  :(symKey # 'message option) recspace -> bool).
+            (!(a0' :(symKey # 'message option) recspace).
+               (?(a0 :symKey) (a1 :'message option).
+                  a0' =
+                  (\(a0 :symKey) (a1 :'message option).
+                     ind_type$CONSTR (0 :num) (a0,a1)
+                       (\(n :num).
+                          (ind_type$BOTTOM :(symKey # 'message option)
+                                            recspace))) a0 a1) ==>
+               'symMsg' a0') ==>
+            'symMsg' a0') rep:
+   thm
+val symMsg_case_cong =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(M :'message symMsg) (M' :'message symMsg)
+      (f :symKey -> 'message option -> 'a).
+     (M = M') /\
+     (!(a0 :symKey) (a1 :'message option).
+        (M' = Es a0 a1) ==>
+        (f a0 a1 = (f' :symKey -> 'message option -> 'a) a0 a1)) ==>
+     ((symMsg_CASE M f :'a) = (symMsg_CASE M' f' :'a)):
+   thm
+val symMsg_case_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a0 :symKey) (a1 :'message option)
+      (f :symKey -> 'message option -> 'a).
+     (symMsg_CASE (Es a0 a1) f :'a) = f a0 a1:
+   thm
+val symMsg_induction =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :'message symMsg -> bool).
+     (!(s :symKey) ($o :'message option). P (Es s $o)) ==>
+     !(s :'message symMsg). P s:
+   thm
+val symMsg_nchotomy =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(ss :'message symMsg).
+     ?(s :symKey) ($o :'message option). ss = Es s $o:
+   thm
+val symMsg_one_one =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a0 :symKey) (a1 :'message option) (a0' :symKey)
+      (a1' :'message option).
+     (Es a0 a1 = Es a0' a1') <=> (a0 = a0') /\ (a1 = a1'):
+   thm
+val symMsg_size_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :'message -> num) (a0 :symKey) (a1 :'message option).
+     symMsg_size f (Es a0 a1) =
+     (1 :num) + (symKey_size a0 + option_size f a1):
+   thm
+type thm
+> Loading stringTheory
+> val CHAR_EQ_THM =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c1 :char) (c2 :char). (c1 = c2) <=> (ORD c1 = ORD c2):
+   thm
+val CHAR_INDUCT_THM =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :char -> bool).
+     (!(n :num). n < (256 :num) ==> P (CHR n)) ==> !(c :char). P c:
+   thm
+val CHR_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(r :num) (r' :num).
+     r < (256 :num) ==>
+     r' < (256 :num) ==>
+     ((CHR r = CHR r') <=> (r = r')):
+   thm
+val CHR_ONTO =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :char). ?(r :num). (a = CHR r) /\ r < (256 :num):
+   thm
+val CHR_ORD =
+   [oracles: DISK_THM] [axioms: ] [] |- !(a :char). CHR (ORD a) = a:
+   thm
+val DEST_STRING_LEMS =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string).
+     ((DEST_STRING s = (NONE :(char # string) option)) <=>
+      (s = ("" :string))) /\
+     ((DEST_STRING s = SOME ((c :char),(t :string))) <=>
+      (s = STRING c t)):
+   thm
+val DEST_STRING_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (DEST_STRING ("" :string) = (NONE :(char # string) option)) /\
+   !(c :char) (rst :string). DEST_STRING (STRING c rst) = SOME (c,rst):
+   thm
+val EXPLODE_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- (EXPLODE (s1 :string) = EXPLODE (s2 :string)) <=> (s1 = s2):
+   thm
+val EXPLODE_DEST_STRING =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string).
+     EXPLODE s =
+     case DEST_STRING s of
+       (NONE :(char # string) option) => ("" :string)
+     | SOME (c,t) => STRING c (EXPLODE t):
+   thm
+val EXPLODE_EQNS =
+   [oracles: DISK_THM] [axioms: ] []
+|- (EXPLODE ("" :string) = ("" :string)) /\
+   !(c :char) (s :string). EXPLODE (STRING c s) = STRING c (EXPLODE s):
+   thm
+val EXPLODE_EQ_NIL =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((EXPLODE (s :string) = ("" :string)) <=> (s = ("" :string))) /\
+   ((("" :string) = EXPLODE s) <=> (s = ("" :string))):
+   thm
+val EXPLODE_EQ_THM =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string) (h :char) (t :string).
+     ((STRING h t = EXPLODE s) <=> (s = STRING h (IMPLODE t))) /\
+     ((EXPLODE s = STRING h t) <=> (s = STRING h (IMPLODE t))):
+   thm
+val EXPLODE_IMPLODE =
+   [oracles: DISK_THM] [axioms: ] [] |- EXPLODE (IMPLODE (cs :string)) = cs:
+   thm
+val EXPLODE_ONTO =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(cs :string). ?(s :string). cs = EXPLODE s:
+   thm
+val EXPLODE_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (EXPLODE ("" :string) = ("" :string)) /\
+   !(c :char) (s :string). EXPLODE (STRING c s) = STRING c (EXPLODE s):
+   thm
+val EXTRACT_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (EXTRACT ((s :string),(i :num),(NONE :num option)) =
+    SUBSTRING (s,i,STRLEN s - i)) /\
+   (EXTRACT (s,i,SOME (n :num)) = SUBSTRING (s,i,n)):
+   thm
+val EXTRACT_ind =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :string # num # num option -> bool).
+     (!(s :string) (i :num). P (s,i,(NONE :num option))) /\
+     (!(s :string) (i :num) (n :num). P (s,i,SOME n)) ==>
+     !(v :string) (v1 :num) (v2 :num option). P (v,v1,v2):
+   thm
+val EXTRACT_primitive_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- EXTRACT =
+   WFREC
+     (@(R :
+         string # num # num option ->
+         string # num # num option -> bool). WF R)
+     (\(EXTRACT :string # num # num option -> string)
+         (a :string # num # num option).
+        case a of
+          (s,i,(NONE :num option)) => I (SUBSTRING (s,i,STRLEN s - i))
+        | (s,i,SOME n) => I (SUBSTRING (s,i,n))):
+   thm
+val FIELDS_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(P :char -> bool). FIELDS P ("" :string) = [("" :string)]) /\
+   !(t :string) (h :char) (P :char -> bool).
+     FIELDS P (STRING h t) =
+     (let
+        ((l :string),(r :string)) = SPLITP P (STRING h t)
+      in
+        if NULL l then ("" :string)::FIELDS P (TL r)
+        else if NULL r then [l]
+        else l::FIELDS P (TL r)):
+   thm
+val FIELDS_ind =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P' :(char -> bool) -> string -> bool).
+     (!(P :char -> bool). P' P ("" :string)) /\
+     (!(P :char -> bool) (h :char) (t :string).
+        (!(l :string) (r :string).
+           ((l,r) = SPLITP P (STRING h t)) /\ NULL l ==> P' P (TL r)) /\
+        (!(l :string) (r :string).
+           ((l,r) = SPLITP P (STRING h t)) /\ ~NULL l /\ ~NULL r ==>
+           P' P (TL r)) ==>
+        P' P (STRING h t)) ==>
+     !(v :char -> bool) (v1 :string). P' v v1:
+   thm
+val IMPLODE_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- (IMPLODE (cs1 :string) = IMPLODE (cs2 :string)) <=> (cs1 = cs2):
+   thm
+val IMPLODE_EQNS =
+   [oracles: DISK_THM] [axioms: ] []
+|- (IMPLODE ("" :string) = ("" :string)) /\
+   !(c :char) (cs :string).
+     IMPLODE (STRING c cs) = STRING c (IMPLODE cs):
+   thm
+val IMPLODE_EQ_EMPTYSTRING =
+   [oracles: DISK_THM] [axioms: ] []
+|- ((IMPLODE (l :string) = ("" :string)) <=> (l = ("" :string))) /\
+   ((("" :string) = IMPLODE l) <=> (l = ("" :string))):
+   thm
+val IMPLODE_EQ_THM =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char) (s :string) (l :string).
+     ((STRING c s = IMPLODE l) <=> (l = STRING c (EXPLODE s))) /\
+     ((IMPLODE l = STRING c s) <=> (l = STRING c (EXPLODE s))):
+   thm
+val IMPLODE_EXPLODE =
+   [oracles: DISK_THM] [axioms: ] [] |- IMPLODE (EXPLODE (s :string)) = s:
+   thm
+val IMPLODE_EXPLODE_I =
+   [oracles: DISK_THM] [axioms: ] []
+|- (EXPLODE (s :string) = s) /\ (IMPLODE s = s):
+   thm
+val IMPLODE_ONTO =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string). ?(cs :string). s = IMPLODE cs:
+   thm
+val IMPLODE_STRING =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(clist :string).
+     IMPLODE clist =
+     FOLDR (STRING :char -> string -> string) ("" :string) clist:
+   thm
+val IMPLODE_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (IMPLODE ("" :string) = ("" :string)) /\
+   !(c :char) (cs :string).
+     IMPLODE (STRING c cs) = STRING c (IMPLODE cs):
+   thm
+val ORD_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :char) (a' :char). (ORD a = ORD a') <=> (a = a'):
+   thm
+val ORD_BOUND =
+   [oracles: DISK_THM] [axioms: ] [] |- !(c :char). ORD c < (256 :num):
+   thm
+val ORD_CHR =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(r :num). r < (256 :num) <=> (ORD (CHR r) = r):
+   thm
+val ORD_CHR_COMPUTE =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(n :num).
+     ORD (CHR n) =
+     if n < (256 :num) then n else FAIL ORD (> 255  :bool) (CHR n):
+   thm
+val ORD_CHR_RWT =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(r :num). r < (256 :num) ==> (ORD (CHR r) = r):
+   thm
+val ORD_ONTO =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(r :num). r < (256 :num) <=> ?(a :char). r = ORD a:
+   thm
+val STRCAT =
+   [oracles: DISK_THM] [axioms: ] []
+|- STRCAT (s1 :string) (s2 :string) = STRCAT s1 s2:
+   thm
+val STRCAT_11 =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(l1 :string) (l2 :string) (l3 :string).
+      (STRCAT l1 l2 = STRCAT l1 l3) <=> (l2 = l3)) /\
+   !(l1 :string) (l2 :string) (l3 :string).
+     (STRCAT l2 l1 = STRCAT l3 l1) <=> (l2 = l3):
+   thm
+val STRCAT_ACYCLIC =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string) (s1 :string).
+     ((s = STRCAT s s1) <=> (s1 = ("" :string))) /\
+     ((s = STRCAT s1 s) <=> (s1 = ("" :string))):
+   thm
+val STRCAT_ASSOC =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(l1 :string) (l2 :string) (l3 :string).
+     STRCAT l1 (STRCAT l2 l3) = STRCAT (STRCAT l1 l2) l3:
+   thm
+val STRCAT_EQNS =
+   [oracles: DISK_THM] [axioms: ] []
+|- (STRCAT ("" :string) (s :string) = s) /\
+   (STRCAT s ("" :string) = s) /\
+   (STRCAT (STRING (c :char) (s1 :string)) (s2 :string) =
+    STRING c (STRCAT s1 s2)):
+   thm
+val STRCAT_EQ_EMPTY =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(l1 :string) (l2 :string).
+     (STRCAT l1 l2 = ("" :string)) <=>
+     (l1 = ("" :string)) /\ (l2 = ("" :string)):
+   thm
+val STRCAT_EXPLODE =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s1 :string) (s2 :string).
+     STRCAT s1 s2 =
+     FOLDR (STRING :char -> string -> string) s2 (EXPLODE s1):
+   thm
+val STRCAT_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(l :string). STRCAT ("" :string) l = l) /\
+   !(l1 :string) (l2 :string) (h :char).
+     STRCAT (STRING h l1) l2 = STRING h (STRCAT l1 l2):
+   thm
+val STRING_ACYCLIC =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string) (c :char). STRING c s <> s /\ s <> STRING c s:
+   thm
+val STRLEN_CAT =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(l1 :string) (l2 :string).
+     STRLEN (STRCAT l1 l2) = STRLEN l1 + STRLEN l2:
+   thm
+val STRLEN_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- (STRLEN ("" :string) = (0 :num)) /\
+   !(h :char) (t :string). STRLEN (STRING h t) = SUC (STRLEN t):
+   thm
+val STRLEN_EQ_0 =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(l :string). (STRLEN l = (0 :num)) <=> (l = ("" :string)):
+   thm
+val STRLEN_EXPLODE_THM =
+   [oracles: DISK_THM] [axioms: ] []
+|- STRLEN (s :string) = STRLEN (EXPLODE s):
+   thm
+val STRLEN_THM =
+   [oracles: DISK_THM] [axioms: ] []
+|- (STRLEN ("" :string) = (0 :num)) /\
+   !(h :char) (t :string). STRLEN (STRING h t) = SUC (STRLEN t):
+   thm
+val STR_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). STR c = STRING c ("" :string):
+   thm
+val SUBSTRING_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string) (i :num) (n :num). SUBSTRING (s,i,n) = SEG n i s:
+   thm
+val SUB_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string) (n :num). SUB (s,n) = EL n s:
+   thm
+val TOCHAR_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- TOCHAR (STRING (c :char) ("" :string)) = c:
+   thm
+val TOCHAR_ind =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :string -> bool).
+     (!(c :char). P (STRING c ("" :string))) /\ P ("" :string) /\
+     (!(v6 :char) (v4 :char) (v5 :string).
+        P (STRING v6 (STRING v4 v5))) ==>
+     !(v :string). P v:
+   thm
+val TOCHAR_primitive_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- TOCHAR =
+   WFREC (@(R :string -> string -> bool). WF R)
+     (\(TOCHAR :string -> char) (a :string).
+        case a of
+          ("" :string) => (ARB :char)
+        | STRING c ("" :string) => I c
+        | STRING c (STRING v2 v3) => (ARB :char)):
+   thm
+val TOKENS_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(P :char -> bool). TOKENS P ("" :string) = ([] :string list)) /\
+   !(t :string) (h :char) (P :char -> bool).
+     TOKENS P (STRING h t) =
+     (let
+        ((l :string),(r :string)) = SPLITP P (STRING h t)
+      in
+        if NULL l then TOKENS P (TL r) else l::TOKENS P r):
+   thm
+val TOKENS_ind =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P' :(char -> bool) -> string -> bool).
+     (!(P :char -> bool). P' P ("" :string)) /\
+     (!(P :char -> bool) (h :char) (t :string).
+        (!(l :string) (r :string).
+           ((l,r) = SPLITP P (STRING h t)) /\ NULL l ==> P' P (TL r)) /\
+        (!(l :string) (r :string).
+           ((l,r) = SPLITP P (STRING h t)) /\ ~NULL l ==> P' P r) ==>
+        P' P (STRING h t)) ==>
+     !(v :char -> bool) (v1 :string). P' v v1:
+   thm
+val TRANSLATE_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(f :char -> string) (s :string). TRANSLATE f s = CONCAT (MAP f s):
+   thm
+val char_BIJ =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(a :char). CHR (ORD a) = a) /\
+   !(r :num). (\(n :num). n < (256 :num)) r <=> (ORD (CHR r) = r):
+   thm
+val char_TY_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- ?(rep :char -> num). TYPE_DEFINITION (\(n :num). n < (256 :num)) rep:
+   thm
+val char_ge_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :char) (b :char). a >= b <=> ORD a >= ORD b:
+   thm
+val char_gt_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :char) (b :char). a > b <=> ORD a > ORD b:
+   thm
+val char_le_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :char) (b :char). a <= b <=> ORD a <= ORD b:
+   thm
+val char_lt_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(a :char) (b :char). a < b <=> ORD a < ORD b:
+   thm
+val char_nchotomy =
+   [oracles: DISK_THM] [axioms: ] [] |- !(c :char). ?(n :num). c = CHR n:
+   thm
+val char_size_def =
+   [oracles: DISK_THM] [axioms: ] [] |- !(c :char). char_size c = (0 :num):
+   thm
+val isAlphaNum_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isAlphaNum c <=> isAlpha c \/ isDigit c:
+   thm
+val isAlpha_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isAlpha c <=> isLower c \/ isUpper c:
+   thm
+val isAscii_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isAscii c <=> ORD c <= (127 :num):
+   thm
+val isCntrl_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isCntrl c <=> ORD c < (32 :num) \/ (127 :num) <= ORD c:
+   thm
+val isDigit_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isDigit c <=> (48 :num) <= ORD c /\ ORD c <= (57 :num):
+   thm
+val isGraph_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isGraph c <=> isPrint c /\ ~isSpace c:
+   thm
+val isHexDigit_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char).
+     isHexDigit c <=>
+     (48 :num) <= ORD c /\ ORD c <= (57 :num) \/
+     (97 :num) <= ORD c /\ ORD c <= (102 :num) \/
+     (65 :num) <= ORD c /\ ORD c <= (70 :num):
+   thm
+val isLower_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isLower c <=> (97 :num) <= ORD c /\ ORD c <= (122 :num):
+   thm
+val isPREFIX_DEF =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s1 :string) (s2 :string).
+     s1 <<= s2 <=>
+     case (DEST_STRING s1,DEST_STRING s2) of
+       ((NONE :(char # string) option),v1) => T
+     | (SOME v2,(NONE :(char # string) option)) => F
+     | (SOME (c1,t1),SOME (c2,t2)) => (c1 = c2) /\ t1 <<= t2:
+   thm
+val isPREFIX_IND =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :string -> string -> bool).
+     (!(s1 :string) (s2 :string).
+        (!(c :char) (t1 :string) (t2 :string).
+           (DEST_STRING s1 = SOME (c,t1)) /\
+           (DEST_STRING s2 = SOME (c,t2)) ==>
+           P t1 t2) ==>
+        P s1 s2) ==>
+     !(v :string) (v1 :string). P v v1:
+   thm
+val isPREFIX_STRCAT =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s1 :string) (s2 :string).
+     s1 <<= s2 <=> ?(s3 :string). s2 = STRCAT s1 s3:
+   thm
+val isPrint_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isPrint c <=> (32 :num) <= ORD c /\ ORD c < (127 :num):
+   thm
+val isPunct_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isPunct c <=> isGraph c /\ ~isAlphaNum c:
+   thm
+val isSpace_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char).
+     isSpace c <=>
+     (ORD c = (32 :num)) \/ (9 :num) <= ORD c /\ ORD c <= (13 :num):
+   thm
+val isUpper_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). isUpper c <=> (65 :num) <= ORD c /\ ORD c <= (90 :num):
+   thm
+val ranged_char_nchotomy =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char). ?(n :num). (c = CHR n) /\ n < (256 :num):
+   thm
+val string_ge_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s1 :string) (s2 :string). s1 >= s2 <=> s2 <= s1:
+   thm
+val string_grammars =
+   (Rules:
+  (50)   TY  ::=  TY -> TY [fun] (R-associative)
+  (60)   TY  ::=  TY + TY [sum] (R-associative)
+  (70)   TY  ::=  TY # TY [prod] (R-associative)
+         TY  ::=  bool | char | (TY, TY)fun | ind | TY itself |
+                  TY list | num | one | TY option | (TY, TY)prod |
+                  TY recspace | TY set | string | (TY, TY)sum | unit
+         TY  ::=  TY[TY] (array type)
+Type abbreviations:
+  bool = min$bool                                        
+  char = string$char                                     
+  ('a, 'b) fun = ('a, 'b) min$fun                        
+  ind = min$ind                                          
+  'a itself = 'a bool$itself                             
+  'a list = 'a list$list                                 
+  num = num$num                                          
+  one = one$one                                           (not printed)
+  'a option = 'a option$option                           
+  ('a, 'b) prod = ('a, 'b) pair$prod                     
+  'a recspace = 'a ind_type$recspace                     
+  'a set = ('a, min$bool) min$fun                         (not printed)
+  string = string$char list$list                         
+  ('a, 'b) sum = ('a, 'b) sum$sum                        
+  unit = one$one                                         ,
+    (0)    TM  ::=  "OLEAST" <..binders..> "." TM |
+                "LEAST" <..binders..> "." TM |
+                "some" <..binders..> "." TM |
+                "∃!" <..binders..> "." TM [?!] |
+                "?!" <..binders..> "." TM |
+                "∃" <..binders..> "." TM [?] |
+                "?" <..binders..> "." TM |
+                "∀" <..binders..> "." TM [!] |
+                "!" <..binders..> "." TM | "@" <..binders..> "." TM |
+                "λ" <..binders..> "." TM | "\" <..binders..> "." TM
+(1)    TM  ::=  "case" TM "of" TM "|" TM "|" TM  [case magic$default - %case%] |
+                "case" TM "of" "|" TM  [case magic$default - %case%] |
+                "case" TM "of" TM "|" TM  [case magic$default - %case%] |
+                "case" TM "of" TM  [case magic$default - %case%]
+(4)    TM  ::=  TM "::" TM (restricted quantification operator)
+(5)    TM  ::=  TM TM  (binder argument concatenation)
+(8)    TM  ::=  "let" LTM< _ letnil, _ letcons,;> "in" TM  [ _ let]
+(9)    TM  ::=  TM "and" TM  [ _ and]   (L-associative)
+(12)   TM  ::=  TM "=>" TM  [case magic$default - %arrow%]
+                (non-associative)
+(50)   TM  ::=  TM "," TM   (R-associative)
+(70)   TM  ::=  "if" TM "then" TM "else" TM  [COND]
+(80)   TM  ::=  TM ":-" TM   (non-associative)
+(100)  TM  ::=  TM "⇎" TM  [<=/=>] | TM "<=/=>" TM | TM "⇔" TM  [<=>] |
+                TM "<=>" TM | TM "=" TM
+                (non-associative)
+(200)  TM  ::=  TM "⇒" TM  [==>] | TM "==>" TM   (R-associative)
+(300)  TM  ::=  TM "∨" TM  [\/] | TM "\/" TM   (R-associative)
+(310)  TM  ::=  TM ":>" TM   (L-associative)
+(320)  TM  ::=  TM "=+" TM   (non-associative)
+(400)  TM  ::=  TM "∧" TM  [/\] | TM "/\" TM   (R-associative)
+(425)  TM  ::=  TM "equiv_on" TM | TM "∉" TM  [NOTIN] | TM "NOTIN" TM |
+                TM "∈" TM  [IN] | TM "IN" TM
+                (non-associative)
+(450)  TM  ::=  TM "≼" TM  [<<=] | TM "<<=" TM | TM "PERMUTES" TM |
+                TM "⊂" TM  [PSUBSET] | TM "PSUBSET" TM |
+                TM "⊆" TM  [SUBSET] | TM "SUBSET" TM | TM "≥" TM  [>=] |
+                TM ">=" TM | TM "≤" TM  [<=] | TM "<=" TM | TM ">" TM |
+                TM "<" TM | TM "⊆ᵣ" TM  [RSUBSET] | TM "RSUBSET" TM |
+                TM "≠" TM | TM "<>" TM
+                (non-associative)
+(460)  TM  ::=  TM "with" TM  [record update] |
+                TM ":=" TM  [record field update] |
+                TM "updated_by" TM  [functional record update]
+                (R-associative)
+(480)  TM  ::=  TM "++" TM   (L-associative)
+(490)  TM  ::=  TM "::" TM  [CONS] | TM "INSERT" TM | TM "LEX" TM |
+                TM "##" TM
+                (R-associative)
+(500)  TM  ::=  TM "DELETE" TM | TM "DIFF" TM | TM "∪" TM  [UNION] |
+                TM "UNION" TM | TM "<*>" TM  [APPLICATIVE_FAPPLY] |
+                TM "−" TM  [-] | TM "-" TM | TM "+" TM |
+                TM "∪ᵣ" TM  [RUNION] | TM "RUNION" TM
+                (L-associative)
+(600)  TM  ::=  TM "×" TM  [CROSS] | TM "CROSS" TM |
+                TM "∩" TM  [INTER] | TM "INTER" TM | TM "DIV" TM |
+                TM "*" TM | TM "\\" TM | TM "∩ᵣ" TM  [RINTER] |
+                TM "RINTER" TM
+                (L-associative)
+(601)  TM  ::=  TM "⊗" TM  [*,] | TM "*," TM   (R-associative)
+(650)  TM  ::=  TM "MOD" TM   (L-associative)
+(700)  TM  ::=  TM "**" TM | TM "EXP" TM   (R-associative)
+(800)  TM  ::=  TM "∘ᵣ" TM  [O] | TM "O" TM | TM "∘" TM  [o] | TM "o" TM
+                (R-associative)
+(899)  TM  ::=  TM ":" TY  (type annotation)
+(900)  TM  ::=  "&" TM | "-" TM  [numeric_negate] | "¬" TM  [~] | "~" TM
+(2000) TM  ::=  TM TM  (function application)   (L-associative)
+(2100) TM  ::=  TM "³" | TM "²" | TM "ᵀ"  [inv] | TM "^="  [EQC] |
+                TM "^*"  [RTC] | TM "⁺"  [TC] | TM "^+"  [TC]
+(2200) TM  ::=  "𝕌" TM | "univ" TM
+(2500) TM  ::=  TM "." TM  [record field selection]   (L-associative)
+       TM  ::=  "[" LTM<NIL,CONS,;> "]"  [] |
+                "{" LTM<EMPTY,INSERT,;> "}"  [] |
+                "{" TM "|" TM "|" TM "}"  [gspec2 special] |
+                "{" TM "|" TM "}"  [gspec special] | "(" ")"  [one] |
+                "<|" LTM< _ record nil, _ record cons,;> "|>"  [] |
+                "(" TM ")"  [just parentheses, no term produced]
+Known constants:
+    _ fakeconst4.case,S10.case magic,7.default ! ## & () * ** *, + ++ ,
+  - /\ 0 :- :> < <<= <= <=/=> <=> <> = =+ ==> > >= ? ?! @ ABS_DIFF
+  ABS_num ABS_prod ABS_sum AC ALL_DISTINCT ALL_EL AND_EL APPEND
+  APPLICATIVE_FAPPLY ARB ASSOC Abbrev BIGINTER BIGUNION BIJ BIT1 BIT2
+  BOUNDED BUTFIRSTN BUTLAST BUTLASTN CARD CHOICE CHR COMM COMPL CONCAT
+  COND CONS COUNT_LIST COUNT_LIST_AUX CR CROSS CURRY Cong DATATYPE
+  DELETE DEST_STRING DFUNSET DIFF DISJOINT DIV DIV2 DIVMOD DROP EL ELL
+  EMPTY EMPTYSTRING EMPTY_REL EQC EVEN EVERY EVERY2 EVERYi EXISTS EXP
+  EXPLODE EXTRACT EXT_POINT F FACT FAIL FCOMM FIELDS FILTER FIND FINITE
+  FIRSTN FLAT FOLDL FOLDL2 FOLDR FRONT FST FUNPOW FUNSET GENLIST
+  GENLIST_AUX GSPEC HD HOARE_SPEC I IDEM IMAGE IMPLODE IN INDEX_FIND
+  INDEX_OF INDUCTIVE_INVARIANT INDUCTIVE_INVARIANT_ON INFINITE INJ INL
+  INR INSERT INTER INVOL ISL ISR IS_EL IS_NONE IS_NUM_REP IS_PREFIX
+  IS_SOME IS_SUBLIST IS_SUFFIX IS_SUM_REP ITSET Id IfCases K LAST LASTN
+  LEAST LEFT_ID LEN LENGTH LET LEX LINV LINV_OPT LIST_APPLY LIST_BIND
+  LIST_ELEM_COUNT LIST_IGNORE_BIND LIST_LIFT2 LIST_REL LIST_TO_SET LLEX
+  LRC LUPDATE LinearOrder MAP MAP2 MAX MAX_SET MEM MIN MIN_SET MOD MODEQ
+  MONOID NIL NONE NOTIN NRC NULL NUMERAL NUMFST NUMLEFT NUMRIGHT NUMSND
+  O ODD OLEAST ONE_ONE ONTO OPTION_ALL OPTION_APPLY OPTION_BIND
+  OPTION_CHOICE OPTION_GUARD OPTION_IGNORE_BIND OPTION_JOIN OPTION_MAP
+  OPTION_MAP2 OPTION_MCOMP OPTREL OPT_MMAP ORD OR_EL OUTL OUTR OWHILE
+  Order PAD_LEFT PAD_RIGHT PERMUTES PI POW PRE PREFIX PREIMAGE PRIM_REC
+  PRIM_REC_FUN PROD_ALL PROD_IMAGE PROD_SET PSUBSET PreOrder RC RCOMPL
+  RDOM RDOM_DELETE RELPOW REL_RESTRICT REMPTY REPLICATE REP_num REP_prod
+  REP_sum REST RESTRICT RES_ABSTRACT RES_EXISTS RES_EXISTS_UNIQUE
+  RES_FORALL RES_SELECT REV REVERSE RIGHT_ID RINTER RINV RPROD RRANGE
+  RRESTRICT RSUBSET RTC RUNION RUNIV S SC SCANL SCANR SEG SET_TO_LIST
+  SIGMA SIMP_REC SIMP_REC_REL SING SINGL SN SND SNOC SOME SOME_EL SPLITL
+  SPLITP SPLITP_AUX SPLITR STR STRCAT STRING STRLEN STRORD SUB SUBSET
+  SUBSTRING SUC SUC_REP SUFFIX SUM SUM_ACC SUM_ALL SUM_IMAGE SUM_SET
+  SURJ SWAP StrongLinearOrder StrongOrder T TAKE TC THE TL TL_T TOCHAR
+  TOKENS TRANSLATE TYPE_DEFINITION UNCURRY UNION UNIV UNIV_POINT UNZIP
+  UNZIP_FST UNZIP_SND UPDATE W WCR WF WFP WFREC WHILE WeakLinearOrder
+  WeakOrder ZERO ZERO_REP ZIP ZRECSPACE \/ \\ _ inject_number
+  antisymmetric approx bool_size case char_ge char_gt char_le char_lt
+  char_size chooser count countable dest_rec diag diamond dropWhile
+  enumerate equiv_on equivalence findq iBIT_cases internal_mult inv
+  inv_image invtri invtri0 irreflexive isAlpha isAlphaNum isAscii
+  isCntrl isDigit isGraph isHexDigit isLower isPREFIX isPrint isPunct
+  isSpace isUpper itself_case lift2 listRel list_CASE list_size
+  literal_case measure mk_rec napp nat_elim__magic ncons nf nfoldl nfst
+  nlen nlistrec nmap nnil npair nsnd nub num_CASE num_to_pair o one
+  one_CASE one_size option_ABS option_CASE option_REP option_size
+  pair_CASE pair_size pair_to_num pairwise partition rcdiamond reflexive
+  schroeder_close set some splitAtPki stmarker string_ge string_gt
+  string_le string_lt sum_CASE sum_size symmetric the_fun the_value
+  toLower toUpper total transitive tri trichotomous tri⁻¹ unint univ
+  wellfounded ~ ² ³ Π ∅ ∅ᵣ ∑ ≠ 𝕌 𝕌ᵣ
+Overloading:
+                     -> 
+    (\(x :'a). list$CONS x (list$NIL :'a list))
+    (\(h :'a) (l :'a list). bool$~ (bool$IN h (list$LIST_TO_SET l)))
+    (\(x :'a itself). univ((:'a) :'a itself))
+  &                  ->  nat_elim__magic
+  ()                 ->  one
+  **                 ->  EXP
+  *,                 ->  npair
+  ++                 ->  APPEND ++
+  <                  ->  < char_lt string_lt
+  <<=                ->  (\(x :'a list) (y :'a list). list$isPREFIX x y)
+  <=                 ->  <= char_le string_le
+  <=/=>              ->  (\(x :bool) (y :bool). bool$~ (min$= x y))
+  <=>                ->  =
+  <>                 ->  (\(x :'a) (y :'a). bool$~ (min$= x y))
+  =+                 ->  UPDATE
+  >                  ->  > char_gt string_gt
+  >=                 ->  >= char_ge string_ge
+  ALL_EL             ->  EVERY
+  APPLICATIVE_FAPPLY ->  LIST_APPLY OPTION_APPLY
+  BUTFIRSTN          ->  DROP
+  BUTLAST            ->  FRONT
+  CONCAT             ->  FLAT
+  EMPTYSTRING        ->  NIL
+  EVERY2             ->  LIST_REL
+  FIRSTN             ->  TAKE
+  INFINITE           ->  (\(s :'a -> bool). bool$~ (pred_set$FINITE s))
+  IS_EL              -> 
+    (\(x :'a) (l :'a list). bool$IN x (list$LIST_TO_SET l))
+  IS_PREFIX          ->  (\(x :'a list) (y :'a list). list$isPREFIX y x)
+  Id                 ->  =
+  MEM                -> 
+    (\(x :'a) (l :'a list). bool$IN x (list$LIST_TO_SET l))
+  NOTIN              -> 
+    (\(x :'a) (y :'a -> bool). bool$~ (bool$IN x y))
+  OPTION_MAP2        ->  OPTION_MAP2 OPTION_MAP2
+  PERMUTES           -> 
+    (\(f :'a -> 'a) (s :'a -> bool). pred_set$BIJ f s s)
+  PI                 ->  PROD_IMAGE
+  RELPOW             ->  NRC
+  REMPTY             ->  EMPTY_REL
+  SIGMA              ->  SUM_IMAGE
+  SINGL              ->  (\(x :'a). list$CONS x (list$NIL :'a list))
+  SOME_EL            ->  EXISTS
+  STRCAT             ->  APPEND
+  STRING             ->  CONS
+  STRLEN             ->  LENGTH
+  \\                 ->  RDOM_DELETE
+  _ inject_number    ->  nat_elim__magic
+  case               -> 
+    list_CASE option_CASE sum_CASE num_CASE pair_CASE itself_case
+    literal_case COND
+  lift2              ->  OPTION_MAP2
+  listRel            ->  LIST_REL
+  nnil               ->  0
+  set                ->  LIST_TO_SET
+  tri⁻¹              ->  invtri
+  univ               ->  (\(x :'a itself). univ((:'a) :'a itself))
+  ²                  ->  (\(x :num). arithmetic$EXP x (2n :num))
+  ³                  ->  (\(x :num). arithmetic$EXP x (3n :num))
+  Π                  ->  PROD_IMAGE
+  ∅                  ->  EMPTY
+  ∅ᵣ                 ->  EMPTY_REL
+  ∑                  ->  SUM_IMAGE
+  ≠                  ->  (\(x :'a) (y :'a). bool$~ (min$= x y))
+  𝕌                  ->  (\(x :'a itself). univ((:'a) :'a itself))
+  𝕌ᵣ                 ->  RUNIV
+User printing functions:
+  if (gd :bool) then (tr :'a) else (fl :'a)       ->  bool.COND
+  LET (f :'a -> 'b) (x :'a)       ->  bool.LET
+  univ((:'a) :'a itself)       ->  pred_set.UNIV):
+   type_grammar.grammar * term_grammar.grammar
+val string_gt_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s1 :string) (s2 :string). s1 > s2 <=> s2 < s1:
+   thm
+val string_le_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s1 :string) (s2 :string). s1 <= s2 <=> (s1 = s2) \/ s1 < s2:
+   thm
+val string_lt_antisym =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string) (t :string). ~(s < t /\ t < s):
+   thm
+val string_lt_cases =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s :string) (t :string). (s = t) \/ s < t \/ t < s:
+   thm
+val string_lt_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- (!(s :string). s < ("" :string) <=> F) /\
+   (!(s :string) (c :char). ("" :string) < STRING c s <=> T) /\
+   !(s2 :string) (s1 :string) (c2 :char) (c1 :char).
+     STRING c1 s1 < STRING c2 s2 <=> c1 < c2 \/ (c1 = c2) /\ s1 < s2:
+   thm
+val string_lt_ind =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :string -> string -> bool).
+     (!(s :string). P s ("" :string)) /\
+     (!(c :char) (s :string). P ("" :string) (STRING c s)) /\
+     (!(c1 :char) (s1 :string) (c2 :char) (s2 :string).
+        P s1 s2 ==> P (STRING c1 s1) (STRING c2 s2)) ==>
+     !(v :string) (v1 :string). P v v1:
+   thm
+val string_lt_nonrefl =
+   [oracles: DISK_THM] [axioms: ] [] |- !(s :string). ~(s < s):
+   thm
+val string_lt_trans =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(s1 :string) (s2 :string) (s3 :string).
+     s1 < s2 /\ s2 < s3 ==> s1 < s3:
+   thm
+type thm
+val toLower_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char).
+     toLower c = if isUpper c then CHR (ORD c + (32 :num)) else c:
+   thm
+val toUpper_def =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(c :char).
+     toUpper c = if isLower c then CHR (ORD c - (32 :num)) else c:
+   thm
+> val exercise15_6_1a_thm = 
+TAC_PROOF(
+    ([],``!key enMsg message.(deciphS key enMsg = SOME message) <=>
+    (enMsg = Es key (SOME message))``),
+    PROVE_TAC[deciphS_one_one]
+);
+# # # # # <<HOL message: inventing new type variable names: 'a>>
+Meson search level: ..........
+val exercise15_6_1a_thm =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(key :symKey) (enMsg :'a symMsg) (message :'a).
+     (deciphS key enMsg = SOME message) <=>
+     (enMsg = Es key (SOME message)):
+   thm
+> val exercise15_6_1b_thm =
+TAC_PROOF(
+    ([],``!keyAlice k text.(deciphS keyAlice (Es k (SOME text)) 
+    = SOME "This is from Alice")<=> ((k = keyAlice) /\ (text = "This is from Alice"))``),
+    PROVE_TAC[deciphS_one_one]
+);
+# # # # # Meson search level: ......................
+val exercise15_6_1b_thm =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(keyAlice :symKey) (k :symKey) (text :string).
+     (deciphS keyAlice (Es k (SOME text)) =
+      SOME "This is from Alice") <=>
+     (k = keyAlice) /\ (text = "This is from Alice"):
+   thm
+> val exercise15_6_2a_thm =
+TAC_PROOF(
+    ([],``!P message.(deciphP (pubK P) enMsg = SOME message) <=>
+    (enMsg = Ea (privK P) (SOME message))``),
+    PROVE_TAC[deciphP_one_one]
+);
+# # # # # <<HOL message: inventing new type variable names: 'a, 'b>>
+Meson search level: ..........
+val exercise15_6_2a_thm =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(P :'a) (message :'b).
+     (deciphP (pubK P) (enMsg :('b, 'a) asymMsg) = SOME message) <=>
+     (enMsg = Ea (privK P) (SOME message)):
+   thm
+> val exercise15_6_2b_thm =
+TAC_PROOF(
+    ([],``!key text.(deciphP (pubK Alice) (Ea key (SOME text)) 
+    = SOME "This is from Alice")<=> (key = privK Alice) /\ (text = "This is from Alice")``),
+    PROVE_TAC[deciphP_one_one]
+);
+# # # # # <<HOL message: inventing new type variable names: 'a>>
+Meson search level: ......................
+val exercise15_6_2b_thm =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(key :'a pKey) (text :string).
+     (deciphP (pubK (Alice :'a)) (Ea key (SOME text)) =
+      SOME "This is from Alice") <=>
+     (key = privK Alice) /\ (text = "This is from Alice"):
+   thm
+> val exercise15_6_3_thm =
+TAC_PROOF(
+    ([],``!signature.signVerify (pubK Alice) signature (SOME "This is from Alice")
+    <=> (signature = sign (privK Alice) (hash (SOME "This is from Alice")))``),
+    PROVE_TAC[signVerify_one_one]
+);
+# # # # # <<HOL message: inventing new type variable names: 'a>>
+Meson search level: ..........
+val exercise15_6_3_thm =
+   [oracles: DISK_THM] [axioms: ] []
+|- !(signature :(string digest, 'a) asymMsg).
+     signVerify (pubK (Alice :'a)) signature
+       (SOME "This is from Alice") <=>
+     (signature = sign (privK Alice) (hash (SOME "This is from Alice"))):
+   thm
+> 

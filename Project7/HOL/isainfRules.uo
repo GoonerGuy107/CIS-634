@@ -1,0 +1,10 @@
+$(HOLDIR)/sigobj/HolKernel
+$(HOLDIR)/sigobj/Overlay
+$(HOLDIR)/sigobj/Parse
+$(HOLDIR)/sigobj/TypeBase
+$(HOLDIR)/sigobj/boolLib
+$(HOLDIR)/sigobj/bossLib
+$(HOLDIR)/sigobj/reduceLib
+/home/csbd/Documents/COURSES/Project_7/HOL/isainfRules
+/home/csbd/Documents/COURSES/Project_7/HOL/isainfRules
+/home/csbd/Documents/COURSES/Project_7/HOL/isainfRules.sml

@@ -1,2 +1,2 @@
 Folder containing HOLReport files
-for the M1 and Counter scripts
+for the M1 script + theory

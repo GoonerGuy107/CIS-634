@@ -1,0 +1,631 @@
+
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+[extending loadPath with Holmakefile INCLUDES variable]
+> > > > # # # # # # # # # ** types trace now on
+> # # # # # # # # # ** Unicode trace now off
+> > val accessors_of = fn: hol_type -> thm list
+val axiom_of = fn: hol_type -> thm
+val axiom_of0 = fn: hol_type -> shared_thm
+val case_cong_of = fn: hol_type -> thm
+val case_const_of = fn: hol_type -> term
+val case_def_of = fn: hol_type -> thm
+val constructors_of = fn: hol_type -> term list
+val dest_case = fn: term -> term * term * (term * term) list
+val dest_record = fn: term -> hol_type * (string * term) list
+val dest_record_type = fn: hol_type -> (string * hol_type) list
+val destructors_of = fn: hol_type -> thm list
+val distinct_of = fn: hol_type -> thm
+val elts = fn: unit -> tyinfo list
+val encode_of = fn: hol_type -> term * thm
+val encode_of0 = fn: hol_type -> (term * shared_thm) option
+val fetch = fn: hol_type -> tyinfo option
+val fields_of = fn: hol_type -> (string * hol_type) list
+eqtype hol_type
+val induction_of = fn: hol_type -> thm
+val induction_of0 = fn: hol_type -> shared_thm
+val is_case = fn: term -> bool
+val is_constructor = fn: term -> bool
+val is_record = fn: term -> bool
+val is_record_type = fn: hol_type -> bool
+val mk_case = fn: term * (term * term) list -> term
+val mk_pattern_fn = fn: (term * term) list -> term
+val mk_record = fn: hol_type * (string * term) list -> term
+val nchotomy_of = fn: hol_type -> thm
+val one_one_of = fn: hol_type -> thm
+val read = fn: {Thy: string, Tyop: string} -> tyinfo option
+val recognizers_of = fn: hol_type -> thm list
+val register_update_fn = fn: (tyinfo list -> tyinfo list) -> unit
+type shared_thm
+val simpls_of = fn: hol_type -> simpfrag.simpfrag
+val size_of = fn: hol_type -> term * thm
+val size_of0 = fn: hol_type -> (term * shared_thm) option
+val strip_case = fn: term -> term * (term * term) list
+eqtype term
+val theTypeBase = fn: unit -> typeBase
+type thm
+type tyinfo
+type typeBase
+val updates_of = fn: hol_type -> thm list
+val write = fn: tyinfo list -> tyinfo list
+> Loading smTheory
+> val TR_Trans_lemma =
+   |- TR (x :'input)
+     (CFG (x::(ins :'input list)) (s :'state) (outs :'output list))
+     (CFG ins ((NS :'state -> 'input -> 'state) s x)
+        ((Out :'state -> 'input -> 'output) s x::outs)) ==>
+   Trans x s (NS s x):
+   thm
+val TR_cases =
+   |- !(a0 :'input) (a1 :('input, 'output, 'state) configuration)
+      (a2 :('input, 'output, 'a) configuration).
+     TR a0 a1 a2 <=>
+     ?(NS :'state -> 'input -> 'a) (Out :'state -> 'input -> 'output)
+        (s :'state) (ins :'input list) (outs :'output list).
+       (a1 = CFG (a0::ins) s outs) /\
+       (a2 = CFG ins (NS s a0) (Out s a0::outs)):
+   thm
+val TR_clauses =
+   |- (!(x :'input) (x1s :'input list) (s1 :'state) (out1s :'output list)
+       (x2s :'input list) (out2s :'output list) (s2 :'state).
+      TR x (CFG x1s s1 out1s) (CFG x2s s2 out2s) <=>
+      ?(NS :'state -> 'input -> 'state)
+         (Out :'state -> 'input -> 'output) (ins :'input list).
+        (x1s = x::ins) /\ (x2s = ins) /\ (s2 = NS s1 x) /\
+        (out2s = Out s1 x::out1s)) /\
+   !(NS :'state -> 'input -> 'state) (Out :'state -> 'input -> 'output)
+      (x :'input) (x1s :'input list) (s1 :'state) (out1s :'output list)
+      (x2s :'input list) (out2s :'output list).
+     TR x (CFG x1s s1 out1s) (CFG x2s (NS s1 x) (Out s1 x::out2s)) <=>
+     ?(ins :'input list).
+       (x1s = x::ins) /\ (x2s = ins) /\ (out2s = out1s):
+   thm
+val TR_complete =
+   |- !(s :'state) (x :'input) (ins :'input list) (outs :'output list).
+     ?(s' :'state) (out :'output).
+       TR x (CFG (x::ins) s outs) (CFG ins s' (out::outs)):
+   thm
+val TR_def =
+   |- (TR :'input ->
+        ('input, 'output, 'state) configuration ->
+        ('input, 'output, 'a) configuration -> bool) =
+   (\(a0 :'input) (a1 :('input, 'output, 'state) configuration)
+       (a2 :('input, 'output, 'a) configuration).
+      !(TR' :
+         'input ->
+         ('input, 'output, 'state) configuration ->
+         ('input, 'output, 'a) configuration -> bool).
+        (!(a0 :'input) (a1 :('input, 'output, 'state) configuration)
+            (a2 :('input, 'output, 'a) configuration).
+           (?(NS :'state -> 'input -> 'a)
+               (Out :'state -> 'input -> 'output) (s :'state)
+               (ins :'input list) (outs :'output list).
+              (a1 = CFG (a0::ins) s outs) /\
+              (a2 = CFG ins (NS s a0) (Out s a0::outs))) ==>
+           TR' a0 a1 a2) ==>
+        TR' a0 a1 a2):
+   thm
+val TR_deterministic =
+   |- !(NS :'state -> 'input -> 'state) (Out :'state -> 'input -> 'output)
+      (x1 :'input) (ins1 :'input list) (s1 :'state)
+      (outs1 :'output list) (ins2 :'input list) (ins2' :'input list)
+      (outs2 :'output list) (outs2' :'output list).
+     TR x1 (CFG (x1::ins1) s1 outs1)
+       (CFG ins2 (NS s1 x1) (Out s1 x1::outs2)) /\
+     TR x1 (CFG (x1::ins1) s1 outs1)
+       (CFG ins2' (NS s1 x1) (Out s1 x1::outs2')) <=>
+     (CFG ins2 (NS s1 x1) (Out s1 x1::outs2) =
+      CFG ins2' (NS s1 x1) (Out s1 x1::outs2')) /\
+     TR x1 (CFG (x1::ins1) s1 outs1)
+       (CFG ins2 (NS s1 x1) (Out s1 x1::outs2)):
+   thm
+val TR_ind =
+   |- !(TR' :
+      'input ->
+      ('input, 'output, 'state) configuration ->
+      ('input, 'output, 'a) configuration -> bool).
+     (!(NS :'state -> 'input -> 'a) (Out :'state -> 'input -> 'output)
+         (s :'state) (x :'input) (ins :'input list)
+         (outs :'output list).
+        TR' x (CFG (x::ins) s outs)
+          (CFG ins (NS s x) (Out s x::outs))) ==>
+     !(a0 :'input) (a1 :('input, 'output, 'state) configuration)
+        (a2 :('input, 'output, 'a) configuration).
+       TR a0 a1 a2 ==> TR' a0 a1 a2:
+   thm
+val TR_rules =
+   |- !(NS :'state -> 'input -> 'a) (Out :'state -> 'input -> 'output)
+      (s :'state) (x :'input) (ins :'input list) (outs :'output list).
+     TR x (CFG (x::ins) s outs) (CFG ins (NS s x) (Out s x::outs)):
+   thm
+val TR_strongind =
+   |- !(TR' :
+      'input ->
+      ('input, 'output, 'state) configuration ->
+      ('input, 'output, 'a) configuration -> bool).
+     (!(NS :'state -> 'input -> 'a) (Out :'state -> 'input -> 'output)
+         (s :'state) (x :'input) (ins :'input list)
+         (outs :'output list).
+        TR' x (CFG (x::ins) s outs)
+          (CFG ins (NS s x) (Out s x::outs))) ==>
+     !(a0 :'input) (a1 :('input, 'output, 'state) configuration)
+        (a2 :('input, 'output, 'a) configuration).
+       TR a0 a1 a2 ==> TR' a0 a1 a2:
+   thm
+val Trans_Equiv_TR =
+   |- TR (x :'input)
+     (CFG (x::(ins :'input list)) (s :'state) (outs :'output list))
+     (CFG ins ((NS :'state -> 'input -> 'state) s x)
+        ((Out :'state -> 'input -> 'output) s x::outs)) <=>
+   Trans x s (NS s x):
+   thm
+val Trans_TR_lemma =
+   |- Trans (x :'input) (s :'state)
+     ((NS :'state -> 'input -> 'state) s x) ==>
+   TR x (CFG (x::(ins :'input list)) s (outs :'output list))
+     (CFG ins (NS s x) ((Out :'state -> 'input -> 'output) s x::outs)):
+   thm
+val Trans_cases =
+   |- !(a0 :'input) (a1 :'state) (a2 :'state).
+     Trans a0 a1 a2 <=> ?(NS :'state -> 'input -> 'state). a2 = NS a1 a0:
+   thm
+val Trans_def =
+   |- (Trans :'input -> 'state -> 'state -> bool) =
+   (\(a0 :'input) (a1 :'state) (a2 :'state).
+      !(Trans' :'input -> 'state -> 'state -> bool).
+        (!(a0 :'input) (a1 :'state) (a2 :'state).
+           (?(NS :'state -> 'input -> 'state). a2 = NS a1 a0) ==>
+           Trans' a0 a1 a2) ==>
+        Trans' a0 a1 a2):
+   thm
+val Trans_ind =
+   |- !(Trans' :'input -> 'state -> 'state -> bool).
+     (!(NS :'state -> 'input -> 'state) (s :'state) (x :'input).
+        Trans' x s (NS s x)) ==>
+     !(a0 :'input) (a1 :'state) (a2 :'state).
+       Trans a0 a1 a2 ==> Trans' a0 a1 a2:
+   thm
+val Trans_rules =
+   |- !(NS :'state -> 'input -> 'state) (s :'state) (x :'input).
+     Trans x s (NS s x):
+   thm
+val Trans_strongind =
+   |- !(Trans' :'input -> 'state -> 'state -> bool).
+     (!(NS :'state -> 'input -> 'state) (s :'state) (x :'input).
+        Trans' x s (NS s x)) ==>
+     !(a0 :'input) (a1 :'state) (a2 :'state).
+       Trans a0 a1 a2 ==> Trans' a0 a1 a2:
+   thm
+val configuration_11 =
+   |- !(a0 :'input list) (a1 :'state) (a2 :'output list) (a0' :'input list)
+      (a1' :'state) (a2' :'output list).
+     (CFG a0 a1 a2 = CFG a0' a1' a2') <=>
+     (a0 = a0') /\ (a1 = a1') /\ (a2 = a2'):
+   thm
+val configuration_Axiom =
+   |- !(f :'input list -> 'state -> 'output list -> 'a).
+     ?(fn :('input, 'output, 'state) configuration -> 'a).
+       !(a0 :'input list) (a1 :'state) (a2 :'output list).
+         fn (CFG a0 a1 a2) = f a0 a1 a2:
+   thm
+val configuration_TY_DEF =
+   |- ?(rep :
+      ('input, 'output, 'state) configuration ->
+      ('input list # 'state # 'output list) recspace).
+     TYPE_DEFINITION
+       (\(a0' :('input list # 'state # 'output list) recspace).
+          !('configuration'  :
+             ('input list # 'state # 'output list) recspace -> bool).
+            (!(a0' :('input list # 'state # 'output list) recspace).
+               (?(a0 :'input list) (a1 :'state) (a2 :'output list).
+                  a0' =
+                  (\(a0 :'input list) (a1 :'state) (a2 :'output list).
+                     ind_type$CONSTR (0 :num) (a0,a1,a2)
+                       (\(n :num).
+                          (ind_type$BOTTOM :('input list #
+                                             'state # 'output list)
+                                            recspace))) a0 a1 a2) ==>
+               'configuration' a0') ==>
+            'configuration' a0') rep:
+   thm
+val configuration_case_cong =
+   |- !(M :('input, 'output, 'state) configuration)
+      (M' :('input, 'output, 'state) configuration)
+      (f :'input list -> 'state -> 'output list -> 'a).
+     (M = M') /\
+     (!(a0 :'input list) (a1 :'state) (a2 :'output list).
+        (M' = CFG a0 a1 a2) ==>
+        (f a0 a1 a2 =
+         (f' :'input list -> 'state -> 'output list -> 'a) a0 a1
+           a2)) ==>
+     ((configuration_CASE M f :'a) = (configuration_CASE M' f' :'a)):
+   thm
+val configuration_case_def =
+   |- !(a0 :'input list) (a1 :'state) (a2 :'output list)
+      (f :'input list -> 'state -> 'output list -> 'a).
+     (configuration_CASE (CFG a0 a1 a2) f :'a) = f a0 a1 a2:
+   thm
+val configuration_induction =
+   |- !(P :('input, 'output, 'state) configuration -> bool).
+     (!(l :'input list) (s :'state) (l0 :'output list).
+        P (CFG l s l0)) ==>
+     !(c :('input, 'output, 'state) configuration). P c:
+   thm
+val configuration_nchotomy =
+   |- !(cc :('input, 'output, 'state) configuration).
+     ?(l :'input list) (s :'state) (l0 :'output list). cc = CFG l s l0:
+   thm
+val configuration_one_one =
+   |- !(a0 :'input list) (a1 :'state) (a2 :'output list) (a0' :'input list)
+      (a1' :'state) (a2' :'output list).
+     (CFG a0 a1 a2 = CFG a0' a1' a2') <=>
+     (a0 = a0') /\ (a1 = a1') /\ (a2 = a2'):
+   thm
+val configuration_size_def =
+   |- !(f :'input -> num) (f1 :'output -> num) (f2 :'state -> num)
+      (a0 :'input list) (a1 :'state) (a2 :'output list).
+     configuration_size f f1 f2 (CFG a0 a1 a2) =
+     (1 :num) + (list_size f a0 + (f2 a1 + list_size f1 a2)):
+   thm
+val datatype_configuration =
+   |- DATATYPE
+     ((configuration :
+        ('input list ->
+         'state ->
+         'output list -> ('input, 'output, 'state) configuration) ->
+        bool)
+        (CFG :'input list ->
+              'state ->
+              'output list -> ('input, 'output, 'state) configuration)):
+   thm
+val sm_grammars =
+   (Rules:
+  (50)   TY  ::=  TY -> TY [fun] (R-associative)
+  (60)   TY  ::=  TY + TY [sum] (R-associative)
+  (70)   TY  ::=  TY # TY [prod] (R-associative)
+         TY  ::=  bool | (TY, TY, TY)configuration | (TY, TY)fun | ind |
+                  TY itself | TY list | num | one | TY option |
+                  (TY, TY)prod | TY recspace | TY set | (TY, TY)sum |
+                  unit
+         TY  ::=  TY[TY] (array type)
+Type abbreviations:
+  bool = min$bool                                        
+  ('a, 'b, 'c) configuration = ('a, 'b, 'c) sm$configuration
+  ('a, 'b) fun = ('a, 'b) min$fun                        
+  ind = min$ind                                          
+  'a itself = 'a bool$itself                             
+  'a list = 'a list$list                                 
+  num = num$num                                          
+  one = one$one                                           (not printed)
+  'a option = 'a option$option                           
+  ('a, 'b) prod = ('a, 'b) pair$prod                     
+  'a recspace = 'a ind_type$recspace                     
+  'a set = ('a, min$bool) min$fun                         (not printed)
+  ('a, 'b) sum = ('a, 'b) sum$sum                        
+  unit = one$one                                         ,
+    (0)    TM  ::=  "OLEAST" <..binders..> "." TM |
+                "LEAST" <..binders..> "." TM |
+                "some" <..binders..> "." TM |
+                "∃!" <..binders..> "." TM [?!] |
+                "?!" <..binders..> "." TM |
+                "∃" <..binders..> "." TM [?] |
+                "?" <..binders..> "." TM |
+                "∀" <..binders..> "." TM [!] |
+                "!" <..binders..> "." TM | "@" <..binders..> "." TM |
+                "λ" <..binders..> "." TM | "\" <..binders..> "." TM
+(1)    TM  ::=  "case" TM "of" TM "|" TM "|" TM  [case magic$default - %case%] |
+                "case" TM "of" "|" TM  [case magic$default - %case%] |
+                "case" TM "of" TM "|" TM  [case magic$default - %case%] |
+                "case" TM "of" TM  [case magic$default - %case%]
+(4)    TM  ::=  TM "::" TM (restricted quantification operator)
+(5)    TM  ::=  TM TM  (binder argument concatenation)
+(8)    TM  ::=  "let" LTM< _ letnil, _ letcons,;> "in" TM  [ _ let]
+(9)    TM  ::=  TM "and" TM  [ _ and]   (L-associative)
+(12)   TM  ::=  TM "=>" TM  [case magic$default - %arrow%]
+                (non-associative)
+(50)   TM  ::=  TM "," TM   (R-associative)
+(70)   TM  ::=  "if" TM "then" TM "else" TM  [COND]
+(80)   TM  ::=  TM ":-" TM   (non-associative)
+(100)  TM  ::=  TM "⇎" TM  [<=/=>] | TM "<=/=>" TM | TM "⇔" TM  [<=>] |
+                TM "<=>" TM | TM "=" TM
+                (non-associative)
+(200)  TM  ::=  TM "⇒" TM  [==>] | TM "==>" TM   (R-associative)
+(300)  TM  ::=  TM "∨" TM  [\/] | TM "\/" TM   (R-associative)
+(310)  TM  ::=  TM ":>" TM   (L-associative)
+(320)  TM  ::=  TM "=+" TM   (non-associative)
+(400)  TM  ::=  TM "∧" TM  [/\] | TM "/\" TM   (R-associative)
+(425)  TM  ::=  TM "equiv_on" TM | TM "∉" TM  [NOTIN] | TM "NOTIN" TM |
+                TM "∈" TM  [IN] | TM "IN" TM
+                (non-associative)
+(450)  TM  ::=  TM "≼" TM  [<<=] | TM "<<=" TM | TM "PERMUTES" TM |
+                TM "⊂" TM  [PSUBSET] | TM "PSUBSET" TM |
+                TM "⊆" TM  [SUBSET] | TM "SUBSET" TM | TM "≥" TM  [>=] |
+                TM ">=" TM | TM "≤" TM  [<=] | TM "<=" TM | TM ">" TM |
+                TM "<" TM | TM "⊆ᵣ" TM  [RSUBSET] | TM "RSUBSET" TM |
+                TM "≠" TM | TM "<>" TM
+                (non-associative)
+(460)  TM  ::=  TM "with" TM  [record update] |
+                TM ":=" TM  [record field update] |
+                TM "updated_by" TM  [functional record update]
+                (R-associative)
+(480)  TM  ::=  TM "++" TM   (L-associative)
+(490)  TM  ::=  TM "::" TM  [CONS] | TM "INSERT" TM | TM "LEX" TM |
+                TM "##" TM
+                (R-associative)
+(500)  TM  ::=  TM "DELETE" TM | TM "DIFF" TM | TM "∪" TM  [UNION] |
+                TM "UNION" TM | TM "<*>" TM  [APPLICATIVE_FAPPLY] |
+                TM "−" TM  [-] | TM "-" TM | TM "+" TM |
+                TM "∪ᵣ" TM  [RUNION] | TM "RUNION" TM
+                (L-associative)
+(600)  TM  ::=  TM "×" TM  [CROSS] | TM "CROSS" TM |
+                TM "∩" TM  [INTER] | TM "INTER" TM | TM "DIV" TM |
+                TM "*" TM | TM "\\" TM | TM "∩ᵣ" TM  [RINTER] |
+                TM "RINTER" TM
+                (L-associative)
+(601)  TM  ::=  TM "⊗" TM  [*,] | TM "*," TM   (R-associative)
+(650)  TM  ::=  TM "MOD" TM   (L-associative)
+(700)  TM  ::=  TM "**" TM | TM "EXP" TM   (R-associative)
+(800)  TM  ::=  TM "∘ᵣ" TM  [O] | TM "O" TM | TM "∘" TM  [o] | TM "o" TM
+                (R-associative)
+(899)  TM  ::=  TM ":" TY  (type annotation)
+(900)  TM  ::=  "&" TM | "-" TM  [numeric_negate] | "¬" TM  [~] | "~" TM
+(2000) TM  ::=  TM TM  (function application)   (L-associative)
+(2100) TM  ::=  TM "³" | TM "²" | TM "ᵀ"  [inv] | TM "^="  [EQC] |
+                TM "^*"  [RTC] | TM "⁺"  [TC] | TM "^+"  [TC]
+(2200) TM  ::=  "𝕌" TM | "univ" TM
+(2500) TM  ::=  TM "." TM  [record field selection]   (L-associative)
+       TM  ::=  "[" LTM<NIL,CONS,;> "]"  [] |
+                "{" LTM<EMPTY,INSERT,;> "}"  [] |
+                "{" TM "|" TM "|" TM "}"  [gspec2 special] |
+                "{" TM "|" TM "}"  [gspec special] | "(" ")"  [one] |
+                "<|" LTM< _ record nil, _ record cons,;> "|>"  [] |
+                "(" TM ")"  [just parentheses, no term produced]
+Known constants:
+    _ fakeconst4.case,S10.case magic,7.default ! ## & () * ** *, + ++ ,
+  - /\ 0 :- :> < <<= <= <=/=> <=> <> = =+ ==> > >= ? ?! @ ABS_DIFF
+  ABS_num ABS_prod ABS_sum AC ALL_DISTINCT ALL_EL AND_EL APPEND
+  APPLICATIVE_FAPPLY APPLY_REDUNDANT_ROWS_INFO ARB ASM_MARKER ASSOC
+  Abbrev BIGINTER BIGUNION BIJ BIT1 BIT2 BOUNDED BUTFIRSTN BUTLAST
+  BUTLASTN CARD CFG CHOICE COMM COMPL COND CONS COUNT_LIST
+  COUNT_LIST_AUX CR CROSS CURRY Cong DATATYPE DELETE DFUNSET DIFF
+  DISJOINT DIV DIV2 DIVMOD DROP EL ELL EMPTY EMPTY_REL EQC EVEN EVERY
+  EVERY2 EVERYi EXISTS EXP EXT_POINT F FACT FAIL FCOMM FILTER FIND
+  FINITE FIRSTN FLAT FOLDL FOLDL2 FOLDR FOLDRi FRONT FST FUNPOW FUNSET
+  GENLIST GENLIST_AUX GSPEC GUESS_EXISTS GUESS_EXISTS_GAP
+  GUESS_EXISTS_POINT GUESS_FORALL GUESS_FORALL_GAP GUESS_FORALL_POINT HD
+  HOARE_SPEC I IDEM IMAGE IN INDEX_FIND INDEX_OF INDUCTIVE_INVARIANT
+  INDUCTIVE_INVARIANT_ON INFINITE INJ INL INR INSERT INTER INVOL ISL ISR
+  IS_EL IS_NONE IS_NUM_REP IS_PREFIX IS_REDUNDANT_ROWS_INFO
+  IS_REMOVABLE_QUANT_FUN IS_SOME IS_SUBLIST IS_SUFFIX IS_SUM_REP ITSET
+  Id IfCases K LAST LASTN LEAST LEFT_ID LEN LENGTH LET LEX LINV LINV_OPT
+  LIST_APPLY LIST_BIND LIST_ELEM_COUNT LIST_IGNORE_BIND LIST_LIFT2
+  LIST_REL LIST_RELi LIST_TO_SET LLEX LRC LUPDATE LinearOrder MAP MAP2
+  MAPi MAPi_ACC MAX MAX_SET MEM MIN MIN_SET MOD MODEQ MONOID NIL NONE
+  NOTIN NRC NULL NUMERAL NUMFST NUMLEFT NUMRIGHT NUMSND O ODD OLEAST
+  ONE_ONE ONTO OPTION_ALL OPTION_APPLY OPTION_BIND OPTION_CHOICE
+  OPTION_GUARD OPTION_IGNORE_BIND OPTION_JOIN OPTION_MAP OPTION_MAP2
+  OPTION_MCOMP OPTREL OPT_MMAP OR_EL OUTL OUTR OWHILE Order PAD_LEFT
+  PAD_RIGHT PERMUTES PI PMATCH PMATCH_EQUIV_ROWS PMATCH_EXPAND_PRED
+  PMATCH_FLATTEN_FUN PMATCH_INCOMPLETE PMATCH_IS_EXHAUSTIVE PMATCH_ROW
+  PMATCH_ROW_COND PMATCH_ROW_COND_EX PMATCH_ROW_COND_NOT_EX_OR_EQ
+  PMATCH_ROW_LIFT PMATCH_ROW_REDUNDANT PMATCH_ROW_magic_0
+  PMATCH_ROW_magic_1 PMATCH_ROW_magic_2 PMATCH_ROW_magic_3
+  PMATCH_ROW_magic_4 PMATCH_magic_1 POW PRE PREFIX PREIMAGE PRIM_REC
+  PRIM_REC_FUN PROD_ALL PROD_IMAGE PROD_SET PSUBSET PreOrder RC RCOMPL
+  RDOM RDOM_DELETE REDUNDANT_ROWS_INFOS_CONJ REDUNDANT_ROWS_INFOS_DISJ
+  RELPOW REL_RESTRICT REMPTY REPLICATE REP_num REP_prod REP_sum REST
+  RESTRICT RES_ABSTRACT RES_EXISTS RES_EXISTS_UNIQUE RES_FORALL
+  RES_SELECT REV REVERSE RIGHT_ID RINTER RINV RPROD RRANGE RRESTRICT
+  RSUBSET RTC RUNION RUNIV S SC SCANL SCANR SEG SET_TO_LIST SIGMA
+  SIMPLE_GUESS_EXISTS SIMPLE_GUESS_FORALL SIMP_REC SIMP_REC_REL SING
+  SINGL SN SND SNOC SOME SOME_EL SPLITL SPLITP SPLITP_AUX SPLITR
+  STRONGEST_REDUNDANT_ROWS_INFO STRONGEST_REDUNDANT_ROWS_INFO_AUX STRORD
+  SUBSET SUC SUC_REP SUFFIX SUM SUM_ACC SUM_ALL SUM_IMAGE SUM_SET SURJ
+  SWAP StrongLinearOrder StrongOrder T TAKE TC THE TL TL_T TR
+  TYPE_DEFINITION Trans UNCURRY UNION UNIV UNIV_POINT UNZIP UNZIP_FST
+  UNZIP_SND UPDATE W WCR WF WFP WFREC WHILE WeakLinearOrder WeakOrder
+  ZERO ZERO_REP ZIP ZRECSPACE \/ \\ _ inject_number antisymmetric approx
+  bool_size case chooser configuration_CASE configuration_size count
+  countable delN dest_rec diag diamond dropWhile enumerate equiv_on
+  equivalence findi findq fupdLast iBIT_cases internal_mult inv
+  inv_image invtri invtri0 irreflexive isPREFIX itself_case lift2
+  listRel list_CASE list_size literal_case measure mk_rec napp
+  nat_elim__magic ncons nf nfoldl nfst nlen nlistrec nmap nnil npair
+  nsnd nub num_CASE num_to_pair o one one_CASE one_size option_ABS
+  option_CASE option_REP option_size pair_CASE pair_size pair_to_num
+  pairwise partition rcdiamond reflexive schroeder_close set some
+  splitAtPki stmarker sum_CASE sum_size symmetric the_fun the_value
+  total transitive tri trichotomous tri⁻¹ unint univ wellfounded ~ ² ³ Π
+  ∅ ∅ᵣ ∑ ≠ 𝕌 𝕌ᵣ
+Overloading:
+                     -> 
+    (\(x :'a). list$CONS x (list$NIL :'a list))
+    (\(h :'a) (l :'a list). bool$~ (bool$IN h (list$LIST_TO_SET l)))
+    (\(x :'a itself). univ((:'a) :'a itself))
+  &                  ->  nat_elim__magic
+  ()                 ->  one
+  **                 ->  EXP
+  *,                 ->  npair
+  ++                 ->  APPEND ++
+  <<=                ->  (\(x :'a list) (y :'a list). list$isPREFIX x y)
+  <=/=>              ->  (\(x :bool) (y :bool). bool$~ (min$= x y))
+  <=>                ->  =
+  <>                 ->  (\(x :'a) (y :'a). bool$~ (min$= x y))
+  =+                 ->  UPDATE
+  ALL_EL             ->  EVERY
+  APPLICATIVE_FAPPLY ->  LIST_APPLY OPTION_APPLY
+  BUTFIRSTN          ->  DROP
+  BUTLAST            ->  FRONT
+  EVERY2             ->  LIST_REL
+  FIRSTN             ->  TAKE
+  INFINITE           ->  (\(s :'a -> bool). bool$~ (pred_set$FINITE s))
+  IS_EL              -> 
+    (\(x :'a) (l :'a list). bool$IN x (list$LIST_TO_SET l))
+  IS_PREFIX          ->  (\(x :'a list) (y :'a list). list$isPREFIX y x)
+  Id                 ->  =
+  MEM                -> 
+    (\(x :'a) (l :'a list). bool$IN x (list$LIST_TO_SET l))
+  NOTIN              -> 
+    (\(x :'a) (y :'a -> bool). bool$~ (bool$IN x y))
+  OPTION_MAP2        ->  OPTION_MAP2 OPTION_MAP2
+  PERMUTES           -> 
+    (\(f :'a -> 'a) (s :'a -> bool). pred_set$BIJ f s s)
+  PI                 ->  PROD_IMAGE
+  RELPOW             ->  NRC
+  REMPTY             ->  EMPTY_REL
+  SIGMA              ->  SUM_IMAGE
+  SINGL              ->  (\(x :'a). list$CONS x (list$NIL :'a list))
+  SOME_EL            ->  EXISTS
+  \\                 ->  RDOM_DELETE
+  _ inject_number    ->  nat_elim__magic
+  case               -> 
+    configuration_CASE list_CASE option_CASE sum_CASE num_CASE pair_CASE
+    itself_case literal_case COND
+  lift2              ->  OPTION_MAP2
+  listRel            ->  LIST_REL
+  nnil               ->  0
+  set                ->  LIST_TO_SET
+  tri⁻¹              ->  invtri
+  univ               ->  (\(x :'a itself). univ((:'a) :'a itself))
+  ²                  ->  (\(x :num). arithmetic$EXP x (2n :num))
+  ³                  ->  (\(x :num). arithmetic$EXP x (3n :num))
+  Π                  ->  PROD_IMAGE
+  ∅                  ->  EMPTY
+  ∅ᵣ                 ->  EMPTY_REL
+  ∑                  ->  SUM_IMAGE
+  ≠                  ->  (\(x :'a) (y :'a). bool$~ (min$= x y))
+  𝕌                  ->  (\(x :'a itself). univ((:'a) :'a itself))
+  𝕌ᵣ                 ->  RUNIV
+User printing functions:
+  if (gd :bool) then (tr :'a) else (fl :'a)       ->  bool.COND
+  LET (f :'a -> 'b) (x :'a)       ->  bool.LET
+  univ((:'a) :'a itself)       ->  pred_set.UNIV):
+   type_grammar.grammar * term_grammar.grammar
+type thm
+> Loading sminfRules
+> val SPEC_TR = fn: term -> term -> thm
+val SPEC_TR_clauses = fn: term -> term -> thm
+val SPEC_Trans = fn: term -> thm
+val SPEC_Trans_Equiv_TR = fn: term -> term -> thm
+type conv = Abbrev.conv
+eqtype hol_type
+type tactic = Abbrev.tactic
+eqtype term
+type thm
+type thm_tactic = Abbrev.thm_tactic
+> val _ = Datatype `ctrcmd = load num | count | hold`;
+val ctrcmd_distinct_clauses = distinct_of``:ctrcmd``;
+<<HOL message: Defined type: "ctrcmd">>
+> val ctrcmd_distinct_clauses =
+   |- (!(a :num). load a <> count) /\ (!(a :num). load a <> hold) /\
+   count <> hold:
+   thm
+> val _ = Datatype `ctrState = COUNT num`;
+val ctrState_one_one = one_one_of``:ctrState``;
+<<HOL message: Defined type: "ctrState">>
+> val ctrState_one_one =
+   |- !(a :num) (a' :num). (COUNT a = COUNT a') <=> (a = a'):
+   thm
+> val _ = Datatype `ctrOut = DISPLAY num`;
+val ctrOut_one_one = one_one_of``:ctrOut``;
+<<HOL message: Defined type: "ctrOut">>
+> val ctrOut_one_one =
+   |- !(a :num) (a' :num). (DISPLAY a = DISPLAY a') <=> (a = a'):
+   thm
+> val ctrNS_def = Define
+    	      `(ctrNS (COUNT n) (load k) = (COUNT k)) /\
+    	      (ctrNS (COUNT n) (count) = (COUNT (n-1))) /\
+    	      (ctrNS (COUNT n) (hold) = (COUNT n))`;
+# # # <<HOL warning: GrammarDeltas.revise_data: 
+  Grammar-deltas:
+    overload_on("ctrNS_tupled")
+  invalidated by DelConstant(scratch$ctrNS_tupled)>>
+Equations stored under "ctrNS_def".
+Induction stored under "ctrNS_ind".
+val ctrNS_def =
+   |- !(n :num) (k :num).
+     (ctrNS (COUNT n) (load k) = COUNT k) /\
+     (ctrNS (COUNT n) count = COUNT (n - (1 :num))) /\
+     (ctrNS (COUNT n) hold = COUNT n):
+   thm
+> val ctrOut_def = Define
+    	       `(ctrOut (COUNT n) (load k) = (DISPLAY k)) /\
+ 	       	(ctrOut (COUNT n) (count) = (DISPLAY (n-1))) /\
+ 		(ctrOut (COUNT n) (hold) = (DISPLAY n))`;
+# # # <<HOL warning: GrammarDeltas.revise_data: 
+  Grammar-deltas:
+    overload_on("ctrOut_tupled")
+  invalidated by DelConstant(scratch$ctrOut_tupled)>>
+Equations stored under "ctrOut_def".
+Induction stored under "ctrOut_ind".
+val ctrOut_def =
+   |- !(n :num) (k :num).
+     (ctrOut (COUNT n) (load k) = DISPLAY k) /\
+     (ctrOut (COUNT n) count = DISPLAY (n - (1 :num))) /\
+     (ctrOut (COUNT n) hold = DISPLAY n):
+   thm
+> val ctrTR_rules = SPEC_TR ``ctrNS`` ``ctrOut``;
+val ctrTR_rules =
+   |- !(s :ctrState) (x :ctrcmd) (ins :ctrcmd list) (outs :ctrOut list).
+     TR x (CFG (x::ins) s outs) (CFG ins (ctrNS s x) (ctrOut s x::outs)):
+   thm
+> val ctrTR_clauses = SPEC_TR_clauses ``ctrNS`` ``ctrOut``;
+val ctrTR_clauses =
+   |- (!(x :'input) (x1s :'input list) (s1 :'state) (out1s :'output list)
+       (x2s :'input list) (out2s :'output list) (s2 :'state).
+      TR x (CFG x1s s1 out1s) (CFG x2s s2 out2s) <=>
+      ?(NS :'state -> 'input -> 'state)
+         (Out :'state -> 'input -> 'output) (ins :'input list).
+        (x1s = x::ins) /\ (x2s = ins) /\ (s2 = NS s1 x) /\
+        (out2s = Out s1 x::out1s)) /\
+   !(x :ctrcmd) (x1s :ctrcmd list) (s1 :ctrState) (out1s :ctrOut list)
+      (x2s :ctrcmd list) (out2s :ctrOut list).
+     TR x (CFG x1s s1 out1s)
+       (CFG x2s (ctrNS s1 x) (ctrOut s1 x::out2s)) <=>
+     ?(ins :ctrcmd list).
+       (x1s = x::ins) /\ (x2s = ins) /\ (out2s = out1s):
+   thm
+> val ctrTrans_Equiv_TR = SPEC_Trans_Equiv_TR ``ctrNS`` ``ctrOut``;
+val ctrTrans_Equiv_TR =
+   |- TR (x :ctrcmd)
+     (CFG (x::(ins :ctrcmd list)) (s :ctrState) (outs :ctrOut list))
+     (CFG ins (ctrNS s x) (ctrOut s x::outs)) <=> Trans x s (ctrNS s x):
+   thm
+> val th1 = REWRITE_RULE [ctrNS_def,ctrOut_def] (SPECL[``COUNT n``,``load new``] ctrTR_rules);
+val th2 = REWRITE_RULE [ctrNS_def,ctrOut_def] (SPECL[``COUNT n``,``count``] ctrTR_rules);
+val th3 = REWRITE_RULE [ctrNS_def,ctrOut_def] (SPECL[``COUNT n``,``hold``] ctrTR_rules) ;
+val ctr_rules = LIST_CONJ [th1,th2,th3];
+val th1 =
+   |- !(ins :ctrcmd list) (outs :ctrOut list).
+     TR (load (new :num)) (CFG (load new::ins) (COUNT (n :num)) outs)
+       (CFG ins (COUNT new) (DISPLAY new::outs)):
+   thm
+> <<HOL message: more than one resolution of overloading was possible>>
+val th2 =
+   |- !(ins :ctrcmd list) (outs :ctrOut list).
+     TR count (CFG (count::ins) (COUNT (n :num)) outs)
+       (CFG ins (COUNT (n - (1 :num))) (DISPLAY (n - (1 :num))::outs)):
+   thm
+> val th3 =
+   |- !(ins :ctrcmd list) (outs :ctrOut list).
+     TR hold (CFG (hold::ins) (COUNT (n :num)) outs)
+       (CFG ins (COUNT n) (DISPLAY n::outs)):
+   thm
+> val ctr_rules =
+   |- (!(ins :ctrcmd list) (outs :ctrOut list).
+      TR (load (new :num)) (CFG (load new::ins) (COUNT (n :num)) outs)
+        (CFG ins (COUNT new) (DISPLAY new::outs))) /\
+   (!(ins :ctrcmd list) (outs :ctrOut list).
+      TR count (CFG (count::ins) (COUNT n) outs)
+        (CFG ins (COUNT (n - (1 :num)))
+           (DISPLAY (n - (1 :num))::outs))) /\
+   !(ins :ctrcmd list) (outs :ctrOut list).
+     TR hold (CFG (hold::ins) (COUNT n) outs)
+       (CFG ins (COUNT n) (DISPLAY n::outs)):
+   thm
+> 
+Process HOL killed

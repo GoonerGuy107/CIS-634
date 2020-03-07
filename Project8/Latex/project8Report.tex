@@ -1,0 +1,184 @@
+%% ---------------------------------------------------
+%% Kyle Peppe
+%% CIS 634 Project 8 Report
+%% ---------------------------------------------------
+\documentclass{report}
+
+\title{Project 8 Report}
+\author{Kyle Peppe}
+\date{\today}
+
+%% ---------------------------------------------------
+%% 634format specifies the format of our reports
+%% ---------------------------------------------------
+\usepackage{634format}
+
+%% ---------------------------------------------------
+%% enumerate 
+%% ---------------------------------------------------
+\usepackage{enumerate}
+
+%% ---------------------------------------------------
+%% listings is used for including our source code in reports
+%% textcomp provides additional symbols
+%% ---------------------------------------------------
+\usepackage{listings}
+\usepackage{textcomp}
+
+%% ---------------------------------------------------
+%% Packages for math environments
+%% ---------------------------------------------------
+\usepackage{amsmath}
+
+%% ---------------------------------------------------
+%% Packages for URLs and hotlinks in the table of contents
+%% and symbolic cross references using \ref
+%% ---------------------------------------------------
+\usepackage{hyperref}
+
+%% ---------------------------------------------------
+%% Packages for using HOL-generated macros and displays
+%% ---------------------------------------------------
+\usepackage{holtex}
+\usepackage{holtexbasic}
+\input{commands}
+
+\begin{document}
+
+%% --------------------------------------------------- 
+%% The listings  parameter "language" is set to "ML"
+%% ---------------------------------------------------
+\lstset{language=ML}
+
+
+\maketitle{}
+
+\begin{abstract}
+  This project demonstrated my ability to create machine states,
+  defining datatypes, and using the previous 2 things to prove the
+  theroems provided for the many theorems for the problems 16.3.1 and
+  16.3.2. This project includes the following packages:
+	\begin{description}
+		\item[\emph{634format.sty}] A format style for this course
+		\item[\emph{listings}] Package for displaying and inputting ML source code
+		\item[\emph{holtex}] HOL style files and commands to display in the report
+	\end{description}
+        This document also demonstrates my ability to :
+	\begin{itemize}
+		\item Easily generate a table of contents,
+		\item Refer to chapter and section labels
+	\end{itemize}
+\end{abstract}
+
+\tableofcontents{}
+
+\begin{acknowledgments}
+  I would like to acknowledge the 2 professors, Professor Chin and 
+  Professor Hamner, that have helped me begin to understand this new
+  ML programming language. Also to Syracuse University for accepting
+  me to this Masters program in Cybersecurity.
+\end{acknowledgments}
+
+\chapter{Executive Summary}
+\label{cha:executive-summary}
+\textbf{All requirements for this project are satisfied.}
+Specifically,
+\begin{description}
+\item[Report Contents] \ \\
+  Our report has the following content:
+  \begin{enumerate}[{}]
+  \item Chapter~\ref{cha:executive-summary}: Executive Summary
+  \item Chapter~\ref{cha:16-3-1}: Exercise 16.3.1
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-16-3-1}: Problem Statement
+    \item Section~\ref{defs-16-3-1-A}: 16-3-1A: Definitions and Theorems of Datatypes
+    \item Section~\ref{defs-16-3-1-B}: 16-3-1B: Definitions of M1ns and M1out
+    \item Section~\ref{proofs-16-3-1-C}: 16-3-1C: Proofs of m1TR_rules, m1TR_clauses, m1Trans_Equiv_TR, and m1_rules
+    \end{enumerate}
+  \item Chapter~\ref{cha:16-3-2}: Exercise 16.3.2
+    \begin{enumerate}[{}]
+    \item Section~\ref{problem-statement-16-3-2}: Problem Statement
+    \item Section~\ref{defs-16-3-2-A}: 16-3-2A: Definitions and Theorems of Datatypes 
+    \item Section~\ref{defs-16-3-2-B}: 16-3-2B: Definitions of ctrNS_def and ctrOut_def
+    \item Section~\ref{proofs-16-3-2-C}: 16-3-2C: Proofs of ctrTR_rules, ctrTR_clauses, ctrTrans_Equiv_TR, and ctr_rules
+    \end{enumerate}
+ \item Appendix~\ref{cha:source-code-sm}: Source Code for smScript.sml
+ \item Appendix~\ref{cha:source-code-m1}: Source Code for m1Script.sml
+ \item Appendix~\ref{cha:source-code-counter}: Source Code for counterScript.sml
+  \end{enumerate}
+\item[Reproducibility in ML and \LaTeX{}] \ \\
+  The ML and \LaTeX{} source files compile with no errors.
+\end{description}
+
+
+\chapter{Excercise 16.3.1}
+\label{cha:16-3-1}
+
+\section{Problem statement}
+\label{problem-statement-16-3-1}
+This problem had 3 different sections, in the first section I had to
+define datatypes for the inputs, states and outputs. For the 2nd part
+I defined the next state and output functions, followed by proving 4
+theories about the m1.
+
+\section{16-3-1A: Definitions and Theorems of Datatypes}
+\label{defs-16-3-1-A}
+\lstinputlisting[linerange={15-30}]{../HOL/M1/m1Script.sml}
+
+\lstinputlisting[linerange={520-537}]{../HOL/M1/m1Script.trans}
+
+\section{16-3-1B: Definitions of M1ns and M1out}
+\label{defs-16-3-1-B}
+\lstinputlisting[linerange={32-42}]{../HOL/M1/m1Script.sml}
+
+\lstinputlisting[linerange={538-565}]{../HOL/M1/m1Script.trans}
+
+\section{16-3-1C: Proofs of m1TR_rules, m1TR_clauses, m1Trans_Equiv_TR, and m1_rules}
+\label{proofs-16-3-1-C}
+\lstinputlisting[linerange={44-70}]{../HOL/M1/m1Script.sml}
+
+\lstinputlisting[linerange={566-639}]{../HOL/M1/m1Script.trans}
+
+\chapter{Exercise 16.3.2}
+\label{cha:16-3-2}
+
+\section{Problem statement}
+\label{problem-statement-16-3-2}
+This problem had 3 different sections, in the first section I had to
+define datatypes for the inputs, states and outputs. For the 2nd part
+I defined the next state and output functions, followed by proving 4
+theories about the counter.
+
+\section{16-3-2A: Definitions and Theorems of Datatypes}
+\label{defs-16-3-2-A}
+\lstinputlisting[linerange={15-30}]{../HOL/Counter/counterScript.sml}
+
+\lstinputlisting[linerange={520-538}]{../HOL/Counter/counterScript.trans}
+
+\section{16-3-2B: Definitions of ctrNS_def and ctrOut_def}
+\label{defs-16-3-2-B}
+\lstinputlisting[linerange={32-42}]{../HOL/Counter/counterScript.sml}
+
+\lstinputlisting[linerange={539-570}]{../HOL/Counter/counterScript.trans}
+
+\section{16-3-2C: Proofs of ctrTR_rules, ctrTR_clauses, ctrTrans_Equiv_TR, and ctr_rules}
+\label{proofs-16-3-2-C}
+\lstinputlisting[linerange={44-66}]{../HOL/Counter/counterScript.sml}
+
+\lstinputlisting[linerange={571-630}]{../HOL/Counter/counterScript.trans}
+
+\appendix{}
+
+\chapter{Source Code for smScript.sml}
+\label{cha:source-code-sm}
+\lstinputlisting{../HOL/smScript.sml}
+
+\chapter{Source Code for m1Script.sml}
+\label{cha:source-code-m1}
+\lstinputlisting{../HOL/M1/m1Script.sml}
+
+\chapter{Source Code for counterScript.sml}
+\label{cha:source-code-counter}
+\lstinputlisting{../HOL/Counter/counterScript.sml}
+
+\end{document}

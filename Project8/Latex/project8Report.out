@@ -1,0 +1,14 @@
+\BOOKMARK [0][-]{chapter.1}{Executive Summary}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Excercise 16.3.1}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Problem statement}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{16-3-1A: Definitions and Theorems of Datatypes}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{16-3-1B: Definitions of M1ns and M1out}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.4}{16-3-1C: Proofs of m1TR\137rules, m1TR\137clauses, m1Trans\137Equiv\137TR, and m1\137rules}{chapter.2}% 6
+\BOOKMARK [0][-]{chapter.3}{Exercise 16.3.2}{}% 7
+\BOOKMARK [1][-]{section.3.1}{Problem statement}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.2}{16-3-2A: Definitions and Theorems of Datatypes}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.3}{16-3-2B: Definitions of ctrNS\137def and ctrOut\137def}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.4}{16-3-2C: Proofs of ctrTR\137rules, ctrTR\137clauses, ctrTrans\137Equiv\137TR, and ctr\137rules}{chapter.3}% 11
+\BOOKMARK [0][-]{appendix.A}{Source Code for smScript.sml}{}% 12
+\BOOKMARK [0][-]{appendix.B}{Source Code for m1Script.sml}{}% 13
+\BOOKMARK [0][-]{appendix.C}{Source Code for counterScript.sml}{}% 14

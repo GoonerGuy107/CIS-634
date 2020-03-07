@@ -1,0 +1,103 @@
+\newcommand{\HOLcounterDate}{02 March 2020}
+\newcommand{\HOLcounterTime}{20:04}
+\begin{SaveVerbatim}{HOLcounterDatatypesctrcmd}
+\HOLFreeVar{ctrcmd} = \HOLConst{load} \HOLTyOp{num} \HOLTokenBar{} \HOLConst{count} \HOLTokenBar{} \HOLConst{hold}
+\end{SaveVerbatim}
+\newcommand{\HOLcounterDatatypesctrcmd}{\UseVerbatim{HOLcounterDatatypesctrcmd}}
+\begin{SaveVerbatim}{HOLcounterDatatypesctrOut}
+\HOLFreeVar{ctrOut} = \HOLConst{DISPLAY} \HOLTyOp{num}
+\end{SaveVerbatim}
+\newcommand{\HOLcounterDatatypesctrOut}{\UseVerbatim{HOLcounterDatatypesctrOut}}
+\begin{SaveVerbatim}{HOLcounterDatatypesctrState}
+\HOLFreeVar{ctrState} = \HOLConst{COUNT} \HOLTyOp{num}
+\end{SaveVerbatim}
+\newcommand{\HOLcounterDatatypesctrState}{\UseVerbatim{HOLcounterDatatypesctrState}}
+\newcommand{\HOLcounterDatatypes}{
+\HOLcounterDatatypesctrcmd\HOLcounterDatatypesctrOut\HOLcounterDatatypesctrState}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrXXrules}
+\HOLTokenTurnstile{} (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{ins} \HOLBoundVar{outs}.
+      \HOLConst{TR} (\HOLConst{load} \HOLFreeVar{new}) (\HOLConst{CFG} (\HOLConst{load} \HOLFreeVar{new}\HOLSymConst{::}\HOLBoundVar{ins}) (\HOLConst{COUNT} \HOLFreeVar{n}) \HOLBoundVar{outs})
+        (\HOLConst{CFG} \HOLBoundVar{ins} (\HOLConst{COUNT} \HOLFreeVar{new}) (\HOLConst{DISPLAY} \HOLFreeVar{new}\HOLSymConst{::}\HOLBoundVar{outs}))) \HOLSymConst{\HOLTokenConj{}}
+   (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{ins} \HOLBoundVar{outs}.
+      \HOLConst{TR} \HOLConst{count} (\HOLConst{CFG} (\HOLConst{count}\HOLSymConst{::}\HOLBoundVar{ins}) (\HOLConst{COUNT} \HOLFreeVar{n}) \HOLBoundVar{outs})
+        (\HOLConst{CFG} \HOLBoundVar{ins} (\HOLConst{COUNT} (\HOLFreeVar{n} \HOLSymConst{-} \HOLNumLit{1})) (\HOLConst{DISPLAY} (\HOLFreeVar{n} \HOLSymConst{-} \HOLNumLit{1})\HOLSymConst{::}\HOLBoundVar{outs}))) \HOLSymConst{\HOLTokenConj{}}
+   \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{ins} \HOLBoundVar{outs}.
+     \HOLConst{TR} \HOLConst{hold} (\HOLConst{CFG} (\HOLConst{hold}\HOLSymConst{::}\HOLBoundVar{ins}) (\HOLConst{COUNT} \HOLFreeVar{n}) \HOLBoundVar{outs})
+       (\HOLConst{CFG} \HOLBoundVar{ins} (\HOLConst{COUNT} \HOLFreeVar{n}) (\HOLConst{DISPLAY} \HOLFreeVar{n}\HOLSymConst{::}\HOLBoundVar{outs}))
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrXXrules}{\UseVerbatim{HOLcounterTheoremsctrXXrules}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrcmdXXdistinctXXclauses}
+\HOLTokenTurnstile{} (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a}. \HOLConst{load} \HOLBoundVar{a} \HOLSymConst{\HOLTokenNotEqual{}} \HOLConst{count}) \HOLSymConst{\HOLTokenConj{}} (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a}. \HOLConst{load} \HOLBoundVar{a} \HOLSymConst{\HOLTokenNotEqual{}} \HOLConst{hold}) \HOLSymConst{\HOLTokenConj{}} \HOLConst{count} \HOLSymConst{\HOLTokenNotEqual{}} \HOLConst{hold}
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrcmdXXdistinctXXclauses}{\UseVerbatim{HOLcounterTheoremsctrcmdXXdistinctXXclauses}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrNSXXdef}
+\HOLTokenTurnstile{} (\HOLConst{ctrNS} (\HOLConst{COUNT} \HOLFreeVar{n}) (\HOLConst{load} \HOLFreeVar{k}) \HOLSymConst{=} \HOLConst{COUNT} \HOLFreeVar{k}) \HOLSymConst{\HOLTokenConj{}}
+   (\HOLConst{ctrNS} (\HOLConst{COUNT} \HOLFreeVar{n}) \HOLConst{count} \HOLSymConst{=} \HOLConst{COUNT} (\HOLFreeVar{n} \HOLSymConst{-} \HOLNumLit{1})) \HOLSymConst{\HOLTokenConj{}}
+   (\HOLConst{ctrNS} (\HOLConst{COUNT} \HOLFreeVar{n}) \HOLConst{hold} \HOLSymConst{=} \HOLConst{COUNT} \HOLFreeVar{n})
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrNSXXdef}{\UseVerbatim{HOLcounterTheoremsctrNSXXdef}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrNSXXind}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{P}.
+     (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{n} \HOLBoundVar{k}. \HOLBoundVar{P} (\HOLConst{COUNT} \HOLBoundVar{n}) (\HOLConst{load} \HOLBoundVar{k})) \HOLSymConst{\HOLTokenConj{}} (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{n}. \HOLBoundVar{P} (\HOLConst{COUNT} \HOLBoundVar{n}) \HOLConst{count}) \HOLSymConst{\HOLTokenConj{}}
+     (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{n}. \HOLBoundVar{P} (\HOLConst{COUNT} \HOLBoundVar{n}) \HOLConst{hold}) \HOLSymConst{\HOLTokenImp{}}
+     \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{v} \HOLBoundVar{v\sb{\mathrm{1}}}. \HOLBoundVar{P} \HOLBoundVar{v} \HOLBoundVar{v\sb{\mathrm{1}}}
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrNSXXind}{\UseVerbatim{HOLcounterTheoremsctrNSXXind}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrOutXXdef}
+\HOLTokenTurnstile{} (\HOLConst{ctrOut} (\HOLConst{COUNT} \HOLFreeVar{n}) (\HOLConst{load} \HOLFreeVar{k}) \HOLSymConst{=} \HOLConst{DISPLAY} \HOLFreeVar{k}) \HOLSymConst{\HOLTokenConj{}}
+   (\HOLConst{ctrOut} (\HOLConst{COUNT} \HOLFreeVar{n}) \HOLConst{count} \HOLSymConst{=} \HOLConst{DISPLAY} (\HOLFreeVar{n} \HOLSymConst{-} \HOLNumLit{1})) \HOLSymConst{\HOLTokenConj{}}
+   (\HOLConst{ctrOut} (\HOLConst{COUNT} \HOLFreeVar{n}) \HOLConst{hold} \HOLSymConst{=} \HOLConst{DISPLAY} \HOLFreeVar{n})
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrOutXXdef}{\UseVerbatim{HOLcounterTheoremsctrOutXXdef}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrOutXXind}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{P}.
+     (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{n} \HOLBoundVar{k}. \HOLBoundVar{P} (\HOLConst{COUNT} \HOLBoundVar{n}) (\HOLConst{load} \HOLBoundVar{k})) \HOLSymConst{\HOLTokenConj{}} (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{n}. \HOLBoundVar{P} (\HOLConst{COUNT} \HOLBoundVar{n}) \HOLConst{count}) \HOLSymConst{\HOLTokenConj{}}
+     (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{n}. \HOLBoundVar{P} (\HOLConst{COUNT} \HOLBoundVar{n}) \HOLConst{hold}) \HOLSymConst{\HOLTokenImp{}}
+     \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{v} \HOLBoundVar{v\sb{\mathrm{1}}}. \HOLBoundVar{P} \HOLBoundVar{v} \HOLBoundVar{v\sb{\mathrm{1}}}
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrOutXXind}{\UseVerbatim{HOLcounterTheoremsctrOutXXind}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrOutXXoneXXone}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a} \HOLBoundVar{a\sp{\prime}}. (\HOLConst{DISPLAY} \HOLBoundVar{a} \HOLSymConst{=} \HOLConst{DISPLAY} \HOLBoundVar{a\sp{\prime}}) \HOLSymConst{\HOLTokenEquiv{}} (\HOLBoundVar{a} \HOLSymConst{=} \HOLBoundVar{a\sp{\prime}})
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrOutXXoneXXone}{\UseVerbatim{HOLcounterTheoremsctrOutXXoneXXone}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrStateXXoneXXone}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a} \HOLBoundVar{a\sp{\prime}}. (\HOLConst{COUNT} \HOLBoundVar{a} \HOLSymConst{=} \HOLConst{COUNT} \HOLBoundVar{a\sp{\prime}}) \HOLSymConst{\HOLTokenEquiv{}} (\HOLBoundVar{a} \HOLSymConst{=} \HOLBoundVar{a\sp{\prime}})
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrStateXXoneXXone}{\UseVerbatim{HOLcounterTheoremsctrStateXXoneXXone}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrTRXXclauses}
+\HOLTokenTurnstile{} (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{x} \HOLBoundVar{x1s} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{out1s} \HOLBoundVar{x2s} \HOLBoundVar{out2s} \HOLBoundVar{s\sb{\mathrm{2}}}.
+      \HOLConst{TR} \HOLBoundVar{x} (\HOLConst{CFG} \HOLBoundVar{x1s} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{out1s}) (\HOLConst{CFG} \HOLBoundVar{x2s} \HOLBoundVar{s\sb{\mathrm{2}}} \HOLBoundVar{out2s}) \HOLSymConst{\HOLTokenEquiv{}}
+      \HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{ins}.
+        (\HOLBoundVar{x1s} \HOLSymConst{=} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{x2s} \HOLSymConst{=} \HOLBoundVar{ins}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{s\sb{\mathrm{2}}} \HOLSymConst{=} \HOLBoundVar{NS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x}) \HOLSymConst{\HOLTokenConj{}}
+        (\HOLBoundVar{out2s} \HOLSymConst{=} \HOLBoundVar{Out} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{out1s})) \HOLSymConst{\HOLTokenConj{}}
+   \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{x} \HOLBoundVar{x1s} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{out1s} \HOLBoundVar{x2s} \HOLBoundVar{out2s}.
+     \HOLConst{TR} \HOLBoundVar{x} (\HOLConst{CFG} \HOLBoundVar{x1s} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{out1s})
+       (\HOLConst{CFG} \HOLBoundVar{x2s} (\HOLConst{ctrNS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x}) (\HOLConst{ctrOut} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{out2s})) \HOLSymConst{\HOLTokenEquiv{}}
+     \HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{ins}. (\HOLBoundVar{x1s} \HOLSymConst{=} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{x2s} \HOLSymConst{=} \HOLBoundVar{ins}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{out2s} \HOLSymConst{=} \HOLBoundVar{out1s})
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrTRXXclauses}{\UseVerbatim{HOLcounterTheoremsctrTRXXclauses}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrTRXXrules}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{s} \HOLBoundVar{x} \HOLBoundVar{ins} \HOLBoundVar{outs}.
+     \HOLConst{TR} \HOLBoundVar{x} (\HOLConst{CFG} (\HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLBoundVar{s} \HOLBoundVar{outs})
+       (\HOLConst{CFG} \HOLBoundVar{ins} (\HOLConst{ctrNS} \HOLBoundVar{s} \HOLBoundVar{x}) (\HOLConst{ctrOut} \HOLBoundVar{s} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{outs}))
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrTRXXrules}{\UseVerbatim{HOLcounterTheoremsctrTRXXrules}}
+\begin{SaveVerbatim}{HOLcounterTheoremsctrTransXXEquivXXTR}
+\HOLTokenTurnstile{} \HOLConst{TR} \HOLFreeVar{x} (\HOLConst{CFG} (\HOLFreeVar{x}\HOLSymConst{::}\HOLFreeVar{ins}) \HOLFreeVar{s} \HOLFreeVar{outs})
+     (\HOLConst{CFG} \HOLFreeVar{ins} (\HOLConst{ctrNS} \HOLFreeVar{s} \HOLFreeVar{x}) (\HOLConst{ctrOut} \HOLFreeVar{s} \HOLFreeVar{x}\HOLSymConst{::}\HOLFreeVar{outs})) \HOLSymConst{\HOLTokenEquiv{}}
+   \HOLConst{Trans} \HOLFreeVar{x} \HOLFreeVar{s} (\HOLConst{ctrNS} \HOLFreeVar{s} \HOLFreeVar{x})
+\end{SaveVerbatim}
+\newcommand{\HOLcounterTheoremsctrTransXXEquivXXTR}{\UseVerbatim{HOLcounterTheoremsctrTransXXEquivXXTR}}
+\newcommand{\HOLcounterTheorems}{
+\HOLThmTag{counter}{ctr_rules}\HOLcounterTheoremsctrXXrules
+\HOLThmTag{counter}{ctrcmd_distinct_clauses}\HOLcounterTheoremsctrcmdXXdistinctXXclauses
+\HOLThmTag{counter}{ctrNS_def}\HOLcounterTheoremsctrNSXXdef
+\HOLThmTag{counter}{ctrNS_ind}\HOLcounterTheoremsctrNSXXind
+\HOLThmTag{counter}{ctrOut_def}\HOLcounterTheoremsctrOutXXdef
+\HOLThmTag{counter}{ctrOut_ind}\HOLcounterTheoremsctrOutXXind
+\HOLThmTag{counter}{ctrOut_one_one}\HOLcounterTheoremsctrOutXXoneXXone
+\HOLThmTag{counter}{ctrState_one_one}\HOLcounterTheoremsctrStateXXoneXXone
+\HOLThmTag{counter}{ctrTR_clauses}\HOLcounterTheoremsctrTRXXclauses
+\HOLThmTag{counter}{ctrTR_rules}\HOLcounterTheoremsctrTRXXrules
+\HOLThmTag{counter}{ctrTrans_Equiv_TR}\HOLcounterTheoremsctrTransXXEquivXXTR
+}

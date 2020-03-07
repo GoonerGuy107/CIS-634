@@ -1,0 +1,151 @@
+\newcommand{\HOLsmDate}{02 March 2020}
+\newcommand{\HOLsmTime}{20:04}
+\begin{SaveVerbatim}{HOLsmDatatypesconfiguration}
+\HOLFreeVar{configuration} = \HOLConst{CFG} ('input \HOLTyOp{list}) 'state ('output \HOLTyOp{list})
+\end{SaveVerbatim}
+\newcommand{\HOLsmDatatypesconfiguration}{\UseVerbatim{HOLsmDatatypesconfiguration}}
+\newcommand{\HOLsmDatatypes}{
+\HOLsmDatatypesconfiguration}
+\begin{SaveVerbatim}{HOLsmDefinitionsTRXXdef}
+\HOLTokenTurnstile{} \HOLConst{TR} \HOLSymConst{=}
+   (\HOLTokenLambda{}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}.
+      \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{TR\sp{\prime}}.
+        (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}.
+           (\HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{ins} \HOLBoundVar{outs}.
+              (\HOLBoundVar{a\sb{\mathrm{1}}} \HOLSymConst{=} \HOLConst{CFG} (\HOLBoundVar{a\sb{\mathrm{0}}}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLBoundVar{s} \HOLBoundVar{outs}) \HOLSymConst{\HOLTokenConj{}}
+              (\HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{=} \HOLConst{CFG} \HOLBoundVar{ins} (\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{a\sb{\mathrm{0}}}) (\HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{a\sb{\mathrm{0}}}\HOLSymConst{::}\HOLBoundVar{outs}))) \HOLSymConst{\HOLTokenImp{}}
+           \HOLBoundVar{TR\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}) \HOLSymConst{\HOLTokenImp{}}
+        \HOLBoundVar{TR\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}})
+\end{SaveVerbatim}
+\newcommand{\HOLsmDefinitionsTRXXdef}{\UseVerbatim{HOLsmDefinitionsTRXXdef}}
+\begin{SaveVerbatim}{HOLsmDefinitionsTransXXdef}
+\HOLTokenTurnstile{} \HOLConst{Trans} \HOLSymConst{=}
+   (\HOLTokenLambda{}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}.
+      \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{Trans\sp{\prime}}.
+        (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}. (\HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{NS}. \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{=} \HOLBoundVar{NS} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{0}}}) \HOLSymConst{\HOLTokenImp{}} \HOLBoundVar{Trans\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}) \HOLSymConst{\HOLTokenImp{}}
+        \HOLBoundVar{Trans\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}})
+\end{SaveVerbatim}
+\newcommand{\HOLsmDefinitionsTransXXdef}{\UseVerbatim{HOLsmDefinitionsTransXXdef}}
+\newcommand{\HOLsmDefinitions}{
+\HOLDfnTag{sm}{TR_def}\HOLsmDefinitionsTRXXdef
+\HOLDfnTag{sm}{Trans_def}\HOLsmDefinitionsTransXXdef
+}
+\begin{SaveVerbatim}{HOLsmTheoremsconfigurationXXoneXXone}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}} \HOLBoundVar{a\sb{\mathrm{0}}\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{1}}\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{2}}\sp{\prime}}.
+     (\HOLConst{CFG} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{=} \HOLConst{CFG} \HOLBoundVar{a\sb{\mathrm{0}}\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{1}}\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{2}}\sp{\prime}}) \HOLSymConst{\HOLTokenEquiv{}}
+     (\HOLBoundVar{a\sb{\mathrm{0}}} \HOLSymConst{=} \HOLBoundVar{a\sb{\mathrm{0}}\sp{\prime}}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{a\sb{\mathrm{1}}} \HOLSymConst{=} \HOLBoundVar{a\sb{\mathrm{1}}\sp{\prime}}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{=} \HOLBoundVar{a\sb{\mathrm{2}}\sp{\prime}})
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsconfigurationXXoneXXone}{\UseVerbatim{HOLsmTheoremsconfigurationXXoneXXone}}
+\begin{SaveVerbatim}{HOLsmTheoremsTRXXcases}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}.
+     \HOLConst{TR} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{\HOLTokenEquiv{}}
+     \HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{ins} \HOLBoundVar{outs}.
+       (\HOLBoundVar{a\sb{\mathrm{1}}} \HOLSymConst{=} \HOLConst{CFG} (\HOLBoundVar{a\sb{\mathrm{0}}}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLBoundVar{s} \HOLBoundVar{outs}) \HOLSymConst{\HOLTokenConj{}}
+       (\HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{=} \HOLConst{CFG} \HOLBoundVar{ins} (\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{a\sb{\mathrm{0}}}) (\HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{a\sb{\mathrm{0}}}\HOLSymConst{::}\HOLBoundVar{outs}))
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTRXXcases}{\UseVerbatim{HOLsmTheoremsTRXXcases}}
+\begin{SaveVerbatim}{HOLsmTheoremsTRXXclauses}
+\HOLTokenTurnstile{} (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{x} \HOLBoundVar{x1s} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{out1s} \HOLBoundVar{x2s} \HOLBoundVar{out2s} \HOLBoundVar{s\sb{\mathrm{2}}}.
+      \HOLConst{TR} \HOLBoundVar{x} (\HOLConst{CFG} \HOLBoundVar{x1s} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{out1s}) (\HOLConst{CFG} \HOLBoundVar{x2s} \HOLBoundVar{s\sb{\mathrm{2}}} \HOLBoundVar{out2s}) \HOLSymConst{\HOLTokenEquiv{}}
+      \HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{ins}.
+        (\HOLBoundVar{x1s} \HOLSymConst{=} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{x2s} \HOLSymConst{=} \HOLBoundVar{ins}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{s\sb{\mathrm{2}}} \HOLSymConst{=} \HOLBoundVar{NS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x}) \HOLSymConst{\HOLTokenConj{}}
+        (\HOLBoundVar{out2s} \HOLSymConst{=} \HOLBoundVar{Out} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{out1s})) \HOLSymConst{\HOLTokenConj{}}
+   \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{x} \HOLBoundVar{x1s} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{out1s} \HOLBoundVar{x2s} \HOLBoundVar{out2s}.
+     \HOLConst{TR} \HOLBoundVar{x} (\HOLConst{CFG} \HOLBoundVar{x1s} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{out1s})
+       (\HOLConst{CFG} \HOLBoundVar{x2s} (\HOLBoundVar{NS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x}) (\HOLBoundVar{Out} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{out2s})) \HOLSymConst{\HOLTokenEquiv{}}
+     \HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{ins}. (\HOLBoundVar{x1s} \HOLSymConst{=} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{x2s} \HOLSymConst{=} \HOLBoundVar{ins}) \HOLSymConst{\HOLTokenConj{}} (\HOLBoundVar{out2s} \HOLSymConst{=} \HOLBoundVar{out1s})
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTRXXclauses}{\UseVerbatim{HOLsmTheoremsTRXXclauses}}
+\begin{SaveVerbatim}{HOLsmTheoremsTRXXcomplete}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{s} \HOLBoundVar{x} \HOLBoundVar{ins} \HOLBoundVar{outs}.
+     \HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{s\sp{\prime}} \HOLBoundVar{out}.
+       \HOLConst{TR} \HOLBoundVar{x} (\HOLConst{CFG} (\HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLBoundVar{s} \HOLBoundVar{outs}) (\HOLConst{CFG} \HOLBoundVar{ins} \HOLBoundVar{s\sp{\prime}} (\HOLBoundVar{out}\HOLSymConst{::}\HOLBoundVar{outs}))
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTRXXcomplete}{\UseVerbatim{HOLsmTheoremsTRXXcomplete}}
+\begin{SaveVerbatim}{HOLsmTheoremsTRXXdeterministic}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{x\sb{\mathrm{1}}} \HOLBoundVar{ins\sb{\mathrm{1}}} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{outs\sb{\mathrm{1}}} \HOLBoundVar{ins\sb{\mathrm{2}}} \HOLBoundVar{ins\sb{\mathrm{2}}\sp{\prime}} \HOLBoundVar{outs\sb{\mathrm{2}}} \HOLBoundVar{outs\sb{\mathrm{2}}\sp{\prime}}.
+     \HOLConst{TR} \HOLBoundVar{x\sb{\mathrm{1}}} (\HOLConst{CFG} (\HOLBoundVar{x\sb{\mathrm{1}}}\HOLSymConst{::}\HOLBoundVar{ins\sb{\mathrm{1}}}) \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{outs\sb{\mathrm{1}}})
+       (\HOLConst{CFG} \HOLBoundVar{ins\sb{\mathrm{2}}} (\HOLBoundVar{NS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}) (\HOLBoundVar{Out} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}\HOLSymConst{::}\HOLBoundVar{outs\sb{\mathrm{2}}})) \HOLSymConst{\HOLTokenConj{}}
+     \HOLConst{TR} \HOLBoundVar{x\sb{\mathrm{1}}} (\HOLConst{CFG} (\HOLBoundVar{x\sb{\mathrm{1}}}\HOLSymConst{::}\HOLBoundVar{ins\sb{\mathrm{1}}}) \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{outs\sb{\mathrm{1}}})
+       (\HOLConst{CFG} \HOLBoundVar{ins\sb{\mathrm{2}}\sp{\prime}} (\HOLBoundVar{NS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}) (\HOLBoundVar{Out} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}\HOLSymConst{::}\HOLBoundVar{outs\sb{\mathrm{2}}\sp{\prime}})) \HOLSymConst{\HOLTokenEquiv{}}
+     (\HOLConst{CFG} \HOLBoundVar{ins\sb{\mathrm{2}}} (\HOLBoundVar{NS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}) (\HOLBoundVar{Out} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}\HOLSymConst{::}\HOLBoundVar{outs\sb{\mathrm{2}}}) \HOLSymConst{=}
+      \HOLConst{CFG} \HOLBoundVar{ins\sb{\mathrm{2}}\sp{\prime}} (\HOLBoundVar{NS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}) (\HOLBoundVar{Out} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}\HOLSymConst{::}\HOLBoundVar{outs\sb{\mathrm{2}}\sp{\prime}})) \HOLSymConst{\HOLTokenConj{}}
+     \HOLConst{TR} \HOLBoundVar{x\sb{\mathrm{1}}} (\HOLConst{CFG} (\HOLBoundVar{x\sb{\mathrm{1}}}\HOLSymConst{::}\HOLBoundVar{ins\sb{\mathrm{1}}}) \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{outs\sb{\mathrm{1}}})
+       (\HOLConst{CFG} \HOLBoundVar{ins\sb{\mathrm{2}}} (\HOLBoundVar{NS} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}) (\HOLBoundVar{Out} \HOLBoundVar{s\sb{\mathrm{1}}} \HOLBoundVar{x\sb{\mathrm{1}}}\HOLSymConst{::}\HOLBoundVar{outs\sb{\mathrm{2}}}))
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTRXXdeterministic}{\UseVerbatim{HOLsmTheoremsTRXXdeterministic}}
+\begin{SaveVerbatim}{HOLsmTheoremsTRXXind}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{TR\sp{\prime}}.
+     (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{x} \HOLBoundVar{ins} \HOLBoundVar{outs}.
+        \HOLBoundVar{TR\sp{\prime}} \HOLBoundVar{x} (\HOLConst{CFG} (\HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLBoundVar{s} \HOLBoundVar{outs})
+          (\HOLConst{CFG} \HOLBoundVar{ins} (\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x}) (\HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{outs}))) \HOLSymConst{\HOLTokenImp{}}
+     \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}. \HOLConst{TR} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{\HOLTokenImp{}} \HOLBoundVar{TR\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTRXXind}{\UseVerbatim{HOLsmTheoremsTRXXind}}
+\begin{SaveVerbatim}{HOLsmTheoremsTRXXrules}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{x} \HOLBoundVar{ins} \HOLBoundVar{outs}.
+     \HOLConst{TR} \HOLBoundVar{x} (\HOLConst{CFG} (\HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLBoundVar{s} \HOLBoundVar{outs})
+       (\HOLConst{CFG} \HOLBoundVar{ins} (\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x}) (\HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{outs}))
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTRXXrules}{\UseVerbatim{HOLsmTheoremsTRXXrules}}
+\begin{SaveVerbatim}{HOLsmTheoremsTRXXstrongind}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{TR\sp{\prime}}.
+     (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{NS} \HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{x} \HOLBoundVar{ins} \HOLBoundVar{outs}.
+        \HOLBoundVar{TR\sp{\prime}} \HOLBoundVar{x} (\HOLConst{CFG} (\HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{ins}) \HOLBoundVar{s} \HOLBoundVar{outs})
+          (\HOLConst{CFG} \HOLBoundVar{ins} (\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x}) (\HOLBoundVar{Out} \HOLBoundVar{s} \HOLBoundVar{x}\HOLSymConst{::}\HOLBoundVar{outs}))) \HOLSymConst{\HOLTokenImp{}}
+     \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}. \HOLConst{TR} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{\HOLTokenImp{}} \HOLBoundVar{TR\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTRXXstrongind}{\UseVerbatim{HOLsmTheoremsTRXXstrongind}}
+\begin{SaveVerbatim}{HOLsmTheoremsTRXXTransXXlemma}
+\HOLTokenTurnstile{} \HOLConst{TR} \HOLFreeVar{x} (\HOLConst{CFG} (\HOLFreeVar{x}\HOLSymConst{::}\HOLFreeVar{ins}) \HOLFreeVar{s} \HOLFreeVar{outs})
+     (\HOLConst{CFG} \HOLFreeVar{ins} (\HOLFreeVar{NS} \HOLFreeVar{s} \HOLFreeVar{x}) (\HOLFreeVar{Out} \HOLFreeVar{s} \HOLFreeVar{x}\HOLSymConst{::}\HOLFreeVar{outs})) \HOLSymConst{\HOLTokenImp{}}
+   \HOLConst{Trans} \HOLFreeVar{x} \HOLFreeVar{s} (\HOLFreeVar{NS} \HOLFreeVar{s} \HOLFreeVar{x})
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTRXXTransXXlemma}{\UseVerbatim{HOLsmTheoremsTRXXTransXXlemma}}
+\begin{SaveVerbatim}{HOLsmTheoremsTransXXcases}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}. \HOLConst{Trans} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{\HOLTokenEquiv{}} \HOLSymConst{\HOLTokenExists{}}\HOLBoundVar{NS}. \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{=} \HOLBoundVar{NS} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{0}}}
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTransXXcases}{\UseVerbatim{HOLsmTheoremsTransXXcases}}
+\begin{SaveVerbatim}{HOLsmTheoremsTransXXEquivXXTR}
+\HOLTokenTurnstile{} \HOLConst{TR} \HOLFreeVar{x} (\HOLConst{CFG} (\HOLFreeVar{x}\HOLSymConst{::}\HOLFreeVar{ins}) \HOLFreeVar{s} \HOLFreeVar{outs})
+     (\HOLConst{CFG} \HOLFreeVar{ins} (\HOLFreeVar{NS} \HOLFreeVar{s} \HOLFreeVar{x}) (\HOLFreeVar{Out} \HOLFreeVar{s} \HOLFreeVar{x}\HOLSymConst{::}\HOLFreeVar{outs})) \HOLSymConst{\HOLTokenEquiv{}} \HOLConst{Trans} \HOLFreeVar{x} \HOLFreeVar{s} (\HOLFreeVar{NS} \HOLFreeVar{s} \HOLFreeVar{x})
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTransXXEquivXXTR}{\UseVerbatim{HOLsmTheoremsTransXXEquivXXTR}}
+\begin{SaveVerbatim}{HOLsmTheoremsTransXXind}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{Trans\sp{\prime}}.
+     (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x}. \HOLBoundVar{Trans\sp{\prime}} \HOLBoundVar{x} \HOLBoundVar{s} (\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x})) \HOLSymConst{\HOLTokenImp{}}
+     \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}. \HOLConst{Trans} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{\HOLTokenImp{}} \HOLBoundVar{Trans\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTransXXind}{\UseVerbatim{HOLsmTheoremsTransXXind}}
+\begin{SaveVerbatim}{HOLsmTheoremsTransXXrules}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x}. \HOLConst{Trans} \HOLBoundVar{x} \HOLBoundVar{s} (\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x})
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTransXXrules}{\UseVerbatim{HOLsmTheoremsTransXXrules}}
+\begin{SaveVerbatim}{HOLsmTheoremsTransXXstrongind}
+\HOLTokenTurnstile{} \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{Trans\sp{\prime}}.
+     (\HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x}. \HOLBoundVar{Trans\sp{\prime}} \HOLBoundVar{x} \HOLBoundVar{s} (\HOLBoundVar{NS} \HOLBoundVar{s} \HOLBoundVar{x})) \HOLSymConst{\HOLTokenImp{}}
+     \HOLSymConst{\HOLTokenForall{}}\HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}. \HOLConst{Trans} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}} \HOLSymConst{\HOLTokenImp{}} \HOLBoundVar{Trans\sp{\prime}} \HOLBoundVar{a\sb{\mathrm{0}}} \HOLBoundVar{a\sb{\mathrm{1}}} \HOLBoundVar{a\sb{\mathrm{2}}}
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTransXXstrongind}{\UseVerbatim{HOLsmTheoremsTransXXstrongind}}
+\begin{SaveVerbatim}{HOLsmTheoremsTransXXTRXXlemma}
+\HOLTokenTurnstile{} \HOLConst{Trans} \HOLFreeVar{x} \HOLFreeVar{s} (\HOLFreeVar{NS} \HOLFreeVar{s} \HOLFreeVar{x}) \HOLSymConst{\HOLTokenImp{}}
+   \HOLConst{TR} \HOLFreeVar{x} (\HOLConst{CFG} (\HOLFreeVar{x}\HOLSymConst{::}\HOLFreeVar{ins}) \HOLFreeVar{s} \HOLFreeVar{outs}) (\HOLConst{CFG} \HOLFreeVar{ins} (\HOLFreeVar{NS} \HOLFreeVar{s} \HOLFreeVar{x}) (\HOLFreeVar{Out} \HOLFreeVar{s} \HOLFreeVar{x}\HOLSymConst{::}\HOLFreeVar{outs}))
+\end{SaveVerbatim}
+\newcommand{\HOLsmTheoremsTransXXTRXXlemma}{\UseVerbatim{HOLsmTheoremsTransXXTRXXlemma}}
+\newcommand{\HOLsmTheorems}{
+\HOLThmTag{sm}{configuration_one_one}\HOLsmTheoremsconfigurationXXoneXXone
+\HOLThmTag{sm}{TR_cases}\HOLsmTheoremsTRXXcases
+\HOLThmTag{sm}{TR_clauses}\HOLsmTheoremsTRXXclauses
+\HOLThmTag{sm}{TR_complete}\HOLsmTheoremsTRXXcomplete
+\HOLThmTag{sm}{TR_deterministic}\HOLsmTheoremsTRXXdeterministic
+\HOLThmTag{sm}{TR_ind}\HOLsmTheoremsTRXXind
+\HOLThmTag{sm}{TR_rules}\HOLsmTheoremsTRXXrules
+\HOLThmTag{sm}{TR_strongind}\HOLsmTheoremsTRXXstrongind
+\HOLThmTag{sm}{TR_Trans_lemma}\HOLsmTheoremsTRXXTransXXlemma
+\HOLThmTag{sm}{Trans_cases}\HOLsmTheoremsTransXXcases
+\HOLThmTag{sm}{Trans_Equiv_TR}\HOLsmTheoremsTransXXEquivXXTR
+\HOLThmTag{sm}{Trans_ind}\HOLsmTheoremsTransXXind
+\HOLThmTag{sm}{Trans_rules}\HOLsmTheoremsTransXXrules
+\HOLThmTag{sm}{Trans_strongind}\HOLsmTheoremsTransXXstrongind
+\HOLThmTag{sm}{Trans_TR_lemma}\HOLsmTheoremsTransXXTRXXlemma
+}

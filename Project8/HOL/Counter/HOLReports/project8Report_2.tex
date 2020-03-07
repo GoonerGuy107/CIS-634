@@ -1,0 +1,67 @@
+\documentclass[11pt, twoside]{article}
+\usepackage{holtex}
+
+\makeindex
+
+\begin{document}
+
+\input{HOLcounter}
+\input{HOLsm}
+
+\tableofcontents
+\cleardoublepage
+\HOLpagestyle
+
+% ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+\section{counter Theory}
+\index{counter Theory@\textbf  {counter Theory}}
+\begin{flushleft}
+\textbf{Built:} \HOLcounterDate \\[2pt]
+\textbf{Parent Theories:} sm
+\end{flushleft}
+% ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+\subsection{Datatypes}
+\index{counter Theory@\textbf  {counter Theory}!Datatypes}
+% .....................................
+
+\HOLcounterDatatypes
+
+% No definitions
+
+\subsection{Theorems}
+\index{counter Theory@\textbf  {counter Theory}!Theorems}
+% .....................................
+
+\HOLcounterTheorems
+
+% ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+\section{sm Theory}
+\index{sm Theory@\textbf  {sm Theory}}
+\begin{flushleft}
+\textbf{Built:} \HOLsmDate \\[2pt]
+\textbf{Parent Theories:} indexedLists, patternMatches
+\end{flushleft}
+% ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+\subsection{Datatypes}
+\index{sm Theory@\textbf  {sm Theory}!Datatypes}
+% .....................................
+
+\HOLsmDatatypes
+
+\subsection{Definitions}
+\index{sm Theory@\textbf  {sm Theory}!Definitions}
+% .....................................
+
+\HOLsmDefinitions
+
+\subsection{Theorems}
+\index{sm Theory@\textbf  {sm Theory}!Theorems}
+% .....................................
+
+\HOLsmTheorems
+
+\HOLindex
+
+\end{document}

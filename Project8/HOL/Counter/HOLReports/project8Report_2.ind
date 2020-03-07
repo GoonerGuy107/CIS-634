@@ -1,0 +1,42 @@
+\begin{theindex}
+
+  \item \textbf  {counter Theory}, 3
+    \subitem Datatypes, 3
+    \subitem Theorems, 3
+      \subsubitem ctr_rules, 3
+      \subsubitem ctrcmd_distinct_clauses, 3
+      \subsubitem ctrNS_def, 3
+      \subsubitem ctrNS_ind, 3
+      \subsubitem ctrOut_def, 3
+      \subsubitem ctrOut_ind, 4
+      \subsubitem ctrOut_one_one, 4
+      \subsubitem ctrState_one_one, 4
+      \subsubitem ctrTR_clauses, 4
+      \subsubitem ctrTR_rules, 4
+      \subsubitem ctrTrans_Equiv_TR, 4
+
+  \indexspace
+
+  \item \textbf  {sm Theory}, 4
+    \subitem Datatypes, 4
+    \subitem Definitions, 5
+      \subsubitem TR_def, 5
+      \subsubitem Trans_def, 5
+    \subitem Theorems, 5
+      \subsubitem configuration_one_one, 5
+      \subsubitem TR_cases, 5
+      \subsubitem TR_clauses, 5
+      \subsubitem TR_complete, 6
+      \subsubitem TR_deterministic, 6
+      \subsubitem TR_ind, 6
+      \subsubitem TR_rules, 6
+      \subsubitem TR_strongind, 6
+      \subsubitem TR_Trans_lemma, 6
+      \subsubitem Trans_cases, 6
+      \subsubitem Trans_Equiv_TR, 7
+      \subsubitem Trans_ind, 7
+      \subsubitem Trans_rules, 7
+      \subsubitem Trans_strongind, 7
+      \subsubitem Trans_TR_lemma, 7
+
+\end{theindex}

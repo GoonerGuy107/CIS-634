@@ -1,0 +1,279 @@
+%% ---------------------------------------------------
+%% Kyle Peppe
+%% CIS 634 Project 1 Report
+%% ---------------------------------------------------
+\documentclass{report}
+
+\title{Project 1 Report}
+\author{Kyle Peppe}
+\date{\today}
+
+%% ---------------------------------------------------
+%% 634format specifies the format of our reports
+%% ---------------------------------------------------
+\usepackage{634format}
+
+%% ---------------------------------------------------
+%% enumerate 
+%% ---------------------------------------------------
+\usepackage{enumerate}
+
+%% ---------------------------------------------------
+%% listings is used for including our source code in reports
+%% textcomp provides additional symbols
+%% ---------------------------------------------------
+\usepackage{listings}
+\usepackage{textcomp}
+
+%% ---------------------------------------------------
+%% Packages for math environments
+%% ---------------------------------------------------
+\usepackage{amsmath}
+
+%% ---------------------------------------------------
+%% Packages for URLs and hotlinks in the table of contents
+%% and symbolic cross references using \ref
+%% ---------------------------------------------------
+\usepackage{hyperref}
+
+%% ---------------------------------------------------
+%% Packages for using HOL-generated macros and displays
+%% ---------------------------------------------------
+\usepackage{holtex}
+\usepackage{holtexbasic}
+\input{commands}
+
+\begin{document}
+
+%% --------------------------------------------------- 
+%% The listings  parameter "language" is set to "ML"
+%% ---------------------------------------------------
+\lstset{language=ML}
+
+
+\maketitle{}
+
+\begin{abstract}
+  This project was as an introduction to the ML programming language 
+  and some of the more basic commands that entails. I also then put
+  our findings, code and output into Latex to further enhance our
+  knowledge. I did the exercises from the PDF book from the class
+  2-5-1, 3-4-1, and 3-4-2. Below are the sections that are in this
+  report for each problem:
+  \begin{itemize}
+  \item Problem statement
+  \item Relevant code
+  \item Test results 
+  \end{itemize}
+  
+  For each problem or exercise-oriented chapter in the main body of
+  the report is a corresponding chapter in the Appendix containing the
+  source code in ML.  This source code is not pasted into the
+  Appendix.  Rather, it is input directly from the source code file
+  itself.
+
+\end{abstract}
+
+\begin{acknowledgments}
+  I would like to acknowledge the 2 professors, Professor Chin and 
+  Professor Hamner, that have helped me begin to understand this new
+  ML programming language. Also to Syracuse University for accepting
+  me to this Masters program in Cybersecurity.
+\end{acknowledgments}
+
+\tableofcontents{}
+
+
+\chapter{Executive Summary}
+\label{cha:executive-summary}
+
+\textbf{All requirements for this project are satisfied}.
+Specifically,
+\begin{description}
+\item[Report Contents] \ \\
+  The report has the following content:
+  \begin{enumerate}[{}]
+  \item Chapter~\ref{cha:executive-summary}: Executive Summary
+  \item Chapter~\ref{cha:exercise-2-5-1}: Exercise 2.5.1
+    \begin{enumerate}[{}]
+    \item Section~\ref{sec:problem-statement-ex-2-5-1}: Problem statement
+    \item Section~\ref{sec:relevant-code-ex-2-5-1}: Relevant code
+    \item Section~\ref{sec:tests-2-5-1}: Test results
+    \end{enumerate}
+  \item Chapter~\ref{cha:exercise-3-4-1}: Exercise 3.4.1
+    \begin{enumerate}[{}]
+    \item Section~\ref{sec:problem-statement-ex-3-4-1}: Problem statement
+    \item Section~\ref{sec:relevant-code-ex-3-4-1}: Relevant code
+    \item Section~\ref{sec:tests-ex-3-4-2}: Test results
+    \end{enumerate}
+  \item Chapter~\ref{cha:exercise-3-4-2}: Exercise 3.4.2
+    \begin{enumerate}[{}]
+    \item Section~\ref{sec:problem-statement-ex-3-4-2}: Problem statement
+    \item Section~\ref{sec:relevant-code-ex-3-4-2}: Relevant code
+    \item Section~\ref{sec:tests-ex-3-4-2}: Test results
+    \end{enumerate}
+  \item Chapter~\ref{cha:source-code-ex-2-5-1}: Source Code for Exercise
+    2.5.1
+  \item Chapter~\ref{cha:source-code-ex-3-4-1}: Source Code for Exercise
+    3.4.1
+  \item Chapter~\ref{cha:source-code-ex-3-4-1}: Source Code for Exercise
+    3.4.2
+  \end{enumerate}
+\item[Reproducibility in ML and \LaTeX{}] \ \\
+  Our ML and \LaTeX{} source files compile with no errors.
+\end{description}
+
+
+\chapter{Exercise 2.5.1}
+\label{cha:exercise-2-5-1}
+
+\section{Problem Statement for Exercise 2.5.1}
+\label{sec:problem-statement-ex-2-5-1}
+  For this problem I solved the Exercise 2.5.1 from the PDF book.
+  This problem was to create a variable called timesPlus and then
+  pass variables into the equation in order to prove the code was
+  correct.
+
+\section{Relevant Code for Exercise 2.5.1}
+\label{sec:relevant-code-ex-2-5-1}
+  The relevant code wil be in the corresponding Appendix at the
+  end of the report.
+
+\subsection{Test cases for Exercise 2.5.1}
+\label{sec:test-casesex-2-5-1}
+The relevant code wil be in the corresponding Relevant Information 
+Chpater at the end of the report.
+
+\section{Test Results for Exercise 2.5.1}
+\label{sec:tests-ex-2-5-1}
+
+Below are the results from running the test cases:
+
+The following is output from \emph{ex-2-5-1.sml}
+\lstinputlisting{ML/ex-2-5-1.trans}
+
+\chapter{Exercise 3.4.1}
+\label{cha:exercise-3-4-1}
+
+\section{Problem Statement for Exercise 3.4.1}
+\label{sec:problem-statement-ex-3-4-1}
+  For this problem I solved the Exercise 3.4.1 from the PDF book.
+  This problem was to create a list and then using the cons operator
+  gradually split up the lists into different lists. The intial list
+  had 4 pairs with a index number and then a person's name. I did use
+  a temp variable to split up the last values in order to continue to
+  use the cons structure.
+
+\section{Relevant Code for Exercise 3.4.1}
+\label{sec:relevant-code-ex-3-4-1}
+  The relevant code wil be in the corresponding Appendix at the
+  end of the report.
+
+\subsection{Test cases for Exercise 3.4.1}
+\label{sec:test-cases-ex-3-4-1}
+The relevant code wil be in the corresponding Relevant Information 
+Chpater at the end of the report.
+
+\section{Test Results for Exercise 3.4.1}
+\label{sec:tests-ex-3-4-1}
+
+Below are the results from running the test cases:
+
+The following is output from \emph{ex-3-4-1.sml}
+\lstinputlisting{ML/ex-3-4-1.trans}
+
+\chapter{Exercise 3.4.2}
+\label{cha:exercise-3-4-2}
+
+\section{Problem Statement for Exercise 3.4.2}
+\label{sec:problem-statement-ex-3-4-2}
+  For this problem I solved the Exercise 3.4.2 from the PDF book.
+  This problem was to copy the code provided in the book and then
+  to run it. Once we did that in order we had to explain the findings.
+  I did this in the source code (surrounded by comments so the code
+  should still compile).
+
+\section{Relevant Code for Exercise 3.4.2}
+\label{sec:relevant-code-ex-3-4-2}
+  The relevant code wil be in the corresponding Appendix at the
+  end of the report.
+
+\subsection{Test cases for Exercise 3.4.2}
+\label{sec:test-cases-ex-3-4-2}
+  The relevant code wil be in the corresponding Relevant Information 
+  Chpater at the end of the report.
+
+\section{Test Results for Exercise 3.4.2}
+\label{sec:tests-ex-3-4-2}
+
+Below are the results from running the test cases:
+
+The following is output from \emph{ex-3-4-2.sml}
+\lstinputlisting{ML/ex-3-4-2.trans}
+
+\chapter{Relevant Information}
+\label{cha:relevant-information}
+
+\section{Specific Test Cases}
+\label{sec:specific-test-cases}
+
+\subsection{Test Cases for Exercise 2-5-1}
+\label{sec:test-cases-ex-2-5-1}
+The required tests from the PDF project 1 handout are below:
+\begin{lstlisting}[frame=TB]
+  (******************************************************************************) 
+  (* Test Cases *) 
+  (******************************************************************************) 
+  timesPlus 100 27;
+  timesPlus 10 26; 
+  timesPlus 1 25; 
+  timesPlus 2 24; 
+  timesPlus 30 23; 
+  timesPlus 50 200;
+ \end{lstlisting}
+
+\subsection{Test Cases for Exercise 3-4-1}
+\label{sec:test-cases-ex-3-4-1}
+The required test cases as shown in the PDF project 1 handout (and
+parts a, b, and c in the textbook).
+\begin{lstlisting}[frame=TB]
+  (a) The list of pairs assigned to listA
+  (b) The ML expression that results in the assignment of values to e1B 
+  and listB as specified
+  (c) The ML expressions that result in the assignment of values to elC1,
+  elC2, elC3, elC4, and elC5 as specified
+\end{lstlisting}
+
+\subsection{Test Cases for Exercise 3.4.2}
+\label{sec:test-cases-ex-3-4-2}
+
+For this exercise there was no actual test cases we just had to run
+the provided code and explain the output.
+
+%% ------------------------------------------
+%% this restarts the section numbering and
+%% changes chapter numbering to letters starting
+%% with A
+%% ------------------------------------------
+\appendix{} 
+
+
+\chapter{Source Code for  Exercise 2.5.1}
+\label{cha:source-code-exercise-2-5-1}
+
+The following code is from \emph{ex-2-5-1.sml}
+\lstinputlisting{ML/ex-2-5-1.sml}
+
+\chapter{Source Code for  Exercise 3.4.1}
+\label{cha:source-code-exercise-3-4-1}
+
+The following code is from \emph{ex-3-4-1.sml}
+\lstinputlisting{ML/ex-3-4-1.sml}
+
+\chapter{Source Code for  Exercise 3.4.2}
+\label{cha:source-code-exercise-3-4-2}
+
+The following code is from \emph{ex-3-4-2.sml}
+\lstinputlisting{ML/ex-3-4-2.sml}
+
+\end{document}

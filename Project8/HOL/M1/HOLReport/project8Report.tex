@@ -1,0 +1,67 @@
+\documentclass[11pt, twoside]{article}
+\usepackage{holtex}
+
+\makeindex
+
+\begin{document}
+
+\input{HOLmOne}
+\input{HOLsm}
+
+\tableofcontents
+\cleardoublepage
+\HOLpagestyle
+
+% ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+\section{m1 Theory}
+\index{m1 Theory@\textbf  {m1 Theory}}
+\begin{flushleft}
+\textbf{Built:} \HOLmOneDate \\[2pt]
+\textbf{Parent Theories:} sm
+\end{flushleft}
+% ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+\subsection{Datatypes}
+\index{m1 Theory@\textbf  {m1 Theory}!Datatypes}
+% .....................................
+
+\HOLmOneDatatypes
+
+% No definitions
+
+\subsection{Theorems}
+\index{m1 Theory@\textbf  {m1 Theory}!Theorems}
+% .....................................
+
+\HOLmOneTheorems
+
+% ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+\section{sm Theory}
+\index{sm Theory@\textbf  {sm Theory}}
+\begin{flushleft}
+\textbf{Built:} \HOLsmDate \\[2pt]
+\textbf{Parent Theories:} indexedLists, patternMatches
+\end{flushleft}
+% ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+\subsection{Datatypes}
+\index{sm Theory@\textbf  {sm Theory}!Datatypes}
+% .....................................
+
+\HOLsmDatatypes
+
+\subsection{Definitions}
+\index{sm Theory@\textbf  {sm Theory}!Definitions}
+% .....................................
+
+\HOLsmDefinitions
+
+\subsection{Theorems}
+\index{sm Theory@\textbf  {sm Theory}!Theorems}
+% .....................................
+
+\HOLsmTheorems
+
+\HOLindex
+
+\end{document}

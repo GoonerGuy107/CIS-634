@@ -1,0 +1,31 @@
+
+---------------------------------------------------------------------
+       HOL-4 [Kananaskis 11 (stdknl, built Sat Aug 19 09:30:06 2017)]
+
+       For introductory HOL help, type: help "hol";
+       To exit type <Control>-D
+---------------------------------------------------------------------
+> > > > val x1 = 0: int
+val x2 = 1: int
+val x3 = 3: int
+val x4 = 4: int
+val y1 = "Alice": string
+val y2 = "Bob": string
+val y3 = "Carol": string
+val y4 = "Dan": string
+> val listA =  [(x1, y1), (x2, y2), (x3, y3), (x4, y4)];
+val listA = [(0, "Alice"), (1, "Bob"), (3, "Carol"), (4, "Dan")]:
+   (int * string) list
+> val (e1B :: listB) = listA;
+val e1B = (0, "Alice"): int * string
+val listB = [(1, "Bob"), (3, "Carol"), (4, "Dan")]: (int * string) list
+> val (e1C1, e1C2) = e1B;
+val e1C1 = 0: int
+val e1C2 = "Alice": string
+> val (e1C3 :: temp) = listB;
+val e1C3 = (1, "Bob"): int * string
+val temp = [(3, "Carol"), (4, "Dan")]: (int * string) list
+> val (e1C4 :: e1C5) = temp;
+val e1C4 = (3, "Carol"): int * string
+val e1C5 = [(4, "Dan")]: (int * string) list
+> 
